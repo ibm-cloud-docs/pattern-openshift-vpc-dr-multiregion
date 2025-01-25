@@ -1,0 +1,56 @@
+#  Name your file `toc.yaml`
+#  Make sure you include all nav file coding requirements, as defined in https://test.cloud.ibm.com/docs-internal/writing?topic=writing-code-nav
+#  Anything with a fully qualified URL with `http` or `https` will get an external link icon added to the nav entry
+---
+toc:
+  properties:
+    subcollection: pattern-openshift-vpc-dr-multiregion
+    href: /docs/pattern-openshift-vpc-dr-multiregion
+    path: pattern-openshift-vpc-dr-multiregion
+    audience: solution
+    category: solution_docs
+    content-type: deployment
+     # industry: resiliency # Replace
+     # use-case: Public Cloud # Replace
+     # compliance: compliance-value # Replace
+    deployable: false # Set to true if this is a deployment guide that's associated with a deployable architecture in the catalog
+    description: Openshift VPC DR Multiregion
+    label: Openshift VPC DR Multiregion
+  entries:
+  - navgroup:
+      id: overview
+      topics:
+      - overview.md
+  - navgroup:
+      id: architecture
+      topics:
+      - reference-architecture.md
+  - navgroup:
+      id: plan
+      topics:
+      - topicgroup:
+          label: Design considerations
+          topics:
+          - topic: compute-design.md
+            navtitle: Compute
+          - topic: storage-design.md
+            navtitle: Storage
+          - topic: networking-design.md
+            navtitle: Networking
+          - topic: resiliency-design.md
+            navtitle: Resiliency
+      - topicgroup:
+          label: Architecture decisions
+          topics:
+          - topic: compute-architecture.md
+            navtitle: Compute
+          - topic: storage-architecture.md
+            navtitle: Storage
+          - topic: networking-architecture.md
+            navtitle: Networking
+          - topic: resiliency-architecture.md
+            navtitle: Resiliency
+  - navgroup:
+      id: reference
+      topics:
+      - references.md
