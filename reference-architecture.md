@@ -25,6 +25,8 @@ content-type: reference-architecture
 
 # Solution Architecture
 {: #Solution-Architecture}
+{: toc-content-type="reference-architecture"}
+{: toc-version="1.0"}
 
 ## Solution Architecture Diagram
 {: #architecture-diagram}
