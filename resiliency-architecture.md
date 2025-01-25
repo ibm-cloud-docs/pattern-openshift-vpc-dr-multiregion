@@ -4,7 +4,7 @@ copyright:
   years: 2023
 lastupdated: "2023-12-26"
 
-subcollection: pattern-roks-vpc-dr-multiregion
+subcollection: pattern-openshift-vpc-dr-multiregion
 
 keywords:
 

@@ -1,13 +1,24 @@
 ---
-
 copyright:
-  years: 2023
-lastupdated: "2023-12-26"
+  years: 2025
+lastupdated: "2025-01-25"
 
-subcollection: pattern-roks-vpc-dr-multiregion
+subcollection: pattern-openshift-vpc-dr-multiregion
 
 keywords:
+# The release that the reference architecture describes
 
+authors:
+  - name: Vidula Patel, Rob Talotta
+
+version: 1.0
+
+deployment-url:
+
+docs: https://cloud.ibm.com/docs/pattern-openshift-vpc-dr-multiregion
+
+
+content-type: reference-architecture
 ---
 
 {{site.data.keyword.attribute-definition-list}}

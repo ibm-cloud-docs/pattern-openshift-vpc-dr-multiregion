@@ -4,7 +4,7 @@ copyright:
   years: 2023
 lastupdated: "2023-12-26"
 
-subcollection: pattern-roks-vpc-dr-multiregion
+subcollection: pattern-openshift-vpc-dr-multiregion
 
 keywords:
 
@@ -29,7 +29,7 @@ keywords:
 
 -   [Preparing classic and VPC clusters for autoscaling](/docs/openshift?topic=openshift-cluster-scaling-classic-vpc)
 
--   [Service Level Agreements for IBM Cloud](https://www.ibm.com/support/customer/csol/terms/?id=i126-9268&lc=en#detail-document){: external} 
+-   [Service Level Agreements for IBM Cloud](https://www.ibm.com/support/customer/csol/terms/?id=i126-9268&lc=en#detail-document){: external}
 
 -   [Red Hat OpenShift on IBM Cloud - Planning your Portworx setup](docs/openshift?topic=openshift-storage_portworx_plan)
 
