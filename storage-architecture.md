@@ -12,7 +12,7 @@ keywords:
 
 {{site.data.keyword.attribute-definition-list}}
 
-## Storage Architecture Decisions
+# Storage Architecture Decisions
 {: #Storage-Architect-Decisons}
 
 The following are storage architecture decisions for this pattern. Please refer to the [Architecture decisions for Network {{site.data.keyword.redhat_openshift_notm:}} on VPC resiliency](https://cloud.ibm.com/docs/pattern-openshift-vpc-mz-resiliency?topic=pattern-openshift-vpc-mz-resiliency-networking-architecture) for additional details.

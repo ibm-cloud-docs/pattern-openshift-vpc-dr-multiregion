@@ -12,12 +12,7 @@ keywords:
 
 {{site.data.keyword.attribute-definition-list}}
 
-## Architecture Decisions
-{: #Architecture-Decisions}
-
-The following tables summarize the architecture decisions for the {{site.data.keyword.redhat_openshift_notm:}} Service on Virtual Private Cloud Multi-Region Disaster Recovery pattern.
-
-## Compute Architecture Decisions
+# Compute Architecture Decisions
 {: #Compute-Architecture-Decisions}
 
 The following are compute architecture decisions for this pattern. Refer to the [Architecture decisions for Network {{site.data.keyword.redhat_openshift_notm:}} on VPC resiliency](/docs/pattern-openshift-vpc-mz-resiliency?topic=pattern-openshift-vpc-mz-resiliency-networking-architecture) for additional details.

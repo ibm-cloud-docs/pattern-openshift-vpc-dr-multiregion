@@ -12,7 +12,7 @@ keywords:
 
 {{site.data.keyword.attribute-definition-list}}
 
-## Resiliency Architecture Decisions
+# Resiliency Architecture Decisions
 {: #Resiliency-Architecture-Decisions}
 
 The following are resiliency architecture decisions for this pattern. Please refer to the [Architecture decisions for Network {{site.data.keyword.redhat_openshift_notm:}} on VPC resiliency](/docs/pattern-openshift-vpc-mz-resiliency?topic=pattern-openshift-vpc-mz-resiliency-networking-architecture) for additional details.
