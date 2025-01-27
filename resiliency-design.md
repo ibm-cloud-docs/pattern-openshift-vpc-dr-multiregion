@@ -15,17 +15,17 @@ keywords:
 # Resiliency Design Considerations
 {: #Resiliency-Design-Considerations}
 
-## Red Hat OpenShift Kubernetes Service on Virtual Private Cloud
-{: #RedHat-Openshift-Kubernetes-Services-VPC}
+## {{site.data.keyword.redhat_openshift_notm:}} Service on Virtual Private Cloud
+{: #RedHat-Openshift-Services-VPC}
 
-Create separate ROKS clusters in the primary and disaster recovery regions to account for the containerized applications and environments that require disaster recovery protection.
+Create separate OpenShift clusters in the primary and disaster recovery regions to account for the containerized applications and environments that require disaster recovery protection.
 
 ## Portworx Enterprise DR Asynchronous Disaster Recovery
 {: #Porworx-Enterprise-DR-Asynchronous-Disaster-Recovery}
 
-Your Kubernetes clusters are deployed in different regions, such as us-south and us-east. Each cluster has its own Portworx installation and uses a separate Portworx key-value store that is not shared. To replicate data between clusters, you must set up scheduled replication between these clusters. Because of the higher latency and scheduled replication times, the RPO for this scenario might be up to 15 minutes.
+Your OpenShift clusters are deployed in different regions, such as us-south and us-east. Each cluster has its own Portworx installation and uses a separate Portworx key-value store that is not shared. To replicate data between clusters, you must set up scheduled replication between these clusters. Because of the higher latency and scheduled replication times, the RPO for this scenario might be up to 15 minutes.
 
-1.  Choose at least two Kubernetes clusters that are located in different regions. If you have one cluster only, you can still configure this cluster for asynchronous disaster recovery, but Portworx can't do a proper failover until a second cluster is configured.
+1.  Choose at least two OpenShift clusters that are located in different regions. If you have one cluster only, you can still configure this cluster for asynchronous disaster recovery, but Portworx can't do a proper failover until a second cluster is configured.
 
 2.  Make sure that all your clusters have sufficient [raw and unformatted block storage](/docs/containers?topic=containers-utilities#manual_block) so that you can build your Portworx storage layer.
 
@@ -37,8 +37,8 @@ Your Kubernetes clusters are deployed in different regions, such as us-south and
 
 6.  Follow the [Portworx documentation](https://docs.portworx.com/portworx-enterprise/operations/operate-kubernetes/disaster-recovery){: external}  to create a cluster pair, enable disaster recovery mode, and schedule data migrations between your clusters.
 
-Refer to the [Red Hat OpenShift on VPC resiliency](/docs/pattern-openshift-vpc-mz-resiliency?topic=pattern-openshift-vpc-mz-resiliency-overview) pattern for additional details on resiliency design considerations.
+Refer to the [{{site.data.keyword.redhat_openshift_notm:}} on VPC resiliency](/docs/pattern-openshift-vpc-mz-resiliency?topic=pattern-openshift-vpc-mz-resiliency-overview) pattern for additional details on resiliency design considerations.
 
 Refer to the [Web app cross-region resiliency - Networking design](/docs/pattern-vpc-vsi-cross-region-resiliency?topic=pattern-vpc-vsi-cross-region-resiliency-networking-design) pattern for additional details on network disaster recovery design considerations.
 
-[ROKS on IBM Cloud Roles and Responsibilities and Responsibility](/docs/openshift?topic=openshift-responsibilities_iks)
+[OpenShift on IBM Cloud Roles and Responsibilities and Responsibility](/docs/openshift?topic=openshift-responsibilities_iks)

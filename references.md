@@ -15,7 +15,7 @@ keywords:
 # References
 {: #References}
 
--   [Red Hat OpenShift on VPC resiliency](docs/pattern-openshift-vpc-mz-resiliency?topic=pattern-openshift-vpc-mz-resiliency-overview)
+-   [{{site.data.keyword.redhat_openshift_notm:}} on VPC resiliency](docs/pattern-openshift-vpc-mz-resiliency?topic=pattern-openshift-vpc-mz-resiliency-overview)
 
 -   [Deploying web application on OpenShift in a MZR on IBM Cloud](/docs/pattern-webapp-openshift-vpc?topic=pattern-webapp-openshift-vpc-overview)
 
@@ -31,8 +31,8 @@ keywords:
 
 -   [Service Level Agreements for IBM Cloud](https://www.ibm.com/support/customer/csol/terms/?id=i126-9268&lc=en#detail-document){: external}
 
--   [Red Hat OpenShift on IBM Cloud - Planning your Portworx setup](docs/openshift?topic=openshift-storage_portworx_plan)
+-   [{{site.data.keyword.openshiftlong_notm:}} - Planning your Portworx setup](docs/openshift?topic=openshift-storage_portworx_plan)
 
--   [Red Hat OpenShift on IBM Cloud - Backing up and restoring storage data](/docs/openshift?topic=openshift-storage_br)
+-   [{{site.data.keyword.openshiftlong_notm:}} - Backing up and restoring storage data](/docs/openshift?topic=openshift-storage_br)
 
--   [Red Hat OpenShift on IBM Cloud - Setting up disaster recovery with Portworx](docs/openshift?topic=openshift-storage_portworx_recovery)
+-   [{{site.data.keyword.openshiftlong_notm:}} - Setting up disaster recovery with Portworx](docs/openshift?topic=openshift-storage_portworx_recovery)

@@ -33,9 +33,9 @@ keywords:
 
 -   You can optimize the performance of your Portworx volumes by matching the type of workload you're running with a suitable IO profile. Please refer to [Portworx IO Profile](https://docs.portworx.com/portworx-enterprise/concepts/io-profiles\#the-db_remote-profile Au){: external} for additional information.
 
-Choose at least two Red Hat OpenShift clusters that are located in different regions.
+Choose at least two {{site.data.keyword.redhat_openshift_notm:}} clusters that are located in different regions.
 
-Ensure the ROKS clusters have sufficient [raw and unformatted block storage](/docs/openshift?topic=openshift-utilities#manual_block) so that you can build your Portworx storage layer.
+Ensure the OpenShift clusters have sufficient [raw and unformatted block storage](/docs/openshift?topic=openshift-utilities#manual_block) so that you can build your Portworx storage layer.
 
 Include your [Portworx key-value store](/docs/openshift?topic=openshift-storage_portworx_kv_store). Because both clusters are in different regions, each cluster must use its own key-value store. It is recommended to use the internal Portworx key-value database (KVDB).
 
@@ -45,6 +45,6 @@ Follow the instructions to [install Portworx](/docs/openshift?topic=openshift-st
 
 Follow the [Portworx documentation](https://docs.portworx.com/portworx-enterprise/operations/operate-kubernetes/disaster-recovery){: external} to create a cluster pair, enable disaster recovery mode, and schedule data migrations between your cluster
 
-Refer to the [Red Hat OpenShift on VPC resiliency](/docs/pattern-openshift-vpc-mz-resiliency?topic=pattern-openshift-vpc-mz-resiliency-overview) pattern for additional details on storage design considerations.
+Refer to the [{{site.data.keyword.redhat_openshift_notm:}} on VPC resiliency](/docs/pattern-openshift-vpc-mz-resiliency?topic=pattern-openshift-vpc-mz-resiliency-overview) pattern for additional details on storage design considerations.
 
 Review Portworx storage limitations [here](/docs/openshift?topic=openshift-storage_portworx_plan#portworx_limitations).
