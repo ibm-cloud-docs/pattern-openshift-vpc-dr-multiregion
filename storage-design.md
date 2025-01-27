@@ -31,7 +31,7 @@ keywords:
 
 -   Portworx requires at least 3 worker nodes with raw and unformatted block storage. Make sure that you spread the nodes evenly across the availability zones.
 
--   You can optimize the performance of your Portworx volumes by matching the type of workload you're running with a suitable IO profile. Please refer to [Portworx IO Profile](https://docs.portworx.com/portworx-enterprise/concepts/io-profiles\#the-db_remote-profile Au){: external} for additional information.
+-   You can optimize the performance of your Portworx volumes by matching the type of workload you're running with a suitable IO profile. Please refer to [Portworx IO Profile](https://docs.portworx.com/portworx-enterprise/concepts/io-profiles\#the-db_remote-profile){: external} for additional information.
 
 Choose at least two {{site.data.keyword.redhat_openshift_notm:}} clusters that are located in different regions.
 
