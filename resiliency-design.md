@@ -15,7 +15,7 @@ keywords:
 # Resiliency Design Considerations
 {: #Resiliency-Design-Considerations}
 
-## {{site.data.keyword.redhat_openshift_notm:}} Service on Virtual Private Cloud
+## {{site.data.keyword.redhat_openshift_notm}} Service on Virtual Private Cloud
 {: #RedHat-Openshift-Services-VPC}
 
 Create separate OpenShift clusters in the primary and disaster recovery regions to account for the containerized applications and environments that require disaster recovery protection.
@@ -41,4 +41,4 @@ Refer to the [{{site.data.keyword.redhat_openshift_notm:}} on VPC resiliency](/d
 
 Refer to the [Web app cross-region resiliency - Networking design](/docs/pattern-vpc-vsi-cross-region-resiliency?topic=pattern-vpc-vsi-cross-region-resiliency-networking-design) pattern for additional details on network disaster recovery design considerations.
 
-[OpenShift on IBM Cloud Roles and Responsibilities and Responsibility](/docs/openshift?topic=openshift-responsibilities_iks)
+[{{site.data.keyword.redhat_openshift_notm}} Roles and Responsibilities and Responsibility](/docs/openshift?topic=openshift-responsibilities_iks)

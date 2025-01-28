@@ -15,7 +15,7 @@ keywords:
 # References
 {: #References}
 
--   [{{site.data.keyword.redhat_openshift_notm:}} on VPC resiliency](docs/pattern-openshift-vpc-mz-resiliency?topic=pattern-openshift-vpc-mz-resiliency-overview)
+-   [{{site.data.keyword.redhat_openshift_notm}} on VPC resiliency](docs/pattern-openshift-vpc-mz-resiliency?topic=pattern-openshift-vpc-mz-resiliency-overview)
 
 -   [Deploying web application on OpenShift in a MZR on IBM Cloud](/docs/pattern-webapp-openshift-vpc?topic=pattern-webapp-openshift-vpc-overview)
 

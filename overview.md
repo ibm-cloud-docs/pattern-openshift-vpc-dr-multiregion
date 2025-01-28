@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2025-01-27"
+lastupdated: "2025-01-28"
 
 
 subcollection: pattern-openshift-vpc-dr-multiregion
@@ -16,16 +16,16 @@ keywords:
 # Overview
 {: #overview}
 
-The {{site.data.keyword.redhat_openshift_notm:}} Service on Virtual Private Cloud Multi-Region Disaster Recovery pattern is intended to provide an {{site.data.keyword.IBM}} solution design for deployment on {{site.data.keyword.Bluemix_short}}.
+The {{site.data.keyword.redhat_openshift_notm}} Service on Virtual Private Cloud Multi-Region Disaster Recovery pattern is intended to provide an {{site.data.keyword.IBM}} solution design for deployment on {{site.data.keyword.Bluemix_short}}.
 
-The focus is on using cloud platform capabilities to design a multi-region resilient {{site.data.keyword.redhat_openshift_notm:}} on Virtual Private Cloud solution.
+The focus is on using cloud platform capabilities to design a multi-region resilient {{site.data.keyword.redhat_openshift_notm}} on Virtual Private Cloud solution.
 
 The pattern can be used to support business continuity policies and disaster recovery scenarios as well as data residency requirements when two regions within the same country are utilized.
 
 ## Pattern Objectives
 {: #Pattern-Objective}
 
-The objective of this pattern is to provide a resilient solution design for {{site.data.keyword.redhat_openshift_notm:}} Service on a Virtual Private Cloud (VPC) architecture deployment, on {{site.data.keyword.Bluemix_notm}}, that meets disaster recovery requirements for enterprise workloads that require persistent storage. This pattern is intended to:
+The objective of this pattern is to provide a resilient solution design for {{site.data.keyword.redhat_openshift_notm}} Service on a Virtual Private Cloud (VPC) architecture deployment, on {{site.data.keyword.Bluemix_notm}}, that meets disaster recovery requirements for enterprise workloads that require persistent storage. This pattern is intended to:
 
 -   Accelerate and simplify solution design by providing a standard {{site.data.keyword.Bluemix_notm}} deployment architecture reference following the [IBM Architecture Design Framework](/docs/architecture-framework).
 
@@ -33,9 +33,9 @@ The objective of this pattern is to provide a resilient solution design for {{si
 
 -   Ensure requirements can be met from a disaster recovery perspective.
 
-This document focuses on leveraging {{site.data.keyword.Bluemix_notm}} platform capabilities to architect a resilient multi-region {{site.data.keyword.redhat_openshift_notm:}} environment. The pattern provides for {{site.data.keyword.redhat_openshift_notm:}} clusters with backup and restore and disaster recovery at a secondary region within an {{site.data.keyword.Bluemix_notm}} VPC multi-region reference architecture.
+This document focuses on leveraging {{site.data.keyword.Bluemix_notm}} platform capabilities to architect a resilient multi-region {{site.data.keyword.redhat_openshift_notm}} environment. The pattern provides for {{site.data.keyword.redhat_openshift_notm}} clusters with backup and restore and disaster recovery at a secondary region within an {{site.data.keyword.Bluemix_notm}} VPC multi-region reference architecture.
 
-This document is an extension of the [{{site.data.keyword.redhat_openshift_notm:}} on VPC resiliency](/docs/pattern-openshift-vpc-mz-resiliency?topic=pattern-openshift-vpc-mz-resiliency-overview) pattern which focuses on resilient {{site.data.keyword.redhat_openshift_notm:}} clusters within a single region.
+This document is an extension of the [{{site.data.keyword.redhat_openshift_notm}} on VPC resiliency](/docs/pattern-openshift-vpc-mz-resiliency?topic=pattern-openshift-vpc-mz-resiliency-overview) pattern which focuses on resilient {{site.data.keyword.redhat_openshift_notm}} clusters within a single region.
 
 ## Pattern Details
 {: #Pattern-Details}
@@ -58,7 +58,7 @@ This pattern leverages Portworx Asynchronous DR and involves a multi-zone worklo
 
 One cluster will act as the active cluster, where data is primarily stored, while the standby cluster in the secondary disaster recovery region receives replicated data. In the event of an active cluster failure, Portworx automatically fails over to the standby cluster, which then becomes the new active cluster, ensuring continued data access.
 
-*Refer to the* [{{site.data.keyword.redhat_openshift_notm:}} on VPC resiliency](/docs/pattern-openshift-vpc-mz-resiliency?topic=pattern-openshift-vpc-mz-resiliency-overview) *pattern for establishing high availability within a region.*
+*Refer to the* [{{site.data.keyword.redhat_openshift_notm}} on VPC resiliency](/docs/pattern-openshift-vpc-mz-resiliency?topic=pattern-openshift-vpc-mz-resiliency-overview) *pattern for establishing high availability within a region.*
 
 ## Pattern Requirements
 {: #Patten-Requirements}
