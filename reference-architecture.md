@@ -28,12 +28,12 @@ content-type: reference-architecture
 {: toc-content-type="reference-architecture"}
 {: toc-version="1.0"}
 
+Reference architecture for {{site.data.keyword.redhat_openshift_notm}} Service on Virtual Private Cloud Multi-Region Disaster Recovery pattern
+
 ## Solution Architecture Diagram
 {: #architecture-diagram}
 
-![Illustrates an architecture for a {{site.data.keyword.openshiftlong_notm}} VPC Multi-Region Disaster Recovery solution architecture](images/ROKS-VPC-DR-Arch.svg){: caption="Figure 1. Architecture Overview" caption-side="bottom"}
-
-Figure 1 – Reference architecture for {{site.data.keyword.redhat_openshift_notm}} Service on Virtual Private Cloud Multi-Region Disaster Recovery pattern
+![Illustrates an architecture for a {{site.data.keyword.openshiftlong_notm}} VPC Multi-Region Disaster Recovery solution architecture](images/ROKS-VPC-DR-Arch.svg){: caption="{{site.data.keyword.openshiftlong_notm}} VPC Multi-Region DR Architecture Overview" caption-side="bottom"}
 
 Containers, SDS and backup disaster recovery components
 
@@ -92,9 +92,7 @@ Following the [{{site.data.keyword.arch_framework}}](/docs/architecture-framewor
 
 -   **Resiliency:** Backup and Restore, Disaster Recovery
 
-![Illustrates the design scope for a {{site.data.keyword.redhat_openshift_notm}} on VPC Multi-Region Disaster Recovery solution architecture](images/heat-map.svg){: caption="OpenShift on VPC design scope" caption-side="bottom"}
-
-Figure 2 – {{site.data.keyword.redhat_openshift_notm}} Service on Virtual Private Cloud Multi-Region Disaster Recovery Design Scope
+![Illustrates the design scope for a {{site.data.keyword.redhat_openshift_notm}} on VPC Multi-Region Disaster Recovery solution architecture](images/heat-map.svg){: caption="{{site.data.keyword.openshiftlong_notm}} VPC Multi-Region DR design scope" caption-side="bottom"}
 
 \*The Architecture Design Framework provides a consistent approach to design cloud solutions by addressing requirements across a set of "aspects" and "domains", which are technology-agnostic architectural areas that need to be considered for any enterprise solution. See [Introduction to the Architecture Design Framework](/docs/architecture-framework?topic=architecture-framework-intro) for more details.
 
@@ -115,8 +113,7 @@ The following represents a baseline set of requirements that are applicable to m
 |            | Provide highly available storage for containerized databases and stateful applications with cross-region storage replication                                            |
 |            | Provide for an RTO/RPO = 4 hours/15 minutes; rollback to original environments should occur no later than specified RTOs                                                |
 |            | Provide public and private enterprise connectivity with failover to a secondary region for disaster recovery Provide a 99.99% SLA on the containerized platform service |
-
-Table 1. {{site.data.keyword.redhat_openshift_notm}} Service on Virtual Private Cloud Multi-Region Disaster Recovery requirements
+{: caption="{{site.data.keyword.openshiftlong_notm}} VPC Multi-Region DR requirements" caption-side="bottom"}
 
 ## Solution Components
 {: #Solution-Components}
@@ -138,8 +135,6 @@ Table 1. {{site.data.keyword.redhat_openshift_notm}} Service on Virtual Private 
 |            | [PX-Backup for Kubernetes](https://cloud.ibm.com/catalog/services/px-backup-for-kubernetes){: external}                                     | Portworx-Enterprise is the most widely-used and reliable cloud-native storage solution for production workloads and provides high-availability, data protection and security for containerized applications.                                                                                                                                                                                                                                                                        |
 |            | [{{site.data.keyword.cis_short}}](https://cloud.ibm.com/catalog/services/internet-services){: external}                                             | Global Load Balancer.                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 |            | [{{site.data.keyword.dns_short}}](/docs/dns-svcs?topic=dns-svcs-getting-started){: external}                                              | Private Global Load Balancer.                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-
-Table 2. {{site.data.keyword.redhat_openshift_notm}} Service on Virtual Private Cloud Multi-Region Disaster Recovery solution components
-
+{: caption="{{site.data.keyword.openshiftlong_notm}} VPC Multi-Region DR solution components" caption-side="bottom"}
 
 [def]: images/ROKS-VPC-DR-Arch.svg
