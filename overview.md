@@ -16,7 +16,7 @@ keywords:
 # Overview
 {: #overview}
 
-The {{site.data.keyword.redhat_openshift_notm}} Service on Virtual Private Cloud Multi-Region Disaster Recovery pattern is intended to provide an {{site.data.keyword.IBM}} solution design for deployment on {{site.data.keyword.Bluemix_short}}.
+The {{site.data.keyword.openshiftlong}} Service Virtual Private Cloud (VPC) Multi-Region Disaster Recovery pattern is intended to provide an {{site.data.keyword.IBM}} solution design for deployment on {{site.data.keyword.Bluemix_notm}}.
 
 The focus is on using cloud platform capabilities to design a multi-region resilient {{site.data.keyword.redhat_openshift_notm}} on Virtual Private Cloud solution.
 
@@ -25,7 +25,7 @@ The pattern can be used to support business continuity policies and disaster rec
 ## Pattern Objectives
 {: #Pattern-Objective}
 
-The objective of this pattern is to provide a resilient solution design for {{site.data.keyword.redhat_openshift_notm}} Service on a Virtual Private Cloud (VPC) architecture deployment, on {{site.data.keyword.Bluemix_notm}}, that meets disaster recovery requirements for enterprise workloads that require persistent storage. This pattern is intended to:
+The objective of this pattern is to provide a resilient solution design for {{site.data.keyword.redhat_openshift_notm}} Service on an {{site.data.keyword.Bluemix_notm}} VPC architecture deployment, that meets disaster recovery requirements for enterprise workloads that require persistent storage. This pattern is intended to:
 
 -   Accelerate and simplify solution design by providing a standard {{site.data.keyword.Bluemix_notm}} deployment architecture reference following the [IBM Architecture Design Framework](/docs/architecture-framework).
 
