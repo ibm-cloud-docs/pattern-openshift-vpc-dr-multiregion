@@ -28,7 +28,7 @@ content-type: reference-architecture
 {: toc-content-type="reference-architecture"}
 {: toc-version="1.0"}
 
-Reference architecture for {{site.data.keyword.redhat_openshift_notm}} Service on Virtual Private Cloud Multi-Region Disaster Recovery pattern
+This reference architecture is used in a multi-region disaster recovery scenario for a containerized workload with persistent storage and backup requirements. The pattern leverages {{site.data.keyword.redhat_openshift_notm}} as the managed container platform and Portworx for software defined storage replication and backup.
 
 ## Solution Architecture Diagram
 {: #architecture-diagram}
