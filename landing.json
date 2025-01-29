@@ -4,44 +4,36 @@
   "introduction": "This is a landing page for the reference architecture describing how to host Openshift on VPC with disaster recovery across multiple regions.",
   "section_topics": {
     "links": [
-      {
-        "title": "Overview",
-        "href": "/docs/pattern-openshift-vpc-dr-multiregion?topic=pattern-openshift-vpc-multiregion-overview-id"
+    {
+      "title": "Overview",
+      "href": "/docs/pattern-openshift-vpc-dr-multiregion?topic=pattern-openshift-vpc-multiregion-overview-id"
+    },
+    {
+      "title": "Reference Compute Architecture",
+      "href": "/docs/pattern-openshift-vpc-dr-multiregion?topic=pattern-openshift-vpc-multiregion-compute-architecture"
       },
-      {
-        "title": "Reference Compute Architecture",
-        "href": "/docs/pattern-openshift-vpc-dr-multiregion?topic=pattern-openshift-vpc-multiregion-compute-architecture"
-      },
-      {
-        "title": "Reference Storage Architecture",
-        "href": "/docs/pattern-openshift-vpc-dr-multiregion?topic=pattern-openshift-vpc-multiregion-storage-architecture"
-      },
-      {
-        "title": "Reference Resiliency Architecture",
-        "href": "/docs/pattern-openshift-vpc-dr-multiregion?topic=pattern-openshift-vpc-multiregion-resiliency-architecture"
-      },
-      {
-        "title": "Planning Compute",
-        "href": "/docs/pattern-openshift-vpc-dr-multiregion?topic=pattern-openshift-vpc-multiregion-compute-design"
-      },
-      {
-        "title": "Planning Storage",
-        "href": "/docs/pattern-openshift-vpc-dr-multiregion?topic=pattern-openshift-vpc-multiregion-storage-design"
-      },
-      {
-        "title": "Planning Resiliency",
-        "href": "/docs/pattern-openshift-vpc-dr-multiregion?topic=pattern-openshift-vpc-multiregion-resiliency-design"
-      },
-      {
-        "title": "",
-        "href": "/docs/pattern-openshift-vpc-dr-multiregion?topic=pattern-openshift-vpc-multiregion-storage-architecture"
-      },
-      {
-        "title": "References",
-        "href": "/docs/overview?topic=overview-get-started-checklist"
-      }
-    ]
-  },
+    {
+      "title": "Reference Storage Architecture",
+      "href": "/docs/pattern-openshift-vpc-dr-multiregion?topic=pattern-openshift-vpc-multiregion-storage-architecture"
+    },
+    {
+      "title": "Reference Resiliency Architecture",
+      "href": "/docs/pattern-openshift-vpc-dr-multiregion?topic=pattern-openshift-vpc-multiregion-resiliency-architecture"
+    },
+    {
+      "title": "Planning Compute",
+      "href": "/docs/pattern-openshift-vpc-dr-multiregion?topic=pattern-openshift-vpc-multiregion-compute-design"
+    },
+    {
+      "title": "Planning Storage",
+      "href": "/docs/pattern-openshift-vpc-dr-multiregion?topic=pattern-openshift-vpc-multiregion-storage-design"
+    },
+    {
+      "title": "Planning Resiliency",
+      "href": "/docs/pattern-openshift-vpc-dr-multiregion?topic=pattern-openshift-vpc-multiregion-resiliency-design"
+    }
+  ]
+},
   "section_highlights": [
     {
       "title": "Resource title",
