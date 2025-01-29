@@ -31,17 +31,17 @@ keywords:
 
 -   Portworx requires at least 3 worker nodes with raw and unformatted block storage. Make sure that you spread the nodes evenly across the availability zones.
 
--   You can optimize the performance of your Portworx volumes by matching the type of workload you're running with a suitable IO profile. Please refer to [Portworx IO Profile](https://docs.portworx.com/portworx-enterprise/concepts/io-profiles\#the-db_remote-profile){: external} for additional information.
+-   You can optimize the performance of your Portworx volumes by matching the type of workload you're running with a suitable IO profile. Please refer to [Portworx Prerequsites on RedHat Openshift on IBM Cloud](https://docs.portworx.com/portworx-enterprise/platform/openshift/ocp-ibm-cloud/before-you-begin){: external}for additional information.
 
 Choose at least two {{site.data.keyword.redhat_openshift_notm}} clusters that are located in different regions.
 
-Ensure the OpenShift clusters have sufficient [raw and unformatted block storage](/docs/openshift?topic=openshift-utilities#manual_block) so that you can build your Portworx storage layer.
+Ensure the OpenShift clusters have sufficient [Raw and unformatted block storage](/docs/openshift?topic=openshift-utilities#manual_block) so that you can build your Portworx storage layer.
 
 Include your [Portworx key-value store](/docs/openshift?topic=openshift-storage_portworx_kv_store). Because both clusters are in different regions, each cluster must use its own key-value store. It is recommended to use the internal Portworx key-value database (KVDB).
 
-Determine Encryption is needed by Enable Portworx [volume encryption]() for your cluster.
+Determine Encryption is needed by Enable Portworx [Volume encryption]() for your cluster.
 
-Follow the instructions to [install Portworx](/docs/openshift?topic=openshift-storage_portworx_deploy) with the disaster recovery plan in both of your clusters. If you installed Portworx without the disaster recovery plan in one of your clusters already, you must re-install Portworx in that cluster with the disaster recovery plan. Make sure that you configure the Portworx key-value store that each cluster uses.
+Follow the instructions to [Install Portworx](/docs/openshift?topic=openshift-storage_portworx_deploy) with the disaster recovery plan in both of your clusters. If you installed Portworx without the disaster recovery plan in one of your clusters already, you must re-install Portworx in that cluster with the disaster recovery plan. Make sure that you configure the Portworx key-value store that each cluster uses.
 
 Follow the [Portworx documentation](https://docs.portworx.com/portworx-enterprise/operations/operate-kubernetes/disaster-recovery){: external} to create a cluster pair, enable disaster recovery mode, and schedule data migrations between your cluster
 
