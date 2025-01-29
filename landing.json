@@ -17,19 +17,19 @@
         "href": "/docs/pattern-openshift-vpc-dr-multiregion?topic=pattern-openshift-vpc-multiregion-storage-architecture"
       },
       {
-        "title": "Reference Storage Architecture",
+        "title": "Reference Resiliency Architecture",
         "href": "/docs/pattern-openshift-vpc-dr-multiregion?topic=pattern-openshift-vpc-multiregion-resiliency-architecture"
       },
       {
-        "title": "Planning",
+        "title": "Planning Compute",
         "href": "/docs/pattern-openshift-vpc-dr-multiregion?topic=pattern-openshift-vpc-multiregion-compute-design"
       },
       {
-        "title": "Planning",
+        "title": "Planning Storage",
         "href": "/docs/pattern-openshift-vpc-dr-multiregion?topic=pattern-openshift-vpc-multiregion-storage-design"
       },
       {
-        "title": "Planning",
+        "title": "Planning Resiliency",
         "href": "/docs/pattern-openshift-vpc-dr-multiregion?topic=pattern-openshift-vpc-multiregion-resiliency-design"
       },
       {
