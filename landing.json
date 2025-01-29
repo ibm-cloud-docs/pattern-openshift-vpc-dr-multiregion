@@ -6,7 +6,7 @@
     "links": [
       {
         "title": "Overview",
-        "href": "/docs/pattern-openshift-vpc-dr-multiregion?topic=pattern-openshift-vpc-multiregion-Overview.id"
+        "href": "/docs/pattern-openshift-vpc-dr-multiregion?topic=pattern-openshift-vpc-multiregion-overview-id"
       },
       {
         "title": "Reference Compute Architecture",
