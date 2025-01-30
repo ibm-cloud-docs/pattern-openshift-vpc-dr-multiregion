@@ -5,32 +5,36 @@
   "section_topics": {
     "links": [
     {
-      "title": "Overview",
-      "href": "/docs/pattern-openshift-vpc-dr-multiregion?topic=pattern-openshift-vpc-multiregion-overview-id"
+      "title": "Solution Overview",
+      "href": "/docs/pattern-openshift-vpc-dr-multiregion?topic=pattern-openshift-vpc-dr-multiregion-overview"
     },
     {
-      "title": "Reference Compute Architecture",
-      "href": "/docs/pattern-openshift-vpc-dr-multiregion?topic=pattern-openshift-vpc-multiregion-compute-architecture"
+      "title": "Solution Architecture",
+      "href": "/docs/pattern-openshift-vpc-dr-multiregion?topic=pattern-openshift-vpc-dr-multiregion-Solution-Architecture"
       },
     {
-      "title": "Reference Storage Architecture",
-      "href": "/docs/pattern-openshift-vpc-dr-multiregion?topic=pattern-openshift-vpc-multiregion-storage-architecture"
+      "title": "Compute Design",
+      "href": "/docs/pattern-openshift-vpc-dr-multiregion?topic=pattern-openshift-vpc-dr-multiregion-Compute-Design-Considerations"
     },
     {
-      "title": "Reference Resiliency Architecture",
-      "href": "/docs/pattern-openshift-vpc-dr-multiregion?topic=pattern-openshift-vpc-multiregion-resiliency-architecture"
+      "title": "Storage Design",
+      "href": "/docs/pattern-openshift-vpc-dr-multiregion?topic=pattern-openshift-vpc-dr-multiregion-Storage-Design-Considerations"
     },
     {
-      "title": "Planning Compute",
-      "href": "/docs/pattern-openshift-vpc-dr-multiregion?topic=pattern-openshift-vpc-multiregion-compute-design"
+      "title": "Resiliency Design",
+      "href": "/docs/pattern-openshift-vpc-dr-multiregion?topic=pattern-openshift-vpc-dr-multiregion-Resiliency-Design-Considerations"
     },
     {
-      "title": "Planning Storage",
-      "href": "/docs/pattern-openshift-vpc-dr-multiregion?topic=pattern-openshift-vpc-multiregion-storage-design"
+      "title": "Compute Architecture",
+      "href": "/docs/pattern-openshift-vpc-dr-multiregion?topic=pattern-openshift-vpc-dr-multiregion-Compute-Architecture-Decisions"
     },
     {
-      "title": "Planning Resiliency",
-      "href": "/docs/pattern-openshift-vpc-dr-multiregion?topic=pattern-openshift-vpc-multiregion-resiliency-design"
+      "title": "Storage Architecture",
+      "href": "/docs/pattern-openshift-vpc-dr-multiregion?topic=pattern-openshift-vpc-dr-multiregion-Storage-Architect-Decisons"
+    },
+    {
+      "title": "Resiliency Architecture",
+      "href": "/docs/pattern-openshift-vpc-dr-multiregion?topic=pattern-openshift-vpc-dr-multiregion-Resiliency-Architecture-Decisions"
     }
   ]
 },
