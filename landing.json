@@ -13,35 +13,19 @@
       "href": "/docs/pattern-openshift-vpc-dr-multiregion?topic=pattern-openshift-vpc-dr-multiregion-Solution-Architecture"
       },
     {
-      "title": "Compute Design",
+      "title": "Planning - Design Considerations",
       "href": "/docs/pattern-openshift-vpc-dr-multiregion?topic=pattern-openshift-vpc-dr-multiregion-Compute-Design-Considerations"
     },
     {
-      "title": "Storage Design",
-      "href": "/docs/pattern-openshift-vpc-dr-multiregion?topic=pattern-openshift-vpc-dr-multiregion-Storage-Design-Considerations"
-    },
-    {
-      "title": "Resiliency Design",
-      "href": "/docs/pattern-openshift-vpc-dr-multiregion?topic=pattern-openshift-vpc-dr-multiregion-Resiliency-Design-Considerations"
-    },
-    {
-      "title": "Compute Architecture",
+      "title": "Planning - Architecture Decisions",
       "href": "/docs/pattern-openshift-vpc-dr-multiregion?topic=pattern-openshift-vpc-dr-multiregion-Compute-Architecture-Decisions"
-    },
-    {
-      "title": "Storage Architecture",
-      "href": "/docs/pattern-openshift-vpc-dr-multiregion?topic=pattern-openshift-vpc-dr-multiregion-Storage-Architect-Decisons"
-    },
-    {
-      "title": "Resiliency Architecture",
-      "href": "/docs/pattern-openshift-vpc-dr-multiregion?topic=pattern-openshift-vpc-dr-multiregion-Resiliency-Architecture-Decisions"
     }
   ]
 },
   "section_architectures": [
     {
-      "title": "VPC RedHat Openshift Disaster Recovery Resiliency",
-      "href": "/docs/pattern-openshift-vpc-dr-multiregion?topic=pattern-openshift-vpc-multiregion",
+      "title": "Red Hat OpenShift on VPC resiliency",
+      "href": "/docs/pattern-openshift-vpc-mz-resiliency?topic=pattern-openshift-vpc-mz-resiliency-overview",
       "deployable": false
     }
   ]
