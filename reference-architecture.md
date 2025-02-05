@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2025
-lastupdated: "2025-01-28"
+lastupdated: "2025-02-05"
 
 subcollection: pattern-openshift-vpc-dr-multiregion
 
@@ -45,7 +45,7 @@ Containers, SDS and backup disaster recovery components
 
 2.  Portworx Enterprise DR provides Data replication between OpenShift source and failover destination clusters in separate regions. Each cluster has its own Portworx Enterprise DR installation and uses a separate Portworx key-value store that is not shared.
 
-3.  {{site.data.keyword.vpn_vpc_short}} is used as the backing storage for Portworx Enterprise DR and volumes are provisioned on a per availability zone basis.
+3.  {{site.data.keyword.block_storage_is_short}} is used as the backing storage for Portworx Enterprise DR and volumes are provisioned on a per availability zone basis.
 
 4.  Portworx Enterprise DR async replication is used between the primary and DR site for the DR data replica.
 
