@@ -15,23 +15,23 @@ keywords:
 # Storage Design Considerations
 {: #Storage-Design-Considerations}
 
--   Include required storage for Portworx metadata. It is recommended to use the internal Portworx key-value database (KVDB). For more information, see [Setting up the Portworx key-value store](/docs/openshift?topic=openshift-storage_portworx_kv_store). For prerequisites and to learn more about what the key value does, see the [Portworx documentation](https://docs.portworx.com/portworx-enterprise/operations/kvdb-for-portworx/internal-kvdb){: external}.
+- 1.  Include required storage for Portworx metadata. It is recommended to use the internal Portworx key-value database (KVDB). For more information, see [Setting up the Portworx key-value store](/docs/openshift?topic=openshift-storage_portworx_kv_store). For prerequisites and to learn more about what the key value does, see the [Portworx documentation](https://docs.portworx.com/portworx-enterprise/operations/kvdb-for-portworx/internal-kvdb){: external}.
 
--   Determine if Storage encryption is needed. There are options for using Hyper Protect Crypto Services or IBM Key Protect. For more information, see [Understanding encryption for Portworx](/docs/openshift?topic=openshift-storage_portworx_encryption).
+- 2.  Determine if Storage encryption is needed. There are options for using Hyper Protect Crypto Services or IBM Key Protect. For more information, see [Understanding encryption for Portworx](/docs/openshift?topic=openshift-storage_portworx_encryption).
 
--   Consider the Storage capacity needed to for the journal devices storage. Journal devices allow Portworx to write logs directly to a local disk on your worker node.
+- 3.  Consider the Storage capacity needed to for the journal devices storage. Journal devices allow Portworx to write logs directly to a local disk on your worker node.
 
--   Use cloud storage drives with the latest version to dynamically provision the Portworx volumes. If you don’t want to use cloud drives, you must manually attach volumes to worker nodes.
+- 4.  Use cloud storage drives with the latest version to dynamically provision the Portworx volumes. If you don’t want to use cloud drives, you must manually attach volumes to worker nodes.
 
--   Portworx is a software-defined storage (SDS), it aggregates “storage" that is declared, to the Portworx cluster and then creates virtual pool of "persistent storage" that is available to your containers.
+- 5. Portworx is a software-defined storage (SDS), it aggregates “storage" that is declared, to the Portworx cluster and then creates virtual pool of "persistent storage" that is available to your containers.
 
--   The "storage" can be *local* to the worker node hype-Converged with compute/storage using solid-state drive storage device or *attached* to the worker node or VPC block storage.
+- 6.  The "storage" can be *local* to the worker node hype-Converged with compute/storage using solid-state drive storage device or *attached* to the worker node or VPC block storage.
 
--   For performance considerations Use VPC Block storage 10 IOPS for worker nodes.
+- 7.  For performance considerations Use VPC Block storage 10 IOPS for worker nodes.
 
--   Portworx requires at least 3 worker nodes with raw and unformatted block storage. Make sure that you spread the nodes evenly across the availability zones.
+- 8.  Portworx requires at least 3 worker nodes with raw and unformatted block storage. Make sure that you spread the nodes evenly across the availability zones.
 
--   You can optimize the performance of your Portworx volumes by matching the type of workload you're running with a suitable IO profile. Please refer to [Portworx Prerequsites on RedHat Openshift on IBM Cloud](https://docs.portworx.com/portworx-enterprise/platform/openshift/ocp-ibm-cloud/before-you-begin){: external}for additional information.
+- 9.  You can optimize the performance of your Portworx volumes by matching the type of workload you're running with a suitable IO profile. Please refer to [Portworx Prerequsites on RedHat Openshift on IBM Cloud](https://docs.portworx.com/portworx-enterprise/platform/openshift/ocp-ibm-cloud/before-you-begin){: external}for additional information.
 
 Choose at least two {{site.data.keyword.redhat_openshift_notm}} clusters that are located in different regions.
 
