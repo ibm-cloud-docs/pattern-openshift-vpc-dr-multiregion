@@ -39,7 +39,7 @@ Ensure the OpenShift clusters have sufficient [Raw and unformatted block storage
 
 Include your [Portworx key-value store](/docs/openshift?topic=openshift-storage_portworx_kv_store). Because both clusters are in different regions, each cluster must use its own key-value store. It is recommended to use the internal Portworx key-value database (KVDB).
 
-Determine Encryption is needed by Enable Portworx [Volume encryption]() for your cluster.
+Determine Encryption is needed by Enable Portworx [Volume encryption](/docs/containers?topic=containers-storage_portworx_encryption) for your cluster.
 
 Follow the instructions to [Install Portworx](/docs/openshift?topic=openshift-storage_portworx_deploy) with the disaster recovery plan in both of your clusters. If you installed Portworx without the disaster recovery plan in one of your clusters already, you must re-install Portworx in that cluster with the disaster recovery plan. Make sure that you configure the Portworx key-value store that each cluster uses.
 
