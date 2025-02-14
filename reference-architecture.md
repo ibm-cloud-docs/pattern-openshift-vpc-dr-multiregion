@@ -35,10 +35,7 @@ This reference architecture is used in a multiregion disaster recovery scenario 
 
 ![Diagram of an architecture for a {{site.data.keyword.openshiftlong_notm}} on VPC multiregion disaster recovery solution architecture](images/ROKS-VPC-DR-Arch.svg){: caption="{{site.data.keyword.openshiftlong_notm}} on VPC multiregion disaster recovery solution architecture" caption-side="bottom"}
 
-Review the following containers, SDS, and backup disaster recovery components, which corresponds with Figure 1.
-
-
-   **Containers:**
+Review the following containers, SDS, and backup disaster recovery components that corresponds with Figure 1:
 
 1. Separate hyperconverged compute and storage Red Hat OpenShift clusters are created in primary and DR region accounting for containerized applications and environments that require disaster recovery protection.
 
@@ -46,9 +43,7 @@ Review the following containers, SDS, and backup disaster recovery components, w
 
    2. A minimum of 3 worker nodes with extra local block storage is required so that the Portworx built-in internal key-value database (KVDB) can be set up for high availability. The KVDB stores the state, configuration data, and metadata for your cluster. Your data is automatically replicated across these 3 worker nodes, and you can choose to scale this deployment to replicate data across up to 25 worker nodes.
 
-   **Storage and backup:**
-
-2. Portworx Enterprise DR provides Data replication between Red Hat OpenShift source and failover destination clusters in separate regions. Each cluster has its own Portworx Enterprise DR installation and uses a separate Portworx key-value store that is not shared.
+2. Portworx Enterprise DR provides data replication between Red Hat OpenShift source and failover destination clusters in separate regions. Each cluster has its own Portworx Enterprise DR installation and uses a separate Portworx key-value store that is not shared.
 
 3. {{site.data.keyword.block_storage_is_short}} is used as the backing storage for Portworx Enterprise DR and volumes are provisioned on a per availability zone basis.
 
@@ -66,22 +61,17 @@ Review the following containers, SDS, and backup disaster recovery components, w
 
 9. To back up a cluster without Portworx Enterprise, you must first install the Portworx storage scheduler [Stork](/docs/openshift?topic=openshift-storage_portworx_backup#px-backup-stork) before you add the cluster to the Portworx Backup service.
 
-   **Public connectivity:**
+10. Public connectivity: {{site.data.keyword.cis_short}} Global Load Balancer feature is used to provide public traffic load balancing between the primary and DR sites.
 
-10. {{site.data.keyword.cis_short}} Global Load Balancer feature is used to provide public traffic load balancing between the primary and DR sites.
+11. Public connectivity: {{site.data.keyword.vpn_vpc_short}} is used to provide secure connectivity from on-premises networks and admin access from anywhere.
 
-11. {{site.data.keyword.vpn_vpc_short}} is used to provide secure connectivity from on-premises networks and admin access from anywhere.
+12. Private connectivity: Redundant (or single) {{site.data.keyword.dl_short}} connections that are established to the primary and DR sites with Transit Gateway connections.
 
+13. Private connectivity: Global Routing is added to the DR region {{site.data.keyword.dl_short}} for resilient private network connectivity outside the local market.
 
-   **Private connectivity:**
+14. Private connectivity: Global {{site.data.keyword.tg_short}} in the DR region provides interconnectivity between VPCs for replication traffic between {{site.data.keyword.cloud_notm}} regions.
 
-12. Redundant (or single) {{site.data.keyword.dl_short}} connections that are established to the primary and DR sites with Transit Gateway connections.
-
-13. Global Routing is added to the DR region {{site.data.keyword.dl_short}} for resilient private network connectivity outside the local market.
-
-14. Global {{site.data.keyword.tg_short}} in the DR region provides interconnectivity between VPCs for replication traffic between {{site.data.keyword.cloud_notm}} regions.
-
-15. Private {{site.data.keyword.dns_short}} Global Load Balancer or customer provided GLB is used to provide private traffic load balancing between the primary and DR sites.
+15. Private connectivity: Private {{site.data.keyword.dns_short}} Global Load Balancer or customer provided GLB is used to provide private traffic load balancing between the primary and DR sites.
 
 ## Design scope
 {: #Design-Scope}
