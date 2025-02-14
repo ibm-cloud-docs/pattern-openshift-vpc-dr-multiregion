@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2025-02-10"
+lastupdated: "2025-02-14"
 
 subcollection: pattern-openshift-vpc-dr-multiregion
 
@@ -15,7 +15,7 @@ keywords:
 # Compute design
 {: #Compute-Design-Considerations}
 
-The multi-region disaster recovery pattern for {{site.data.keyword.redhat_openshift_notm}} includes high availability compute options, isolation, scalable compute capacity, software-defined storage, and backups to support growing workload demands.
+The multiregion disaster recovery pattern for {{site.data.keyword.redhat_openshift_notm}} includes high availability compute options, isolation, scalable compute capacity, software-defined storage, and backups to support growing workload demands.
 
 - To meet the high availability 99.99% SLA, 6 worker nodes are equally distributed across three availability zones within each Red Hat OpenShift cluster in each region. For more information, see [Decide how many worker nodes for each cluster](/docs/openshift?topic=openshift-strategy#sizing_workers).
 

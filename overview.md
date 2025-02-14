@@ -16,9 +16,9 @@ keywords:
 # Overview
 {: #overview}
 
-The {{site.data.keyword.openshiftlong}} Service Virtual Private Cloud (VPC) Multi-Region Disaster Recovery pattern provides an {{site.data.keyword.IBM}} solution design for deployment on {{site.data.keyword.Bluemix_notm}}.
+The {{site.data.keyword.openshiftlong}} Service Virtual Private Cloud (VPC) multiregion Disaster Recovery pattern provides an {{site.data.keyword.IBM}} solution design for deployment on {{site.data.keyword.Bluemix_notm}}.
 
-The focus is on using cloud platform capabilities to design a resilient multi-region {{site.data.keyword.redhat_openshift_notm}} VPC solution.
+The focus is on using cloud platform capabilities to design a resilient multiregion {{site.data.keyword.redhat_openshift_notm}} VPC solution.
 
 This pattern supports business continuity, disaster recovery (DR), and data residency requirements when you use two regions within the same country.
 
@@ -33,7 +33,7 @@ This pattern provides a resilient solution design for the {{site.data.keyword.re
 
 - Ensure that requirements can be met from a disaster recovery perspective.
 
-You can use {{site.data.keyword.Bluemix_notm}} platform capabilities to design a resilient multi-region {{site.data.keyword.redhat_openshift_notm}} environment. This pattern enables {{site.data.keyword.redhat_openshift_notm}} clusters with backup, restore, and disaster recovery in a secondary region within an {{site.data.keyword.Bluemix_notm}} VPC multi-region reference architecture.
+You can use {{site.data.keyword.Bluemix_notm}} platform capabilities to design a resilient multiregion {{site.data.keyword.redhat_openshift_notm}} environment. This pattern enables {{site.data.keyword.redhat_openshift_notm}} clusters with backup, restore, and disaster recovery in a secondary region within an {{site.data.keyword.Bluemix_notm}} VPC multiregion reference architecture.
 
 This document is an extension of the [{{site.data.keyword.redhat_openshift_notm}} on VPC resiliency](/docs/pattern-openshift-vpc-mz-resiliency?topic=pattern-openshift-vpc-mz-resiliency-overview) pattern, which focuses on resilient {{site.data.keyword.redhat_openshift_notm}} clusters within a single region.
 
@@ -54,10 +54,10 @@ Portworx disaster recovery supports high availability across availability zones,
 Depending on your cluster requirements, Portworx offers the following two disaster recovery configurations:
 
 [Metro DR](https://docs.portworx.com/portworx-enterprise/operations/operate-kubernetes/disaster-recovery/px-metro){: external}
-:   Your {{site.data.keyword.redhat_openshift_notm}} clusters are in the same region, such as both clusters are deployed in one or multiple zones of the us-south region. All clusters are configured to use the same Portworx Enterprise cluster and share a Portworx key-value store. Data is automatically replicated between the clusters because the Portworx storage layer is shared. RPO (Recovery Point Objective) and RTO (Recovery Time Objective) for this configuration is less than 60 seconds.
+:   Your {{site.data.keyword.redhat_openshift_notm}} clusters are in the same region, such as both clusters are deployed in one or multiple zones of the `us-south` region. All clusters are configured to use the same Portworx Enterprise cluster and share a Portworx key-value store. Data is automatically replicated between the clusters because the Portworx storage layer is shared. RPO (Recovery Point Objective) and RTO (Recovery Time Objective) for this configuration is less than 60 seconds.
 
 [Asynchronous DR](https://docs.portworx.com/portworx-enterprise/operations/operate-kubernetes/disaster-recovery/async-dr){: external}
-:   Your {{site.data.keyword.redhat_openshift_notm}} clusters are deployed in different regions, such as us-south and us-east. Each cluster has its own Portworx Enterprise installation and uses a separate Portworx key-value store that is not shared. To replicate data between clusters, you must set up scheduled replication between these clusters. Because of the higher latency and scheduled replication times, the RPO for this scenario might be up to 15 minutes.
+:   Your {{site.data.keyword.redhat_openshift_notm}} clusters are deployed in different regions, such as `us-south` and `us-east`. Each cluster has its own Portworx Enterprise installation and uses a separate Portworx key-value store that is not shared. To replicate data between clusters, you must set up scheduled replication between these clusters. Because of the higher latency and scheduled replication times, the RPO for this scenario might be up to 15 minutes.
 
 This pattern uses Portworx asynchronous disaster recovery (DR) with a multi-zone workload cluster in the primary region. It replicates storage asynchronously to a secondary region, ensuring a 15-minute recovery point objective (RPO). For DR to the secondary location, you need at least two {{site.data.keyword.redhat_openshift_notm}} clusters across three availability zones, with Portworx SDS installed and configured.
 

@@ -23,22 +23,21 @@ content-type: reference-architecture
 
 {{site.data.keyword.attribute-definition-list}}
 
-# Red Hat OpenShift VPC DR Multiregion
+# Red Hat OpenShift on VPC multiregion DR
 {: #Solution-Architecture}
 {: toc-content-type="reference-architecture"}
 {: toc-version="1.0"}
 
-This reference architecture is used in a multi-region disaster recovery scenario for a containerized workload with persistent storage and backup requirements. The pattern uses {{site.data.keyword.redhat_openshift_notm}} as the managed container platform and Portworx for software-defined storage (SDS) replication and backup.
+This reference architecture is used in a multiregion disaster recovery scenario for a containerized workload with persistent storage and backup requirements. The pattern uses {{site.data.keyword.redhat_openshift_notm}} as the managed container platform and Portworx for software-defined storage (SDS) replication and backup.
 
 ## Architecture diagram
 {: #architecture-diagram}
 
-![Illustrates an architecture for a {{site.data.keyword.openshiftlong_notm}} VPC Multi-Region Disaster Recovery solution architecture](images/ROKS-VPC-DR-Arch.svg){: caption="{{site.data.keyword.openshiftlong_notm}} VPC Multi-Region DR Architecture Overview" caption-side="bottom"}
+![Diagram of an architecture for a {{site.data.keyword.openshiftlong_notm}} on VPC multiregion disaster recovery solution architecture](images/ROKS-VPC-DR-Arch.svg){: caption="{{site.data.keyword.openshiftlong_notm}} on VPC multiregion disaster recovery solution architecture" caption-side="bottom"}
 
-Review the following containers, SDS, and backup disaster recovery components:
+Review the following containers, SDS, and backup disaster recovery components, which corresponds with Figure 1.
 
-### Containers
-{: #containers}
+   **Containers:**
 
 1. Separate hyperconverged compute and storage Red Hat OpenShift clusters are created in primary and DR region accounting for containerized applications and environments that require disaster recovery protection.
 
@@ -46,8 +45,7 @@ Review the following containers, SDS, and backup disaster recovery components:
 
    2. A minimum of 3 worker nodes with extra local block storage is required so that the Portworx built-in internal key-value database (KVDB) can be set up for high availability. The KVDB stores the state, configuration data, and metadata for your cluster. Your data is automatically replicated across these 3 worker nodes, and you can choose to scale this deployment to replicate data across up to 25 worker nodes.
 
-### Storage and backup
-{: #storage-backup}
+   **Storage and backup:**
 
 2. Portworx Enterprise DR provides Data replication between Red Hat OpenShift source and failover destination clusters in separate regions. Each cluster has its own Portworx Enterprise DR installation and uses a separate Portworx key-value store that is not shared.
 
@@ -63,20 +61,17 @@ Review the following containers, SDS, and backup disaster recovery components:
 
 7. An {{site.data.keyword.cos_full_notm}} instance and bucket is used as the backup location to the Portworx Backup service.
 
-8. Cross-Region COS plan is used for multi-regional protection with concurrent access to protect against entire regional unavailability or outage.
+8. Cross-Region COS plan is used for multiregional protection with concurrent access to protect against entire regional unavailability or outage.
 
 9. To back up a cluster without Portworx Enterprise, you must first install the Portworx storage scheduler [Stork](/docs/openshift?topic=openshift-storage_portworx_backup#px-backup-stork) before you add the cluster to the Portworx Backup service.
 
-### Connectivity
-{: #dr-connectivity}
-
-Public connectivity components:
+   **Public connectivity:**
 
 10. {{site.data.keyword.cis_short}} Global Load Balancer feature is used to provide public traffic load balancing between the primary and DR sites.
 
 11. {{site.data.keyword.vpn_vpc_short}} is used to provide secure connectivity from on-premises networks and admin access from anywhere.
 
-Private connectivity components:
+   **Private connectivity:**
 
 12. Redundant (or single) {{site.data.keyword.dl_short}} connections that are established to the primary and DR sites with Transit Gateway connections.
 
@@ -99,7 +94,7 @@ Following the [{{site.data.keyword.arch_framework}}](/docs/architecture-framewor
 
 - **Resiliency:** Backup and restore, disaster recovery
 
-![Illustrates the design scope for a {{site.data.keyword.redhat_openshift_notm}} on VPC Multi-Region Disaster Recovery solution architecture](images/heat-map.svg){: caption="{{site.data.keyword.openshiftlong_notm}} VPC Multi-Region DR design scope" caption-side="bottom"}
+![Illustrates the design scope for a {{site.data.keyword.redhat_openshift_notm}} on VPC multiregion disaster recovery solution architecture](images/heat-map.svg){: caption="{{site.data.keyword.openshiftlong_notm}} VPC multiregion DR design scope" caption-side="bottom"}
 
 The {{site.data.keyword.arch_framework}} provides a structured approach to designing cloud solutions by covering key architectural aspects and domains, helping ensure consistency across enterprise solutions regardless of technology. For more information, see [Introduction to the {{site.data.keyword.arch_framework}}](/docs/architecture-framework?topic=architecture-framework-intro).
 
@@ -120,7 +115,7 @@ The following table outlines key baseline requirements that are essential for mo
 |            | Provide highly available storage for containerized databases and stateful applications with cross-region storage replication.                                            |
 |            | Provide for an RTO/RPO = 4 hours/15 minutes; expect rollback to original environments no later than specified RTOs.                                                |
 |            | Provide public and private enterprise connectivity with failover to a secondary region for disaster recovery Provide a 99.99% SLA on the containerized platform service. |
-{: caption="{{site.data.keyword.openshiftlong_notm}} VPC Multi-Region DR requirements" caption-side="bottom"}
+{: caption="{{site.data.keyword.openshiftlong_notm}} on VPC multiregion DR requirements" caption-side="bottom"}
 
 ## Solution components
 {: #Solution-Components}
@@ -139,7 +134,7 @@ The following table outlines key baseline requirements that are essential for mo
 |            | [{{site.data.keyword.vpn_vpc_short}}](/docs/vpc?topic=vpc-vpn-overview){: external}                                                            | Remote access to manage resources in a private network.  |
 |            | [{{site.data.keyword.dns_short}}](/docs/dns-svcs?topic=dns-svcs-getting-started){: external}                                             | Private DNS resolution.    |
 | Resiliency | [Portworx Enterprise with Disaster Recovery](https://cloud.ibm.com/catalog/services/portworx-enterprise){: external} (**px-dr-enterprise)** | Disaster Recovery Supports HA across Availability Zones, RPO-zero failover across data centers in a metropolitan area and continuous incremental backups across global data centers.  |
-|            | [PX-Backup for Kubernetes](https://cloud.ibm.com/catalog/services/px-backup-for-kubernetes){: external}                                     | Portworx-Enterprise is the most widely-used and reliable cloud-native storage solution for production workloads and provides high-availability, data protection, and security for containerized applications.                |
+|            | [PX-Backup for Kubernetes](https://cloud.ibm.com/catalog/services/px-backup-for-kubernetes){: external}                                     | Portworx Enterprise is the most widely-used and reliable cloud-native storage solution for production workloads and provides high-availability, data protection, and security for containerized applications.                |
 |            | [{{site.data.keyword.cis_short}}](https://cloud.ibm.com/catalog/services/internet-services){: external}                                             | Global Load Balancer.             |
 |            | [{{site.data.keyword.dns_short}}](/docs/dns-svcs?topic=dns-svcs-getting-started){: external}                                              | Private Global Load Balancer.    |
-{: caption="{{site.data.keyword.openshiftlong_notm}} VPC Multi-Region DR solution components" caption-side="bottom"}
+{: caption="{{site.data.keyword.openshiftlong_notm}} on VPC multiregion DR solution components" caption-side="bottom"}
