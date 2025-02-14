@@ -14,8 +14,8 @@ toc:
      # use-case: Public Cloud # Replace
      # compliance: compliance-value # Replace
     deployable: false # Set to true if this is a deployment guide that's associated with a deployable architecture in the catalog
-    description: Openshift VPC DR Multiregion
-    label: Openshift VPC DR Multiregion
+    description: Red Hat OpenShift on VPC multiregion DR
+    label: Red Hat OpenShift on VPC multiregion DR
   entries:
   - navgroup:
       id: overview

@@ -1,23 +1,23 @@
 {
   "version": 2,
-  "title": "Openshift VPC Disaster Recovery multiregion",
-  "introduction": "This is a landing page for the reference architecture describing how to host Openshift on VPC with disaster recovery across multiple regions.",
+  "title": "Red Hat OpenShift on VPC multiregion DR",
+  "introduction": "Host Red Hat OpenShift on VPC with multiregion disaster recovery.",
   "section_topics": {
     "links": [
     {
-      "title": "Solution Overview",
+      "title": "Overview",
       "href": "/docs/pattern-openshift-vpc-dr-multiregion?topic=pattern-openshift-vpc-dr-multiregion-overview"
     },
     {
-      "title": "Solution Architecture",
+      "title": "Solution architecture",
       "href": "/docs/pattern-openshift-vpc-dr-multiregion?topic=pattern-openshift-vpc-dr-multiregion-Solution-Architecture"
       },
     {
-      "title": "Planning - Design Considerations",
+      "title": "Compute design",
       "href": "/docs/pattern-openshift-vpc-dr-multiregion?topic=pattern-openshift-vpc-dr-multiregion-Compute-Design-Considerations"
     },
     {
-      "title": "Planning - Architecture Decisions",
+      "title": "Architecture decisions for compute",
       "href": "/docs/pattern-openshift-vpc-dr-multiregion?topic=pattern-openshift-vpc-dr-multiregion-Compute-Architecture-Decisions"
     }
   ]

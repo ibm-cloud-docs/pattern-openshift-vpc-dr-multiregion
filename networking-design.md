@@ -12,7 +12,7 @@ keywords:
 
 {{site.data.keyword.attribute-definition-list}}
 
-# Networking Design Considerations
+# Networking design
 {: #NetworkingDesignConsideration}
 
-Refer to the [{{site.data.keyword.redhat_openshift_notm}} on VPC resiliency](https://cloud.ibm.com/docs/pattern-openshift-vpc-mz-resiliency?topic=pattern-openshift-vpc-mz-resiliency-overview) pattern for additional details on network design considerations within a region.
+For more information on network design considerations within a region, see [{{site.data.keyword.redhat_openshift_notm}} on VPC resiliency](/docs/pattern-openshift-vpc-mz-resiliency?topic=pattern-openshift-vpc-mz-resiliency-overview).
