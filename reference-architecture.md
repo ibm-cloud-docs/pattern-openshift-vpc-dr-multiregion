@@ -37,7 +37,7 @@ This reference architecture is used in a multiregion disaster recovery scenario 
 
 Review the following containers, SDS, and backup disaster recovery components, which corresponds with Figure 1.
 
-**Containers:**
+   **Containers:**
 
 1. Separate hyperconverged compute and storage Red Hat OpenShift clusters are created in primary and DR region accounting for containerized applications and environments that require disaster recovery protection.
 
@@ -45,7 +45,7 @@ Review the following containers, SDS, and backup disaster recovery components, w
 
    2. A minimum of 3 worker nodes with extra local block storage is required so that the Portworx built-in internal key-value database (KVDB) can be set up for high availability. The KVDB stores the state, configuration data, and metadata for your cluster. Your data is automatically replicated across these 3 worker nodes, and you can choose to scale this deployment to replicate data across up to 25 worker nodes.
 
-**Storage and backup:**
+   **Storage and backup:**
 
 2. Portworx Enterprise DR provides Data replication between Red Hat OpenShift source and failover destination clusters in separate regions. Each cluster has its own Portworx Enterprise DR installation and uses a separate Portworx key-value store that is not shared.
 
@@ -61,17 +61,17 @@ Review the following containers, SDS, and backup disaster recovery components, w
 
 7. An {{site.data.keyword.cos_full_notm}} instance and bucket is used as the backup location to the Portworx Backup service.
 
-8. Cross-Region COS plan is used for multiregional protection with concurrent access to protect against entire regional unavailability or outage.
+8. Cross-region COS plan is used for multiregional protection with concurrent access to protect against entire regional unavailability or outage.
 
 9. To back up a cluster without Portworx Enterprise, you must first install the Portworx storage scheduler [Stork](/docs/openshift?topic=openshift-storage_portworx_backup#px-backup-stork) before you add the cluster to the Portworx Backup service.
 
-**Public connectivity:**
+   **Public connectivity:**
 
 10. {{site.data.keyword.cis_short}} Global Load Balancer feature is used to provide public traffic load balancing between the primary and DR sites.
 
 11. {{site.data.keyword.vpn_vpc_short}} is used to provide secure connectivity from on-premises networks and admin access from anywhere.
 
-**Private connectivity:**
+   **Private connectivity:**
 
 12. Redundant (or single) {{site.data.keyword.dl_short}} connections that are established to the primary and DR sites with Transit Gateway connections.
 
