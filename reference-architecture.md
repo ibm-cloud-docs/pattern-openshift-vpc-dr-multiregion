@@ -37,6 +37,7 @@ This reference architecture is used in a multiregion disaster recovery scenario 
 
 Review the following containers, SDS, and backup disaster recovery components, which corresponds with Figure 1.
 
+
    **Containers:**
 
 1. Separate hyperconverged compute and storage Red Hat OpenShift clusters are created in primary and DR region accounting for containerized applications and environments that require disaster recovery protection.
@@ -70,6 +71,7 @@ Review the following containers, SDS, and backup disaster recovery components, w
 10. {{site.data.keyword.cis_short}} Global Load Balancer feature is used to provide public traffic load balancing between the primary and DR sites.
 
 11. {{site.data.keyword.vpn_vpc_short}} is used to provide secure connectivity from on-premises networks and admin access from anywhere.
+
 
    **Private connectivity:**
 
