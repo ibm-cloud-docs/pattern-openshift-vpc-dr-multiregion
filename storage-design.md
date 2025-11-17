@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2023
-lastupdated: "2023-12-26"
+  years: 2025
+lastupdated: "2025-10-28"
 
 subcollection: pattern-openshift-vpc-dr-multiregion
 
@@ -34,7 +34,7 @@ When you design storage for disaster recovery in {{site.data.keyword.redhat_open
 
 -  Portworx requires at least 3 worker nodes with raw and unformatted block storage. Make sure that you spread the nodes evenly across the availability zones.
 
-- You can optimize the performance of your Portworx volumes by matching the type of workload you're running with a suitable IO profile. Please refer to [Portworx Prerequsites on RedHat Openshift on IBM Cloud](https://docs.portworx.com/portworx-enterprise/platform/openshift/ocp-ibm-cloud/before-you-begin){: external}for additional information.
+- You can optimize the performance of your Portworx volumes by matching the type of workload you're running with a suitable IO profile. Please refer to [Portworx Prerequsites on RedHat Openshift on IBM Cloud](https://docs.portworx.com/portworx-enterprise/platform/ibm-cloud){: external}for additional information.
 
 - Choose at least two {{site.data.keyword.redhat_openshift_notm}} clusters that are located in different regions.
 
@@ -49,7 +49,7 @@ When you design storage for disaster recovery in {{site.data.keyword.redhat_open
 
 Follow the instructions to [Install Portworx](/docs/openshift?topic=openshift-storage_portworx_deploy) with the disaster recovery plan in both of your clusters. If you installed Portworx without the disaster recovery plan in one of your clusters already, you must re-install Portworx in that cluster with the disaster recovery plan. Make sure that you configure the Portworx key-value store that each cluster uses.
 
-Follow the [Portworx documentation](https://docs.portworx.com/portworx-enterprise/operations/operate-kubernetes/disaster-recovery){: external} to create a cluster pair, enable disaster recovery mode, and schedule data migrations between your cluster
+Follow the [Portworx documentation](https://docs.portworx.com/portworx-enterprise/operations/disaster-recovery){: external} to create a cluster pair, enable disaster recovery mode, and schedule data migrations between your cluster
 
 For more information on storage design considerations, see [{{site.data.keyword.redhat_openshift_notm}} on VPC resiliency](/docs/pattern-openshift-vpc-mz-resiliency?topic=pattern-openshift-vpc-mz-resiliency-overview).
 

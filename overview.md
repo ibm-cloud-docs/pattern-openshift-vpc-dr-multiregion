@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2025-02-14"
+lastupdated: "2025-10-28"
 
 
 subcollection: pattern-openshift-vpc-dr-multiregion
@@ -53,10 +53,10 @@ Portworx disaster recovery supports high availability across availability zones,
 
 Depending on your cluster requirements, Portworx offers the following two disaster recovery configurations:
 
-[Metro DR](https://docs.portworx.com/portworx-enterprise/operations/operate-kubernetes/disaster-recovery/px-metro){: external}
+[Metro DR](https://docs.portworx.com/portworx-enterprise/operations/disaster-recovery/px-metro){: external}
 :   Your {{site.data.keyword.redhat_openshift_notm}} clusters are in the same region, such as both clusters are deployed in one or multiple zones of the `us-south` region. All clusters are configured to use the same Portworx Enterprise cluster and share a Portworx key-value store. Data is automatically replicated between the clusters because the Portworx storage layer is shared. RPO (Recovery Point Objective) and RTO (Recovery Time Objective) for this configuration is less than 60 seconds.
 
-[Asynchronous DR](https://docs.portworx.com/portworx-enterprise/operations/operate-kubernetes/disaster-recovery/async-dr){: external}
+[Asynchronous DR](https://docs.portworx.com/portworx-enterprise/operations/disaster-recovery/async-dr){: external}
 :   Your {{site.data.keyword.redhat_openshift_notm}} clusters are deployed in different regions, such as `us-south` and `us-east`. Each cluster has its own Portworx Enterprise installation and uses a separate Portworx key-value store that is not shared. To replicate data between clusters, you must set up scheduled replication between these clusters. Because of the higher latency and scheduled replication times, the RPO for this scenario might be up to 15 minutes.
 
 This pattern uses Portworx asynchronous disaster recovery (DR) with a multi-zone workload cluster in the primary region. It replicates storage asynchronously to a secondary region, ensuring a 15-minute recovery point objective (RPO). For DR to the secondary location, you need at least two {{site.data.keyword.redhat_openshift_notm}} clusters across three availability zones, with Portworx SDS installed and configured.
@@ -70,4 +70,4 @@ To establish high availability within a region, see the pattern [{{site.data.key
 
 Install Portworx Enterprise Disaster Recovery on each {{site.data.keyword.redhat_openshift_notm}} cluster that requires DR within the primary and disaster recovery regions. Portworx asynchronous replication performs volume replications. The admin creates a schedule to migrate applications and volumes between the Portworx primary and disaster recovery clusters that are paired.
 
-With this setup, the RPO is 15 minutes and the RTO is less than 60 seconds. For more information, see [Portworx documentation](https://docs.portworx.com/portworx-enterprise/platform/openshift/ocp-ibm-cloud/disaster-recovery){: external}.
+With this setup, the RPO is 15 minutes and the RTO is less than 60 seconds. For more information, see [Portworx documentation](https://docs.portworx.com/portworx-enterprise/operations/disaster-recovery){: external}.
