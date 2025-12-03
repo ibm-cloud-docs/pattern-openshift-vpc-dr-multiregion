@@ -24,25 +24,25 @@ Users are less likely to experience downtime when apps are distributed across mu
 
 ### Single zone cluster
 
-  A single control plane running in only one availability zone. To improve application availability and to allow failover if one worker node is not available in the cluster, add additional worker nodes to the single zone cluster. The workload becomes unavailable if there's a zonal outage. Single zone clusters are suitable for only transient or noncritical workloads.
+A single control plane running in only one availability zone. To improve application availability and to allow failover if one worker node is not available in the cluster, add additional worker nodes to the single zone cluster. The workload becomes unavailable if there's a zonal outage. Single zone clusters are suitable for only transient or noncritical workloads.
 
 ### Multizone cluster
 
-  Create a multizone cluster to distribute workloads across multiple worker nodes and zones, and protect against zone failures with hosts, networks, or apps. If resources in one zone go down, the cluster workloads continue to run in the other zones. Multizone clusters provide high availability and the following more benefits:
+Create a multizone cluster to distribute workloads across multiple worker nodes and zones, and protect against zone failures with hosts, networks, or apps. If resources in one zone go down, the cluster workloads continue to run in the other zones. Multizone clusters provide high availability and the following more benefits:
 
-  - Easily manage worker nodes of the same flavor (CPU, memory, virtual or physical) with worker pools.
-  - Guard against zone failure by spreading nodes evenly across the selected multizones and by using anti-affinity pod deployments for applications.
-  - Decrease costs by using multizone clusters instead of duplicating the resources in a separate cluster.
-  - Benefit from automatic load balancing across apps with the multizone load balancer (MZLB) that is set up automatically in each zone of the cluster. This was the selected deployment model for the e-commerce use case as it provides the required service level availability and workload management capabilities.
+- Easily manage worker nodes of the same flavor (CPU, memory, virtual or physical) with worker pools.
+- Guard against zone failure by spreading nodes evenly across the selected multizones and by using anti-affinity pod deployments for applications.
+- Decrease costs by using multizone clusters instead of duplicating the resources in a separate cluster.
+- Benefit from automatic load balancing across apps with the multizone load balancer (MZLB) that is set up automatically in each zone of the cluster. This was the selected deployment model for the e-commerce use case as it provides the required service level availability and workload management capabilities.
 
 ### Cross regional active to active cluster deployment
 
-  For solutions that require high availability and capacity management, two active clusters can be deployed with the workload distributed by using a global load balancer. if there's a cluster failure in one region, the second cluster can be scaled to manage the full workload. For the e-commerce use case, it was decided that multiregion deployment was not required with the additional costs factored into the decision.
+For solutions that require high availability and capacity management, two active clusters can be deployed with the workload distributed by using a global load balancer. if there's a cluster failure in one region, the second cluster can be scaled to manage the full workload. For the e-commerce use case, it was decided that multiregion deployment was not required with the additional costs factored into the decision.
 
 ### Service Level Agreements
 
-  IBM Cloud provides Service Level Agreement eligibility based on these deployment strategies. To meet the Tier 3 SLA of 99.99%, deploy a multizone cluster and distribute the common workload across 2 or more worker in each of three separate Availability Zones for a minimum total of six worker nodes. A Tier 1 SLA of 99.9% is provided for all other configurations including the minimum sizing for single zone and multizone clusters.
+IBM Cloud provides Service Level Agreement eligibility based on these deployment strategies. To meet the Tier 3 SLA of 99.99%, deploy a multizone cluster and distribute the common workload across 2 or more worker in each of three separate Availability Zones for a minimum total of six worker nodes. A Tier 1 SLA of 99.9% is provided for all other configurations including the minimum sizing for single zone and multizone clusters.
 
-  For more information, see [IBM Cloud Service Level Agreements](https://www.ibm.com/support/customer/csol/terms/?id=i126-9268&lc=en#detail-document).
+For more information, see [IBM Cloud Service Level Agreements](https://www.ibm.com/support/customer/csol/terms/?id=i126-9268&lc=en#detail-document).
 
 For more information on resiliency design considerations, see [{{site.data.keyword.redhat_openshift_notm}} on VPC resiliency](/docs/pattern-openshift-vpc-mz-resiliency?topic=pattern-openshift-vpc-mz-resiliency-overview). For more information on network disaster recovery, see [Web app cross-region resiliency - Networking design](/docs/pattern-vpc-vsi-cross-region-resiliency?topic=pattern-vpc-vsi-cross-region-resiliency-networking-design). Also, review [Your responsibilities with using {{site.data.keyword.redhat_openshift_notm}} on {{site.data.keyword.cloud_notm}}](/docs/openshift?topic=openshift-responsibilities_iks).

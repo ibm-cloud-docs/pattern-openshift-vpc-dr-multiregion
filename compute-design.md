@@ -23,7 +23,7 @@ The multiregion disaster recovery pattern for {{site.data.keyword.redhat_openshi
 
 - You can also use a VSI size of 8 vCPUs and 32 GB RAM for ODF storage worker nodes but you must taint the nodes so that the application pods are not deployed on these storage worker nodes.
 
-**Note**: Red Hat OpenShift Data Foundation (ODF) node sizing guidelines vary depending on the deployment mode (local or remote) and the specific services and workloads running on the nodes.
+  **Note**: Red Hat OpenShift Data Foundation (ODF) node sizing guidelines vary depending on the deployment mode (local or remote) and the specific services and workloads running on the nodes.
 
 - For ACM cluster, we will deploy a ROKS cluster consisting of 3 worker nodes with 8 vCPUs and 32 GB RAM, spread across 3 availability zone in a single region.
 

@@ -19,7 +19,7 @@ keywords:
 
 -   [Deploying web application on OpenShift in a MZR on {{site.data.keyword.Bluemix_notm}}](/docs/pattern-webapp-openshift-vpc?topic=pattern-webapp-openshift-vpc-overview)
 
-    -   [Deploying web application on OpenShift in a MZR on {{site.data.keyword.Bluemix_notm}} - Deployment Guide](/docs/pattern-webapp-openshift-vpc?topic=pattern-webapp-openshift-vpc-roks-vpc-mz-da)
+-   [Deploying web application on OpenShift in a MZR on {{site.data.keyword.Bluemix_notm}} - Deployment Guide](/docs/pattern-webapp-openshift-vpc?topic=pattern-webapp-openshift-vpc-roks-vpc-mz-da)
 
 -   [Web app cross-region resiliency](/docs/pattern-vpc-vsi-cross-region-resiliency?topic=pattern-vpc-vsi-cross-region-resiliency-overview)
 
