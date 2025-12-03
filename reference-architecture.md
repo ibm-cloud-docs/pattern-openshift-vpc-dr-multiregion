@@ -9,13 +9,13 @@ keywords:
 # The release that the reference architecture describes
 
 authors:
-  - name: Vidula Patel, Rob Talotta
+  - name: Imran Khan, Sharat Guldas
 
 version: 1.0
 
 deployment-url:
 
-docs: https://cloud.ibm.com/docs/pattern-openshift-vpc-dr-multiregion
+docs: /docs/pattern-openshift-vpc-dr-multiregion
 
 
 content-type: reference-architecture

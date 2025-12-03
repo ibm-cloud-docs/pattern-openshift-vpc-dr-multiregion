@@ -13,6 +13,10 @@ subcollection: pattern-openshift-vpc-dr-multiregion
 {{site.data.keyword.attribute-definition-list}}
 
 
+# Deploying
+{: #Deployment Guide}
+{: toc-content-type="deploy"}
+{: toc-version="1.0"}
 
 
 ## Deploying a Red Hat OpenShift VPC multiregion architecture
