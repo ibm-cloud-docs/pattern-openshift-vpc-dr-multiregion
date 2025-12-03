@@ -49,12 +49,15 @@ Disaster recovery with ODF requires at least two {{site.data.keyword.redhat_open
 OpenShift Data Foundation’s DR capability enables DR across multiple Red Hat OpenShift Container Platform clusters, and is categorized as follows:
 
 ### Metro-DR
+{: #metro-dr}
 Metro-DR ensures business continuity during the unavailability of a data centre with no data loss. In the public cloud these would be similar to protecting from an Availability Zone failure.
 
 ### Regional-DR
+{: #regional-dr}
 Regional-DR ensures business continuity during the unavailability of a geographical region, accepting some loss of data in a predictable amount. In the public cloud this would be similar to protecting from a region failure.
 
 ### Disaster Recovery with stretch cluster
+{: #dr-stretch-cluster}
 Stretch cluster solution ensures business continuity with no-data loss disaster recovery protection with OpenShift Data Foundation based synchronous replication in a single OpenShift cluster, stretched across two data centres with low latency and one arbiter node.
 
 Zone failure in Metro-DR and region failure in Regional-DR is usually expressed using the terms, **Recovery Point Objective (RPO)** and **Recovery Time Objective (RTO)**.
@@ -75,7 +78,7 @@ This guide will focus on providing step by step instructions to deploy a Regiona
 
 
 ## Components of a OpenShift Data Foundation Regional DR
-{: #Components of a OpenShift Data Foundation Regional DR}
+{: #Components-openshift-odf-dr}
 
 
 ## Component diagram
@@ -83,19 +86,19 @@ This guide will focus on providing step by step instructions to deploy a Regiona
 
 ![Diagram explaining various components of OFD in a VPC multiregion disaster recovery solution architecture](images/ODF_components_2_Dec_2025.svg){: caption="{{site.data.keyword.openshiftlong_notm}} on VPC multiregion disaster recovery solution architecture with OFD Storage System" caption-side="bottom"}
 
-This pattern contains the following components of Red Hat OpenShift Data Foundation. 
-1.	### Red Hat Advanced Cluster Management (RHACM)
+This pattern contains the following components of Red Hat OpenShift Data Foundation.
+1. Red Hat Advanced Cluster Management (RHACM)
     RHACM consists of two major parts, Hub Cluster and Managed Clusters
     a.	Hub cluster where Red Hat Advanced Cluster Management (RHACM) for Kubernetes operator are installed.
     b.	Primary managed cluster where OpenShift Data Foundation is running and this will be considered active site for application.
     c.	Secondary managed cluster where OpenShift Data Foundation is running and this will be considered passive site for application.
 
-2.	### OpenShift Data Foundation
+2. OpenShift Data Foundation
       OpenShift Data Foundation provides the ability to provision and manage storage for stateful applications in an OpenShift Container Platform cluster.
 
       OpenShift Data Foundation is backed by Ceph as the storage provider, whose lifecycle is managed by Rook in the OpenShift Data Foundation component stack. Ceph-CSI provides the provisioning and management of Persistent Volumes for stateful applications.
 
-3.	### OpenShift DR
+3. OpenShift DR
       OpenShift DR is a set of orchestrators to configure and manage stateful applications across a set of peer OpenShift clusters which are managed using RHACM and provides cloud-native interfaces to orchestrate the life-cycle of an application’s state on Persistent Volumes.
       OpenShift DR is split into three components:
 

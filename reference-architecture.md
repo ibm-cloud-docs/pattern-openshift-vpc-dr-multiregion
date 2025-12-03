@@ -11,11 +11,6 @@ keywords:
 authors:
   - name: Imran Khan, Sharat Guldas
 
-deployment-url:
-
-docs: /docs/pattern-openshift-vpc-dr-multiregion
-
-
 content-type: reference-architecture
 ---
 
@@ -23,8 +18,6 @@ content-type: reference-architecture
 
 # Red Hat OpenShift on VPC multiregion DR
 {: #Solution-Architecture}
-{: toc-content-type="reference-architecture"}
-{: toc-version="1.0"}
 
 This reference architecture is used in a multiregion disaster recovery scenario for a containerized workload with persistent storage and backup requirements. The pattern uses {{site.data.keyword.redhat_openshift_notm}} as the managed container platform and Red Hat OpenShift Data Foundation for software-defined storage (SDS) replication.
 
