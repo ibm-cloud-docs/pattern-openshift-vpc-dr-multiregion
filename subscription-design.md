@@ -23,5 +23,4 @@ Disaster Recovery features supported by Red Hat OpenShift Data Foundation requir
 
 Any Red Hat OpenShift Data Foundation Cluster containing PVs participating in active replication either as a source or destination requires OpenShift Data Foundation Advanced entitlement. This subscription should be active on both source and destination clusters.
 
-To know how subscriptions for OpenShift Data Foundation work, see [knowledgebase article on OpenShift Data Foundation subscriptions](https://access.redhat.com/articles/6932811).
-
+To know how subscriptions for OpenShift Data Foundation work, see knowledgebase article on [OpenShift Data Foundation subscriptions](https://access.redhat.com/articles/6932811).

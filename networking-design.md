@@ -15,7 +15,7 @@ keywords:
 # Networking design
 {: #NetworkingDesignConsideration}
 
-The multi region Disaster Recovery pattern for Red Hat OpenShift using OpenShift Data Foundation uses IBM Cloud VPC infrastructure and network services to segment the management and application workloads and support the application deployment across multiple availability zones in each participating DR region.
+The multiregion Disaster Recovery pattern for Red Hat OpenShift using OpenShift Data Foundation uses IBM Cloud VPC infrastructure and network services to segment the management and application workloads and support the application deployment across multiple availability zones in each participating DR region.
 
 •	Deploy the Red Hat OpenShift within a Virtual Private Cloud (VPC) provisioned across multiple availability zones within each DR region to provide workload isolation within the public cloud.
 

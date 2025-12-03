@@ -11,8 +11,6 @@ keywords:
 authors:
   - name: Imran Khan, Sharat Guldas
 
-version: 1.0
-
 deployment-url:
 
 docs: /docs/pattern-openshift-vpc-dr-multiregion

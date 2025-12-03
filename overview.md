@@ -98,10 +98,11 @@ This pattern contains the following components of Red Hat OpenShift Data Foundat
 3.	### OpenShift DR
       OpenShift DR is a set of orchestrators to configure and manage stateful applications across a set of peer OpenShift clusters which are managed using RHACM and provides cloud-native interfaces to orchestrate the life-cycle of an application’s state on Persistent Volumes.
       OpenShift DR is split into three components:
-        •	ODF Multicluster Orchestrator: Installed on the multi-cluster control plane (Hub cluster), it orchestrates configuration and peering of OpenShift Data Foundation clusters for Metro and Regional DR relationships.
 
-        •	OpenShift DR Hub Operator: Automatically installed as part of ODF Multicluster Orchestrator installation on the hub cluster to orchestrate failover or relocation of DR enabled applications.
+      1. ODF Multicluster Orchestrator: Installed on the multi-cluster control plane (Hub cluster), it orchestrates configuration and peering of OpenShift Data Foundation clusters for Metro and Regional DR relationships.
 
-        •	OpenShift DR Cluster Operator: Automatically installed on each managed cluster that is part of a Metro and Regional DR relationship to manage the lifecycle of all PVCs of an application.
+      2. OpenShift DR Hub Operator: Automatically installed as part of ODF Multicluster Orchestrator installation on the hub cluster to orchestrate failover or relocation of DR enabled applications.
+
+      3. OpenShift DR Cluster Operator: Automatically installed on each managed cluster that is part of a Metro and Regional DR relationship to manage the lifecycle of all PVCs of an application.
 
 For more details refer to [Components of Region-DR solution](https://docs.redhat.com/en/documentation/red_hat_openshift_data_foundation/4.19/html-single/configuring_openshift_data_foundation_disaster_recovery_for_openshift_workloads/index#components-of-regional-dr-solution_rdr)
