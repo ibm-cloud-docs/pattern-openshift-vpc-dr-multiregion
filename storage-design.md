@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2025-10-28"
+lastupdated: "2025-12-03"
 
 subcollection: pattern-openshift-vpc-dr-multiregion
 
@@ -12,45 +12,34 @@ keywords:
 
 {{site.data.keyword.attribute-definition-list}}
 
-# Storage design
+# Storage design Considerations
 {: #Storage-Design-Considerations}
 
 
-When you design storage for disaster recovery in {{site.data.keyword.redhat_openshift_notm}} environments byusing Portworx, consider the following key factors.
+When you design storage for disaster recovery in {{site.data.keyword.redhat_openshift_notm}} environments by using ODF, consider the following key factors.
 
-- Include required storage for Portworx metadata. It is recommended to use the internal Portworx key-value database (KVDB). For more information, see [Setting up the Portworx key-value store](/docs/openshift?topic=openshift-storage_portworx_kv_store). For prerequisites and to learn more about what the key value does, see the [Portworx documentation](https://docs.portworx.com/portworx-enterprise/operations/kvdb-for-portworx/internal-kvdb){: external}.
+- ODF creates a virtualized storage layer, where your app data is replicated for high availability. Because ODF abstracts your underlying storage, you can use ODF to create File, Block, or Object storage claims from the same underlying raw block storage.
 
-- Determine if storage encryption is needed. There are options for using {{site.data.keyword.hscrypto}} or {{site.data.keyword.keymanagementservicelong_notm}}. For more information, see [Understanding encryption for Portworx](/docs/openshift?topic=openshift-storage_portworx_encryption).
+- ODF is a software-defined storage (SDS), it aggregates storage that is declared, to the ODF cluster and then creates virtual pool of "persistent storage" that is available to your containers.
 
-- Consider the Storage capacity needed to for the journal devices storage. Journal devices allow Portworx to write logs directly to a local disk on your worker node.
+- The "storage" can be local to the worker node hype-Converged with compute/storage using solid-state drive storage device or *attached* to the worker node or VPC block storage. The type of storage you use depends on the compute node types, such as VPC vs Bare Metals, and storage model such as external vs internal.
 
-- Use cloud storage drives with the latest version to dynamically provision the Portworx volumes. If you don’t want to use cloud drives, you must manually attach volumes to worker nodes.
+- ODF uses storage volumes in multiples of 3 and replicates your app data across these volumes. The underlying storage volumes that you use for ODF depends on your OCP cluster type. For VPC clusters that use virtual machines, the storage volumes are **Block Storage for VPC storage volumes**.
 
-- Portworx is a software-defined storage (SDS), it aggregates “storage" that is declared, to the Portworx cluster and then creates virtual pool of "persistent storage" that is available to your containers.
+- For production use or in scenarios with heavy workloads, use dedicated storage nodes for ODF. By separating the operations of storage nodes, you can achieve better performance and scalability for your storage infrastructure.
 
-- The "storage" can be local to the worker node hype-Converged with compute/storage using solid-state drive storage device or *attached* to the worker node or VPC block storage.
+- When using VPC clusters with VSIs, for performance considerations, use VPC Block storage 10 IOPS for worker nodes.
 
-- For performance considerations, use VPC Block storage 10 IOPS for worker nodes.
+- In OpenShift Data Foundation (ODF), the replication factor is set to 3 by default. When you add capacity, plan to add storage nodes in multiples of 3.
 
--  Portworx requires at least 3 worker nodes with raw and unformatted block storage. Make sure that you spread the nodes evenly across the availability zones.
+- Plan to have fewer than nine storage devices per node. This helps prevent potential bottlenecks and enhances the efficiency of data access and retrieval.
 
-- You can optimize the performance of your Portworx volumes by matching the type of workload you're running with a suitable IO profile. Please refer to [Portworx Prerequsites on RedHat Openshift on IBM Cloud](https://docs.portworx.com/portworx-enterprise/platform/ibm-cloud){: external}for additional information.
+- You can optimize the performance of your ODF volumes by matching the type of workload you're running with a suitable IO profile.
 
 - Choose at least two {{site.data.keyword.redhat_openshift_notm}} clusters that are located in different regions.
 
-- Ensure the OpenShift clusters have sufficient [Raw and unformatted block storage](/docs/openshift?topic=openshift-utilities#manual_block) so that you can build your Portworx storage layer.
-
-- Include your [Portworx key-value store](/docs/openshift?topic=openshift-storage_portworx_kv_store). Because both clusters are in different regions, each cluster must use its own key-value store. It is recommended to use the internal Portworx key-value database (KVDB).
-
-- Determine if encryption is needed by Enable Portworx [Volume encryption](/docs/containers?topic=containers-storage_portworx_encryption) for your cluster.
 
 ## Resources
 {: #storage-design-resources}
 
-Follow the instructions to [Install Portworx](/docs/openshift?topic=openshift-storage_portworx_deploy) with the disaster recovery plan in both of your clusters. If you installed Portworx without the disaster recovery plan in one of your clusters already, you must re-install Portworx in that cluster with the disaster recovery plan. Make sure that you configure the Portworx key-value store that each cluster uses.
-
-Follow the [Portworx documentation](https://docs.portworx.com/portworx-enterprise/operations/disaster-recovery){: external} to create a cluster pair, enable disaster recovery mode, and schedule data migrations between your cluster
-
-For more information on storage design considerations, see [{{site.data.keyword.redhat_openshift_notm}} on VPC resiliency](/docs/pattern-openshift-vpc-mz-resiliency?topic=pattern-openshift-vpc-mz-resiliency-overview).
-
-To review Portworx storage limitations, see [Limitations](/docs/openshift?topic=openshift-storage_portworx_plan#portworx_limitations).
+For more information on storage design considerations, see [{{site.data.keyword.redhat_openshift_notm}} on VPC resiliency](/docs/pattern-openshift-vpc-mz-resiliency?topic=pattern-openshift-vpc-mz-resiliency-overview) and [Understanding OpenShift Data Foundation](https://cloud.ibm.com/docs/openshift?topic=openshift-ocs-storage-prep)

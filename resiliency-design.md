@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2025-10-28"
+lastupdated: "2025-12-03"
 
 subcollection: pattern-openshift-vpc-dr-multiregion
 
@@ -15,23 +15,30 @@ keywords:
 # Resiliency design
 {: #Resiliency-Design-Considerations}
 
-Review how to set up asynchronous disaster recovery (DR) for Red Hat OpenShift clusters by using Portworx. Create separate Red Hat OpenShift clusters in the primary and disaster recovery regions to account for the containerized applications and environments that require disaster recovery protection.
+High availability is built into IBM Cloud VPC Red Hat OpenShift clusters and can be increased to meet availability requirements. To increase availability, consider deployment strategies for the number of nodes within a cluster and the node placement within a cluster across availability zones.
 
-## Portworx Enterprise asynchronous disaster recovery
-{: #Porworx-Enterprise-DR-Asynchronous-Disaster-Recovery}
+## Cluster planning for high availability
+{: #Cluster planning for high availability}
 
-The Red Hat OpenShift clusters are deployed in different regions, such as us-south and us-east. Each cluster has its own Portworx installation and uses a separate Portworx key-value store that is not shared. To replicate data between clusters, you must set up scheduled replication between these clusters. Because of the higher latency and scheduled replication times, the RPO for this scenario might be up to 15 minutes.
+Users are less likely to experience downtime when apps are distributed across multiple worker nodes, zones, and clusters. Built-in capabilities, like load balancing and isolation, increase resiliency against potential failures with hosts, networks, or apps. The following potential cluster setups are ordered with increasing degrees of availability.
 
-1. Choose at least two Red Hat OpenShift clusters that are located in different regions. If you have one cluster only, you can still configure this cluster for asynchronous disaster recovery, but Portworx can't do a proper failover until a second cluster is configured.
+### Single zone cluster
+  A single control plane running in only one availability zone. To improve application availability and to allow failover if one worker node is not available in the cluster, add additional worker nodes to the single zone cluster. The workload becomes unavailable if there's a zonal outage. Single zone clusters are suitable for only transient or noncritical workloads.
 
-2. Make sure that all your clusters have sufficient [raw and unformatted block storage](/docs/containers?topic=containers-utilities#manual_block) so that you can build your Portworx storage layer.
+### Multizone cluster
+  Create a multizone cluster to distribute workloads across multiple worker nodes and zones, and protect against zone failures with hosts, networks, or apps. If resources in one zone go down, the cluster workloads continue to run in the other zones. Multizone clusters provide high availability and the following more benefits:
 
-3. Review your [options to configure a Portworx key-value store](/docs/containers?topic=containers-storage_portworx_kv_store). Because both clusters are in different regions, each cluster must use its own key-value store. Use the internal Portworx key-value database (KVDB).
+  - Easily manage worker nodes of the same flavor (CPU, memory, virtual or physical) with worker pools.
+  - Guard against zone failure by spreading nodes evenly across the selected multizones and by using anti-affinity pod deployments for applications.
+  - Decrease costs by using multizone clusters instead of duplicating the resources in a separate cluster.
+  - Benefit from automatic load balancing across apps with the multizone load balancer (MZLB) that is set up automatically in each zone of the cluster. This was the selected deployment model for the e-commerce use case as it provides the required service level availability and workload management capabilities.
 
-4. Enable Portworx [volume encryption](/docs/containers?topic=containers-storage_portworx_encryption) for both of your clusters. The IBM Key Protect credentials are later used by Portworx to encrypt data traffic between the clusters.
+### Cross regional active to active cluster deployment
+  For solutions that require high availability and capacity management, two active clusters can be deployed with the workload distributed by using a global load balancer. if there's a cluster failure in one region, the second cluster can be scaled to manage the full workload. For the e-commerce use case, it was decided that multiregion deployment was not required with the additional costs factored into the decision.
 
-5. Follow the instructions to [install Portworx](/docs/containers?topic=containers-storage_portworx_deploy) with the disaster recovery plan in both of your clusters. If you installed Portworx without the disaster recovery plan in one of your clusters already, you must reinstall Portworx in that cluster with the disaster recovery plan. Make sure that you configure the Portworx key-value store that each cluster uses.
+### Service Level Agreements
+  IBM Cloud provides Service Level Agreement eligibility based on these deployment strategies. To meet the Tier 3 SLA of 99.99%, deploy a multizone cluster and distribute the common workload across 2 or more worker in each of three separate Availability Zones for a minimum total of six worker nodes. A Tier 1 SLA of 99.9% is provided for all other configurations including the minimum sizing for single zone and multizone clusters.
 
-6. Follow the [Portworx documentation](https://docs.portworx.com/portworx-enterprise/operations/disaster-recovery){: external} to create a cluster pair, enable disaster recovery mode, and schedule data migrations between your clusters.
+  For more information, see [IBM Cloud Service Level Agreements](https://www.ibm.com/support/customer/csol/terms/?id=i126-9268&lc=en#detail-document).
 
 For more information on resiliency design considerations, see [{{site.data.keyword.redhat_openshift_notm}} on VPC resiliency](/docs/pattern-openshift-vpc-mz-resiliency?topic=pattern-openshift-vpc-mz-resiliency-overview). For more information on network disaster recovery, see [Web app cross-region resiliency - Networking design](/docs/pattern-vpc-vsi-cross-region-resiliency?topic=pattern-vpc-vsi-cross-region-resiliency-networking-design). Also, review [Your responsibilities with using {{site.data.keyword.redhat_openshift_notm}} on {{site.data.keyword.cloud_notm}}](/docs/openshift?topic=openshift-responsibilities_iks).
