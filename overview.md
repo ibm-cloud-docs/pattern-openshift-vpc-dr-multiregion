@@ -44,7 +44,7 @@ This disaster recovery pattern for {{site.data.keyword.redhat_openshift_notm}} d
 
 This pattern ensures 99.99% infrastructure availability and provides a recovery point objective (RPO) of 15 minutes or less. Disaster recovery helps ensure that you can restore applications, platforms, services, or APIs after an unexpected component failure or regional outage.
 
-Disaster recovery with ODF requires at least two {{site.data.keyword.redhat_openshift_notm}} clusters where ODF Operators are installed and configured for disaster recovery. One of the two clusters is considered the active cluster where your data is primarily stored. All data is then replicated to the standby cluster. If your active cluster becomes unavailable, Portworx Enterprise with DR automatically fails over to the standby cluster. The standby cluster is the new active cluster so that you can continue to access data.
+Disaster recovery with ODF requires at least two {{site.data.keyword.redhat_openshift_notm}} clusters where ODF Operators are installed and configured for disaster recovery. One of the two clusters is considered the active cluster where your data is primarily stored. All data is then replicated to the standby cluster. If your active cluster becomes unavailable, ODF Disaster Recovery automatically fails over to the standby cluster. The standby cluster is the new active cluster so that you can continue to access data.
 
 OpenShift Data Foundation’s DR capability enables DR across multiple Red Hat OpenShift Container Platform clusters, and is categorized as follows:
 
