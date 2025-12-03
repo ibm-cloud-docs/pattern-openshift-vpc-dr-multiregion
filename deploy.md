@@ -13,8 +13,7 @@ subcollection: pattern-openshift-vpc-dr-multiregion
 {{site.data.keyword.attribute-definition-list}}
 
 
-# Deploying
-{: #multiregion-openshift-deploying}
+
 
 ## Deploying a Red Hat OpenShift VPC multiregion architecture
 This deployment guide outlines steps required to deploy a Red Hat OpenShift Container architecture in a multi region resilient configuration, specifically in three availability zones across two different regions. The deployment is based on an existing deployable architecture template, as well as a series of customizations to tailor the setup to the specific requirements for your environment.
