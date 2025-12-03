@@ -35,4 +35,4 @@ keywords:
 
 -   [{{site.data.keyword.openshiftlong_notm}} - Backing up and restoring storage data](/docs/openshift?topic=openshift-storage_br)
 
--   [{{site.data.keyword.openshiftlong_notm}} - Setting up disaster recovery with ODF](https://cloud.ibm.com/docs/openshift?topic=openshift-openshift_odf_rdr_roks)
+-   [{{site.data.keyword.openshiftlong_notm}} - Setting up disaster recovery with ODF](/docs/openshift?topic=openshift-openshift_odf_rdr_roks)

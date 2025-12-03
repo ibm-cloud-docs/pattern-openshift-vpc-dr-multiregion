@@ -42,4 +42,4 @@ When you design storage for disaster recovery in {{site.data.keyword.redhat_open
 ## Resources
 {: #storage-design-resources}
 
-For more information on storage design considerations, see [{{site.data.keyword.redhat_openshift_notm}} on VPC resiliency](/docs/pattern-openshift-vpc-mz-resiliency?topic=pattern-openshift-vpc-mz-resiliency-overview) and [Understanding OpenShift Data Foundation](https://cloud.ibm.com/docs/openshift?topic=openshift-ocs-storage-prep)
+For more information on storage design considerations, see [{{site.data.keyword.redhat_openshift_notm}} on VPC resiliency](/docs/pattern-openshift-vpc-mz-resiliency?topic=pattern-openshift-vpc-mz-resiliency-overview) and [Understanding OpenShift Data Foundation](/docs/openshift?topic=openshift-ocs-storage-prep)
