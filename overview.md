@@ -50,14 +50,17 @@ OpenShift Data Foundation’s DR capability enables DR across multiple Red Hat O
 
 ### Metro-DR
 {: #metro-dr}
+
 Metro-DR ensures business continuity during the unavailability of a data centre with no data loss. In the public cloud these would be similar to protecting from an Availability Zone failure.
 
 ### Regional-DR
 {: #regional-dr}
+
 Regional-DR ensures business continuity during the unavailability of a geographical region, accepting some loss of data in a predictable amount. In the public cloud this would be similar to protecting from a region failure.
 
 ### Disaster Recovery with stretch cluster
 {: #dr-stretch-cluster}
+
 Stretch cluster solution ensures business continuity with no-data loss disaster recovery protection with OpenShift Data Foundation based synchronous replication in a single OpenShift cluster, stretched across two data centres with low latency and one arbiter node.
 
 Zone failure in Metro-DR and region failure in Regional-DR is usually expressed using the terms, **Recovery Point Objective (RPO)** and **Recovery Time Objective (RTO)**.
