@@ -58,4 +58,4 @@ The following steps will help you deploy Red Hat OpenShift Cluster and OpenShift
 
 6.	Deploy a [sample application](https://docs.redhat.com/documentation/red_hat_openshift_data_foundation/4.16/html-single/configuring_openshift_data_foundation_disaster_recovery_for_openshift_workloads/index#create-sample-application-for-testing-mdrsolution_manage-rdr) to test your cluster and underlying ODF storage system using persistent volume claims
 
-7.	Test the sample [application failover]/docs/openshift?topic=openshift-openshift_odf_rdr_roks&interface=ui#odf-rdr-test) from primary to secondary regions and relocate back to primary region.
+7.	Test the sample [application failover](/docs/openshift?topic=openshift-openshift_odf_rdr_roks&interface=ui#odf-rdr-test) from primary to secondary regions and relocate back to primary region.
