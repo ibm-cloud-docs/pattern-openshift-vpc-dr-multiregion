@@ -13,7 +13,7 @@ subcollection: pattern-openshift-vpc-dr-multiregion
 {{site.data.keyword.attribute-definition-list}}
 
 
-# Deploying a Red Hat OpenShift VPC multiregion architecture
+# Deploying a {{site.data.keyword.openshiftlong_notm}} multiregion architecture
 {: #Deployment-Guide}
 
 This deployment guide outlines steps required to deploy a Red Hat OpenShift Container architecture in a multiregion resilient configuration, specifically in three availability zones across two different regions. The deployment is based on an existing deployable architecture template, as well as a series of customizations to tailor the setup to the specific requirements for your environment.
@@ -31,7 +31,7 @@ Before you get started, be sure that you have the following prerequistes:
 
 You need the following items to deploy and configure this reference architecture:
 
--	An [IBM Cloud account](https://cloud.ibm.com/registration).
+-	An [{{site.data.keyword.Bluemix_notm}} account](https://cloud.ibm.com/registration).
 -	[Required IAM access policies](https://github.com/terraform-ibm-modules/terraform-ibm-web-app-mzr-da/tree/main/solutions/e2e#required-iam-access-policies).
 -	An understanding of the [Planning for the landing zone deployable architectures](/docs/secure-infrastructure-vpc?topic=secure-infrastructure-vpc-plan).
 
@@ -76,9 +76,9 @@ The following steps will help you deploy Red Hat OpenShift Cluster and OpenShift
 
 5.	Setup and configure [Red Hat Advanced Cluster Management](/docs/openshift?topic=openshift-openshift_odf_rdr_roks&interface=ui#odf-rdr-install-acm) on the ACM cluster. With this set up, the ACM cluster manages the ODF clusters. So that if one ODF cluster goes down, then the ACM cluster rolls over the apps and data from that cluster to the other cluster.
 
-  **Note**: Some configuration links referring to Red Hat documentation might lead you to older versions of OpenShift, please ensure to change the version number from the drop-down on the left side of the document.
-  
-   
+   **Note**: Some configuration links referring to Red Hat documentation might lead you to older versions of OpenShift, please ensure to change the version number from the drop-down on the left side of the document.
+
+
 ## Verifying the architecture
 {: #verify-deployment}
 
