@@ -21,7 +21,7 @@ When designing storage for disaster recovery in Red Hat OpenShift environments, 
 ## Software Defined Storage (SDS)
 {: #sds}
 
-SDS is a system that abstracts storage resources from the underlying hardware, allowing Opsnshift to manage and provision storage as a programmable, scalable pool through a software layer. It decouples storage management from specific hardware, enabling the creation of flexible, automated storage devices for applications, often using a Container Storage Interface (CSI) driver. This approach allows for the use of commodity hardware and or cloud drives that provides features like dynamic provisioning, snapshots, and data replication, all managed via OpenShift APIs. Using an SDS solution that is built on an open-source software-defined storage platform such as Ceph provides a unified system for object, file, and block storage.
+SDS is a system that abstracts storage resources from the underlying hardware, allowing OpenShift to manage and provision storage as a programmable, scalable pool through a software layer. It decouples storage management from specific hardware, enabling the creation of flexible, automated storage devices for applications, often using a Container Storage Interface (CSI) driver. This approach allows for the use of commodity hardware and or cloud drives that provides features like dynamic provisioning, snapshots, and data replication, all managed via OpenShift APIs. Using an SDS solution that is built on an open-source software-defined storage platform such as Ceph provides a unified system for object, file, and block storage.
 
 ## OpenShift Native Integration
 {: #openshift-native-integration}
