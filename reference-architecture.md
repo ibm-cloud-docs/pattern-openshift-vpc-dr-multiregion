@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2025
-lastupdated: "2025-12-03"
+lastupdated: "2025-12-04"
 
 subcollection: pattern-openshift-vpc-dr-multiregion
 
@@ -17,7 +17,7 @@ This reference architecture is used in a multiregion disaster recovery scenario 
 ## Architecture diagram
 {: #architecture-diagram}
 
-![Diagram of an architecture for a {{site.data.keyword.openshiftlong_notm}} on VPC multiregion disaster recovery solution architecture](images/ROKS-VPC-DR-Arch-2-Dec-2025-v3.png){: caption="{{site.data.keyword.openshiftlong_notm}} on VPC multiregion disaster recovery solution architecture" caption-side="bottom"}
+![Diagram of an architecture for a {{site.data.keyword.openshiftlong_notm}} on VPC multiregion disaster recovery solution architecture](images/ROKS-VPC-DR-Arch-4-Dec-2025-v1.png){: caption="{{site.data.keyword.openshiftlong_notm}} on VPC multiregion disaster recovery solution architecture" caption-side="bottom"}
 
 Review the following containers, SDS, and backup disaster recovery components that corresponds with Figure 1:
 

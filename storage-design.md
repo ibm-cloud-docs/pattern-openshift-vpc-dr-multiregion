@@ -21,7 +21,7 @@ When designing storage for disaster recovery in Red Hat OpenShift environments, 
 ## Software Defined Storage (SDS)
 SDS is a system that abstracts storage resources from the underlying hardware, allowing Opsnshift to manage and provision storage as a programmable, scalable pool through a software layer. It decouples storage management from specific hardware, enabling the creation of flexible, automated storage devices for applications, often using a Container Storage Interface (CSI) driver. This approach allows for the use of commodity hardware and or cloud drives that provides features like dynamic provisioning, snapshots, and data replication, all managed via OpenShift APIs. Using an SDS solution that is built on an open-source software-defined storage platform such as Ceph provides a unified system for object, file, and block storage.
 
-## OpenShift Native Integration:
+## OpenShift Native Integration
 When selecting a storage system, your goal should be on identifying a solution that fully integrates with OpenShift APIs and operators, Dynamically provisioning Persistent Volumes (PVs) for container workloads using a CSI driver, lifecycle management, monitoring, and seamless orchestration of containerized workloads. This ensures storage behaves like a native part of the cluster.
 
 ## Unified Storage
@@ -30,7 +30,8 @@ While choosing a storage system for your stateful applications, select a single 
 ## Performance
 To ensure that your application perform optimally under heavy load, select a block storage tier that meets your organization application performance baseline. IBM Cloud provides various block storage performance tiers with differing performance characteristics, select a tier that meets your applications IOPS and throughput needs. When using VPC clusters with VSIs, for performance considerations, use VPC Block storage 10 IOPS for worker nodes.
 
-For more information refer to https://cloud.ibm.com/docs/vpc?topic=vpc-block-storage-profiles&interface=ui#defined-performance-profile
+For more information refer to [Block Storage profile families](https://cloud.ibm.com/docs/vpc?topic=vpc-block-storage-profiles&interface=ui#block-storage-profile-overview)
+
 
 
 
