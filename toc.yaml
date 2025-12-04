@@ -24,8 +24,6 @@ toc:
       - topicgroup:
           label: Design considerations
           topics:
-          - topic: subscription-design.md
-            navtitle: Subscription
           - topic: compute-design.md
             navtitle: Compute
           - topic: storage-design.md
