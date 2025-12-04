@@ -36,7 +36,7 @@ While choosing a storage system for your stateful applications, select a single 
 ## Performance
 {: #storage-performance}
 
-To ensure that your application perform optimally under heavy load, select a block storage tier that meets your organization application performance baseline. IBM Cloud provides various block storage performance tiers with differing performance characteristics, select a tier that meets your applications IOPS and throughput needs. When using VPC clusters with VSIs, for performance considerations, use VPC Block storage 10 IOPS for worker nodes.
+To ensure that your application perform optimally under heavy load, select a block storage tier that meets your organization application performance baseline. {{site.data.keyword.Bluemix_notm}} provides various block storage performance tiers with differing performance characteristics, select a tier that meets your applications IOPS and throughput needs. When using VPC clusters with VSIs, for performance considerations, use VPC Block storage 10 IOPS for worker nodes.
 
 For more information refer to [Block Storage profile families](https://cloud.ibm.com/docs/vpc?topic=vpc-block-storage-profiles&interface=ui#block-storage-profile-overview)
 

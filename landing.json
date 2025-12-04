@@ -13,7 +13,7 @@
         "href": "/docs/pattern-openshift-vpc-dr-multiregion?topic=pattern-openshift-vpc-dr-multiregion-Solution-Architecture"
       },
       {
-        "title": "Design Considerations",
+        "title": "Design considerations",
         "href": "/docs/pattern-openshift-vpc-dr-multiregion?topic=pattern-openshift-vpc-dr-multiregion-Compute-Design-Considerations"
       },
       {
@@ -21,7 +21,7 @@
         "href": "/docs/pattern-openshift-vpc-dr-multiregion?topic=pattern-openshift-vpc-dr-multiregion-Compute-Architecture-Decisions"
       },
       {
-        "title": "Deployment Guide",
+        "title": "Deployment guide",
         "href": "/docs/pattern-openshift-vpc-dr-multiregion?group=deploy"
       }
     ]

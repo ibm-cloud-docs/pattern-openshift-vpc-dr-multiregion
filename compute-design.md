@@ -22,7 +22,7 @@ Consider the following points when deciding on compute resources for implementin
 ## Cluster Types
 {: #cluster-types}
 
-There are two methods of deploying storage clusters for OpenShift Continer pLatform, each with its advantages and disadvantages, select the one that meets your performance, operational management and cost requirements.
+There are two methods of deploying storage clusters for {{site.data.keyword.openshiftlong_notm}}, each with its advantages and disadvantages, select the one that meets your performance, operational management and cost requirements.
 
 ### Hyperconverged
 {: #hyperconverged}
@@ -37,7 +37,7 @@ In this model application pods and storage system pods are deployed into their o
 ## Performance
 {: #compute-performance}
 
-One of the important aspects of OpenShift cluster design is performance. A rightly sized cluster will ensure application reliability, scalability, and a good end-user experience.
+One of the important aspects of Red Hat OpenShift cluster design is performance. A rightly sized cluster will ensure application reliability, scalability, and a good end-user experience.
 
 - Ensure the worker and/or storage node profile you select for have sufficient vCPUs and RAM to meet the resource demands of your workloads.
 
@@ -48,4 +48,4 @@ One of the important aspects of OpenShift cluster design is performance. A right
 - You can also use a VSI size of 8 vCPUs and 32 GB RAM for storage system worker nodes but you must taint the nodes so that the application pods are not deployed on these storage worker nodes.
 
 
-For more information on compute design considerations, see [{{site.data.keyword.redhat_openshift_notm}} on VPC resiliency](/docs/pattern-openshift-vpc-mz-resiliency?topic=pattern-openshift-vpc-mz-resiliency-overview).
+For more information on compute design considerations, see [{{site.data.keyword.openshiftlong_notm}} resiliency](/docs/pattern-openshift-vpc-mz-resiliency?topic=pattern-openshift-vpc-mz-resiliency-overview).

@@ -15,15 +15,15 @@ keywords:
 # Resiliency design
 {: #Resiliency-Design-Considerations}
 
-High availability is built into IBM Cloud VPC Red Hat OpenShift clusters and can be increased to meet availability requirements. To increase availability, consider deployment strategies for the number of nodes within a cluster and the node placement within a cluster across availability zones.
+High availability is built into {{site.data.keyword.openshiftlong_notm}} clusters and can be increased to meet availability requirements. To increase availability, consider deployment strategies for the number of nodes within a cluster and the node placement within a cluster across availability zones.
 
 
 ## Cluster availability
 {: #Cluster availability}
 
-The availability of Red Hat OpenShift clusters depends on the availability of the control plane components, like the the master nodes and etcd database, and also on the availability of the worker nodes where the applications are deployed.
+The availability of {{site.data.keyword.openshiftlong_notm}} clusters depends on the availability of the control plane components, like  the master nodes and etcd database, and also on the availability of the worker nodes where the applications are deployed.
 
-For workloads deployed on Red Hat OpenShift on IBM Cloud clusters, IBM Cloud is responsible for the availability of the cluster’s control plane. When a Red Hat OpenShift on IBM Cloud cluster is created, IBM Cloud sets up highly available master nodes and control plane components, automatically backs up etcd data, and provides automated disaster recovery for the control plane. IBM Cloud users are responsible for setting up highly available worker nodes. The following are deployment options for Red Hat OpenShift on IBM Cloud clusters:
+For workloads deployed on {{site.data.keyword.openshiftlong_notm}} clusters, {{site.data.keyword.Bluemix_notm}} is responsible for the availability of the cluster’s control plane. When a {{site.data.keyword.openshiftlong_notm}} cluster is created, {{site.data.keyword.Bluemix_notm}} sets up highly available master nodes and control plane components, automatically backs up etcd data, and provides automated disaster recovery for the control plane. {{site.data.keyword.Bluemix_notm}} users are responsible for setting up highly available worker nodes. The following are deployment options for {{site.data.keyword.openshiftlong_notm}} clusters:
 
 
 ### Single zone cluster
@@ -70,7 +70,7 @@ The secondary cluster is offline until a failure occurs in the primary region, t
 ## Storage Resiliency
 {: #storage-resiliency}
 
-Before you can decide on which storage solution is the right for disaster recovery of your Red Hat® OpenShift® on IBM Cloud® clusters, you must understand the IBM Cloud infrastructure, your app requirements, the type of data that you want to store, and how often you want to access this data.
+Before you can decide on which storage solution is the right for disaster recovery of your {{site.data.keyword.openshiftlong_notm}} clusters, you must understand the {{site.data.keyword.Bluemix_notm}} infrastructure, your app requirements, the type of data that you want to store, and how often you want to access this data.
 
 **Decide whether your data must be permanently stored.**
 
@@ -95,7 +95,7 @@ To protect your OpenShift stateful application workloads from regional failures,
 
 - Global Load Balancing: For seamless failover between primary and secondary OpenShift clusters, consider deploying Global Load Balancers.
 
-- Application load balancers: If there are multiple instances of your application pods across different worker nodes within a zone, create a network service in OpenShift with Application Load Balancer.
+- Application load balancers: If there are multiple instances of your application pods across different worker nodes within a zone, create a network service in OpenShift with an {{site.data.keyword.alb_full}}.
 
 - DNS: Create a DNS record that points to the IP address of the Global Load Balancer. In case an application is failed over to secondary region, your end-users can continue to access the application using the same DNS record.
 
@@ -107,7 +107,7 @@ Automating failover and failback processes significantly reduces RTO and minimiz
 ## Service Level Agreements
 {: #slas}
 
-IBM Cloud provides Service Level Agreement eligibility based on these deployment strategies. To meet the Tier 3 SLA of 99.99%, deploy a multizone cluster and distribute the common workload across 2 or more worker in each of three separate Availability Zones for a minimum total of six worker nodes. A Tier 1 SLA of 99.9% is provided for all other configurations including the minimum sizing for single zone and multizone clusters.
+{{site.data.keyword.Bluemix_notm}} provides Service Level Agreement eligibility based on these deployment strategies. To meet the Tier 3 SLA of 99.99%, deploy a multizone cluster and distribute the common workload across 2 or more worker in each of three separate Availability Zones for a minimum total of six worker nodes. A Tier 1 SLA of 99.9% is provided for all other configurations including the minimum sizing for single zone and multizone clusters.
 
 For more information, see [IBM Cloud Service Level Agreements](https://www.ibm.com/support/customer/csol/terms/?id=i126-9268&lc=en#detail-document).
 
