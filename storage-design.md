@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2025-12-03"
+lastupdated: "2025-12-04"
 
 subcollection: pattern-openshift-vpc-dr-multiregion
 
@@ -16,27 +16,22 @@ keywords:
 {: #Storage-Design-Considerations}
 
 
-When you design storage for disaster recovery in {{site.data.keyword.redhat_openshift_notm}} environments by using ODF, consider the following key factors.
+When designing storage for disaster recovery in Red Hat OpenShift environments, it is critical to evaluate the architectural principles and requirements before selecting a specific solution. This section outlines the key considerations for building a resilient, scalable, and performant storage architecture for containerized workloads.
 
-- ODF creates a virtualized storage layer, where your app data is replicated for high availability. Because ODF abstracts your underlying storage, you can use ODF to create File, Block, or Object storage claims from the same underlying raw block storage.
+## Software Defined Storage (SDS)
+SDS is a system that abstracts storage resources from the underlying hardware, allowing Opsnshift to manage and provision storage as a programmable, scalable pool through a software layer. It decouples storage management from specific hardware, enabling the creation of flexible, automated storage devices for applications, often using a Container Storage Interface (CSI) driver. This approach allows for the use of commodity hardware and or cloud drives that provides features like dynamic provisioning, snapshots, and data replication, all managed via OpenShift APIs. Using an SDS solution that is built on an open-source software-defined storage platform such as Ceph provides a unified system for object, file, and block storage.
 
-- ODF is a software-defined storage (SDS), it aggregates storage that is declared, to the ODF cluster and then creates virtual pool of "persistent storage" that is available to your containers.
+## OpenShift Native Integration:
+When selecting a storage system, your goal should be on identifying a solution that fully integrates with OpenShift APIs and operators, Dynamically provisioning Persistent Volumes (PVs) for container workloads using a CSI driver, lifecycle management, monitoring, and seamless orchestration of containerized workloads. This ensures storage behaves like a native part of the cluster.
 
-- The "storage" can be local to the worker node hype-Converged with compute/storage using solid-state drive storage device or *attached* to the worker node or VPC block storage. The type of storage you use depends on the compute node types, such as VPC vs Bare Metals, and storage model such as external vs internal.
+## Unified Storage
+While choosing a storage system for your stateful applications, select a single platform that is capable of providing multiple storage types such as block, file, and object, so that different workload requirements can be met without managing multiple underlying storage systems. Unified storage simplifies operations, reduces complexity, and supports diverse enterprise workloads.
 
-- ODF uses storage volumes in multiples of 3 and replicates your app data across these volumes. The underlying storage volumes that you use for ODF depends on your OCP cluster type. For VPC clusters that use virtual machines, the storage volumes are **Block Storage for VPC storage volumes**.
+## Performance
+To ensure that your application perform optimally under heavy load, select a block storage tier that meets your organization application performance baseline. IBM Cloud provides various block storage performance tiers with differing performance characteristics, select a tier that meets your applications IOPS and throughput needs. When using VPC clusters with VSIs, for performance considerations, use VPC Block storage 10 IOPS for worker nodes.
 
-- For production use or in scenarios with heavy workloads, use dedicated storage nodes for ODF. By separating the operations of storage nodes, you can achieve better performance and scalability for your storage infrastructure.
+For more information refer to https://cloud.ibm.com/docs/vpc?topic=vpc-block-storage-profiles&interface=ui#defined-performance-profile
 
-- When using VPC clusters with VSIs, for performance considerations, use VPC Block storage 10 IOPS for worker nodes.
-
-- In OpenShift Data Foundation (ODF), the replication factor is set to 3 by default. When you add capacity, plan to add storage nodes in multiples of 3.
-
-- Plan to have fewer than nine storage devices per node. This helps prevent potential bottlenecks and enhances the efficiency of data access and retrieval.
-
-- You can optimize the performance of your ODF volumes by matching the type of workload you're running with a suitable IO profile.
-
-- Choose at least two {{site.data.keyword.redhat_openshift_notm}} clusters that are located in different regions.
 
 
 ## Resources
