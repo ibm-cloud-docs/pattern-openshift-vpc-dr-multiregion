@@ -52,9 +52,7 @@ The stateful application will be deployed in the primary region and the applicat
 OpenShift disaster recovery (DR) requires a comprehensive strategy that leverages cloud infrastructure while addressing specific OpenShift components such as application state, data synchronization, and networking. Key considerations involve defining clear Recovery Time Objectives (RTO) and Recovery Point Objectives (RPO), choosing the right architecture, and implementing automation for failover and testing.
 
 
-**Deployment Models for OpenShift DR**
-
-Choose one of the following cluster deployment models after you have defined your applications RTO.
+**Deployment Models for OpenShift DR** Choose one of the following cluster deployment models after you have defined your applications RTO.
 
 -	Active-Passive
 
@@ -70,22 +68,28 @@ The secondary cluster is offline until a failure occurs in the primary region, t
 
 
 ## Storage Resiliency
+{: #storage-resiliency}
 
 Before you can decide on which storage solution is the right for disaster recovery of your Red Hat® OpenShift® on IBM Cloud® clusters, you must understand the IBM Cloud infrastructure, your app requirements, the type of data that you want to store, and how often you want to access this data.
 
 **Decide whether your data must be permanently stored.**
 
-- Persistent storage: Data stored on persistent storage persists even when the container, the worker node, or the cluster is removed. Use persistent storage in for stateful application, core business data or data that must be available due to legal requirements, such as a defined retention period. Persistent storage is also a good option for auditing. You will mostly require disaster recover for volumes or data stored on persistant volumes.
+- Persistent storage: Data stored on persistent volumes persists even when the container, the worker node, or the cluster is removed. Use persistent storage in for stateful application, core business data or data that must be available due to legal requirements, such as a defined retention period. Persistent storage is also a good option for auditing. You will mostly require disaster recovery for data stored that is stored on persistant volumes.
 
 - Non-persistent storage: Your data can be removed when the container, the worker node, or the cluster is removed. Non-persistent storage is typically used for logging information, such as system logs or container logs, development testing, or when you want to access data from the host's file system.
 
-### Storage High Availability (HA) 
+### Storage High Availability (HA)
+{: #storage-ha}
+
 Storage resources must be designed to tolerate failures, including node crashes, network issues, disk failures or in case of public cloud, zone failures. A properly designed HA strategy ensures workloads remain operational with minimal downtime, through zonal replication, failover mechanisms, and automated recovery. In a multizone storage HA design, your stateful data will only be protected against zonal failures.
 
 ### Storage Disaster Recovery (DR)
-To protect your OpenShift stateful application workloads from regional failures, the design must support asynchronously replicating stateful data to a different region. A storage replication method ensures that your applications can failover and access the same data that from the secondary region so that businesses can continue to access the applications with minimal impact.
+{: #storage-dr}
+
+To protect your OpenShift stateful application workloads from regional failures, the design must support asynchronously replicating stateful data in persistant volumes to a different region. A storage replication method ensures that your applications can failover and access the same data that from the secondary region so that businesses can continue to access the applications with minimal impact.
 
 ## Network Resiliency
+{: #network-resiliency}
 
 - Network reachability between regions: Ensure you are using Global Transit Gateway to establish communication between your VPC clusters in different regions.
 
@@ -96,6 +100,8 @@ To protect your OpenShift stateful application workloads from regional failures,
 - DNS: Create a DNS record that points to the IP address of the Global Load Balancer. In case an application is failed over to secondary region, your end-users can continue to access the application using the same DNS record.
 
 ## Automation and Orchestration
+{: #automation-orchestration}
+
 Automating failover and failback processes significantly reduces RTO and minimizes manual errors. Tools like Red Hat Advanced Cluster Management (RHACM) can manage multi-cluster environments and automate these operations.
 
 ## Service Level Agreements

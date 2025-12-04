@@ -20,16 +20,22 @@ The multiregion disaster recovery pattern for {{site.data.keyword.redhat_openshi
 Consider the following points when deciding on compute resources for implementing disaster recovery for your {{site.data.keyword.redhat_openshift_notm}}.
 
 ## Cluster Types
+{: #cluster-types}
 
 There are two methods of deploying storage clusters for OpenShift Continer pLatform, each with its advantages and disadvantages, select the one that meets your performance, operational management and cost requirements.
 
 ### Hyperconverged
+{: #hyperconverged}
+
 In this model, the same worker nodes are used to deploy both application pods and storage system pods. The performance would be better with this approach as the storage system components run on the same compute nodes as the application pods. In addition, this model simplifies the management and day to day operations but at the same time it makes scaling inflexible because you cannot independently scale compute or storage nodes. Adding a node increases both compute and storage capacity simultaneously even though that may not have been your intention.
 
 ### Partial Converged
+{: #partial-converged}
+
 In this model application pods and storage system pods are deployed into their own compute or storage worker nodes. This model provides greater flexibility as you can independently scale compute or storage nodes based on actual demand, thereby optimize the resource utilization and control costs. At the same time, this model may introduce latency between the application pods and storage as the storage system components run on different storage nodes. In addtion, you need to consider the cost factor due to additional licenses needed for separate storage nodes.
 
 ## Performance
+{: #compute-performance}
 
 One of the important aspects of OpenShift cluster design is performance. A rightly sized cluster will ensure application reliability, scalability, and a good end-user experience.
 
