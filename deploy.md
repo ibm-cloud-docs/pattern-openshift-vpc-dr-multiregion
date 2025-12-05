@@ -73,7 +73,7 @@ The following steps will help you deploy Red Hat OpenShift Cluster and OpenShift
 
 1.	Create the three VPC OpenShift clusters (each in different regions and VPCs) and set the ``--disable-outbound-traffic-protection`` parameter for each. Refer to [Creating Clusters](/docs/openshift?topic=openshift-openshift_odf_rdr_roks&interface=ui#odf-rdr-clusters) for more information.
 
-The ***ibmcloud ks cluster*** command in the reference link points to OpenShift version 4.17.10, please change this to your preferred version of OpenShift.
+
 
 1.	Enable [Red Hat OpenShift Data Foundation](/docs/openshift?topic=openshift-openshift_odf_rdr_roks&interface=ui#odf-rdr-enable-redhat) on the primary and secondary clusters.
 
