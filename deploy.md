@@ -62,30 +62,50 @@ To know how subscriptions for OpenShift Data Foundation work, see knowledgebase 
 3. In addition, refer to [Deploying OpenShift Data Foundation on VPC clusters](/docs/openshift?topic=openshift-deploy-odf-vpc&interface=ui#ocs-storage-vpc) for complete list of prerequisites.  
 
 
+
+
 ### Provisioning the architecture
 {: #deployment-steps}
 
-The following steps will help you deploy Red Hat OpenShift Cluster and OpenShift Data Foundation clusters across multiple regions and enable asynchronous replication between primary and secondary ODF volumes.  
+The following steps will help you deploy Red Hat OpenShift Cluster and OpenShift Data Foundation clusters across multiple regions and enable asynchronous replication between primary and secondary ODF volumes. 
+
+
 
 3. Identify regions where you want to deploy your OpenShift Clusters. This architecture will require creating three different Red Hat OpenShift Clusters in three different regions. So, you need to first identify which regions you want your clusters to be deployed in.  
 
+
+
 4.	Create or Select an existing VPC in each region that you want to use as primary, secondary and RHAMC regions. Ensure each subnet where cluster nodes will be deployed, have a public gateway attached to them. For more information about creating VPC, refer to [VPC multi-zone region](/docs/vpc?topic=vpc-creating-a-vpc-in-a-different-region&interface=cli).  
 
-5.	Create the three VPC OpenShift clusters (each in different regions and VPCs) and set the ``--disable-outbound-traffic-protection`` parameter for each. Refer to [Creating Clusters](/docs/openshift?topic=openshift-openshift_odf_rdr_roks&interface=ui#odf-rdr-clusters) for more information.  
+
+
+5.	Create the three VPC OpenShift clusters (each in different regions and VPCs) and set the ``--disable-outbound-traffic-protection`` parameter for each. Refer to [Creating Clusters](/docs/openshift?topic=openshift-openshift_odf_rdr_roks&interface=ui#odf-rdr-clusters) for more information. 
+
+
+
 
 
 
 6.	Enable [Red Hat OpenShift Data Foundation](/docs/openshift?topic=openshift-openshift_odf_rdr_roks&interface=ui#odf-rdr-enable-redhat) on the primary and secondary clusters.  
 
+
    **Note:** The Operation Hub might be enabled by default on some latest versions of the Red Hat OpenShift, so this step is optional depending on your cluster version.  
 
+
+
 7.	Setup and configure [Red Hat Advanced Cluster Management](/docs/openshift?topic=openshift-openshift_odf_rdr_roks&interface=ui#odf-rdr-install-acm) on the ACM cluster.  
+
+
 
 With this set up, the ACM cluster manages the ODF clusters. So that if one ODF cluster goes down, then the ACM cluster rolls over the apps and data from that cluster to the other cluster.  
 
    **Note**: Some configuration links referring to Red Hat documentation might lead you to older versions of OpenShift, please ensure to change the version number from the drop-down on the left side of the document.  
 
+
+
 8.	Install [OpenShift Data Foundation](/docs/openshift?topic=openshift-deploy-odf-vpc&interface=ui#install-odf-console-vpc) on the two managed clusters and ensure the two important options, Enable DR and NooBaa, are selected.  
+
+
 
 **Use these parameter values**.  
 
@@ -101,6 +121,8 @@ Installation will complete in few minutes, after that use the below OC command t
       oc get storagecluster -n openshift-storage ocs-storagecluster -o jsonpath='{.status.phase}{"\n"}
 
 If the output of the above command is **Ready**, then move to next step.  
+
+
 
 9. As ``GlobalNet`` was enabled during the Submariner add-on installation, update the **ACM Managed Cluster Name** in the storageclusterresource’s multiClusterService section for ODF to use GlobalNet.  
 
@@ -127,9 +149,12 @@ Ensure the output looks like this.
 
 10. Install ODF Multicluster Orchestrator to the ACM hub cluster. For more information, see section 4.5 at Installing ODF Multicluster Orchestrator on Hub cluster.  
 
+
    **Note:** Section 4.6 is optional and does not have an impact on this guide. For security reasons you must enable and configure SSL across clusters.     
 
+
 11. Create a DR Policy from the Hub cluster  with a sync interval of 5 minutes. For more information, see section 4.7 at Creating Disaster Recovery Policy on Hub cluster.  
+
 
    **Note:** The synch interval defines the RPO of your application. Choose a sync interval that meets your organization or application acceptable data loss requirement.  
 
@@ -137,7 +162,10 @@ Ensure the output looks like this.
 ### Verifying the architecture. 
 {: #verify-deployment}
 
+
 12. Deploy a subscription based [sample application](https://docs.redhat.com/en/documentation/red_hat_openshift_data_foundation/4.19/html-single/configuring_openshift_data_foundation_disaster_recovery_for_openshift_workloads/index#create-sample-application-for-testing-mdrsolution_manage-rdr) to test your cluster and underlying ODF storage system using persistent volume claims.  
+
+
 
 - While deplpying the application you will need to select the deployment path, choose either RBD or CepfFS.  
 
@@ -145,9 +173,14 @@ Ensure the output looks like this.
 
       oc get pods,pvc -n busybox-sample.  
 
+
 13. Create a Disaster Recovery Policy and enroll the sample application in the policy. For more information and detailed steps refer to [Apply Data policy to sample application](https://docs.redhat.com/en/documentation/red_hat_openshift_data_foundation/4.19/html-single/configuring_openshift_data_foundation_disaster_recovery_for_openshift_workloads/index#apply-drpolicy-to-sample-application_manage-rdr).  
 
+
+
 After you assign a DR policy and enroll your application, **DR Status** shows either **healthy** or **critical** when failover or relocate is not taking place. So, wait for few minutes for the appropriate status to show.  
+
+
 
 14. Test the sample can [application failover](/docs/openshift?topic=openshift-openshift_odf_rdr_roks&interface=ui#odf-rdr-test) from primary to secondary region and then relocate back to primary region.  
 
@@ -166,6 +199,7 @@ Run the ``oc get pods -n busybox-sample`` on the secondary cluster and the outpu
 - Initiate application failover from primary to secondary, For more information refer to [Subscription-based application failover between managed clusters](https://docs.redhat.com/en/documentation/red_hat_openshift_data_foundation/4.19/html-single/configuring_openshift_data_foundation_disaster_recovery_for_openshift_workloads/index#application-failover-between-managed-clusters_manage-rdr).  
 
 **Note:** ``LastGroupSyncTime`` is a critical metric that reflects the time since the last successful replication occurred for all PVCs associated with an application. In essence, it measures the synchronization health between the primary and secondary clusters. So, prior to initiating a failover from one cluster to another, check for this metric and only initiate the failover if the ``LastGroupSyncTime`` is within a reasonable time in the past.  
+
 
 
 15. Once you have validated that your application has been failed over to the secondary region, let us now try to relocate it back to the primary region. For more information, refer to [Relocating Subscription-based application between managed clusters](https://docs.redhat.com/en/documentation/red_hat_openshift_data_foundation/4.19/html-single/configuring_openshift_data_foundation_disaster_recovery_for_openshift_workloads/index#relocating-application-between-managed-clusters_manage-rdr).  
