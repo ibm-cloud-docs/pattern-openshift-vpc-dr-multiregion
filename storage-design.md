@@ -19,6 +19,7 @@ keywords:
 When designing storage for disaster recovery in Red Hat OpenShift environments, it is critical to evaluate the architectural principles and requirements before selecting a specific solution. This section outlines the key considerations for building a resilient, scalable, and performant storage architecture for containerized workloads.
 
 ## Storage types
+{: #storage-types}
 
 ### IBM Cloud Block Storage
 {: #block-storage}
@@ -63,6 +64,7 @@ SDS is a system that abstracts storage resources from the underlying hardware, a
 One of the prime examples of Software Defined Storage Solution is Red Hat OpenShift Data Foundation (ODF), which is designed to provide persistent, scalable, and highly available storage for containerized applications running on Red Hat OpenShift
 
 ### Key Features
+{: #key-storage-features}
 
 - Unified Storage Platform: Supports block, file, and object storage for diverse application needs.
 
@@ -106,7 +108,7 @@ This solution contains the following components of Red Hat OpenShift Data Founda
       2. OpenShift DR Hub Operator: Automatically installed as part of ODF Multicluster Orchestrator installation on the hub cluster to orchestrate failover or relocation of DR enabled applications.
 
       3. OpenShift DR Cluster Operator: Automatically installed on each managed cluster that is part of a Metro and Regional DR relationship to manage the lifecycle of all PVCs of an application.
-      
+
 
 For more details refer to [Components of Region-DR solution](https://docs.redhat.com/en/documentation/red_hat_openshift_data_foundation/4.19/html-single/configuring_openshift_data_foundation_disaster_recovery_for_openshift_workloads/index#components-of-regional-dr-solution_rdr).
 

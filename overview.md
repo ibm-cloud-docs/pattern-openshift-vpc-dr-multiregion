@@ -46,7 +46,7 @@ This pattern ensures 99.99% infrastructure availability and provides a recovery 
 
 Disaster recovery with storage replication requires at least two {{site.data.keyword.redhat_openshift_notm}} clusters where storage system and app pods are installed and configured for disaster recovery. One of the two clusters is considered the active cluster where your data is primarily stored. All data is then replicated to the standby cluster. If your active cluster becomes unavailable, the data and application fails over to the standby cluster. The standby cluster is the new active cluster so that you can continue to access data.
 
-These are differen types of disaster recovery deployments depending on your recovery time and data loss requirements.
+There are different types of disaster recovery deployments depending on your recovery time and data loss requirements.
 
 ### Metro-DR
 {: #metro-dr}
@@ -72,7 +72,7 @@ Zone failure in Metro-DR and region failure in Regional-DR is usually expressed 
 
 This pattern uses asynchronous disaster recovery (DR) with a multi-zone workload cluster in the primary region. It replicates storage asynchronously to a secondary region, ensuring at least 5-minute recovery point objective (RPO). For DR to the secondary location, you need at least two {{site.data.keyword.redhat_openshift_notm}} clusters across three availability zones.
 
-One cluster acts as the active cluster where data is primarily stored. The standby cluster in the secondary disaster recovery region receives replicated data. If an active cluster failure occurs, **RHACM** provides controls to fail over the application to the secondary cluster, which becomes the new active cluster to help ensure continued data access.
+One cluster acts as the active cluster where data is primarily stored. The standby cluster in the secondary disaster recovery region receives replicated data. If an active cluster failure occurs, **Red Hat Advanced Cluster Management** provides controls to fail over the application to the secondary cluster, which becomes the new active cluster to help ensure continued data access.
 
 The intent of this guide is to detail the disaster recovery steps and commands necessary to be able to failover an application from one OpenShift Container Platform cluster to another and then relocate the same application to the original primary cluster.
 
