@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2025-12-03"
+lastupdated: "2025-12-05"
 
 
 subcollection: pattern-openshift-vpc-dr-multiregion
@@ -90,18 +90,19 @@ This guide will focus on providing step by step instructions to deploy a Regiona
 ![Diagram explaining various components of OFD in a VPC multiregion disaster recovery solution architecture](images/ODF_components_2_Dec_2025.svg){: caption="{{site.data.keyword.openshiftlong_notm}} on VPC multiregion disaster recovery solution architecture with OFD Storage System" caption-side="bottom"}
 
 This pattern contains the following components of Red Hat OpenShift Data Foundation.
-1. Red Hat Advanced Cluster Management (RHACM)
+1. Red Hat Advanced Cluster Management (RHACM):
     RHACM consists of two major parts, Hub Cluster and Managed Clusters
-    a.	Hub cluster where Red Hat Advanced Cluster Management (RHACM) for Kubernetes operator are installed.
-    b.	Primary managed cluster where OpenShift Data Foundation is running and this will be considered active site for application.
-    c.	Secondary managed cluster where OpenShift Data Foundation is running and this will be considered passive site for application.
 
-2. OpenShift Data Foundation
+    1. Hub cluster where Red Hat Advanced Cluster Management (RHACM) for Kubernetes operator are installed.
+    2. Primary managed cluster where OpenShift Data Foundation is running and this will be considered active site for application.
+    3. Secondary managed cluster where OpenShift Data Foundation is running and this will be considered passive site for application.
+
+2. OpenShift Data Foundation:
       OpenShift Data Foundation provides the ability to provision and manage storage for stateful applications in an OpenShift Container Platform cluster.
 
       OpenShift Data Foundation is backed by Ceph as the storage provider, whose lifecycle is managed by Rook in the OpenShift Data Foundation component stack. Ceph-CSI provides the provisioning and management of Persistent Volumes for stateful applications.
 
-3. OpenShift DR
+3. OpenShift DR:
       OpenShift DR is a set of orchestrators to configure and manage stateful applications across a set of peer OpenShift clusters which are managed using RHACM and provides cloud-native interfaces to orchestrate the life-cycle of an application’s state on Persistent Volumes.
       OpenShift DR is split into three components:
 
@@ -111,4 +112,4 @@ This pattern contains the following components of Red Hat OpenShift Data Foundat
 
       3. OpenShift DR Cluster Operator: Automatically installed on each managed cluster that is part of a Metro and Regional DR relationship to manage the lifecycle of all PVCs of an application.
 
-For more details refer to [Components of Region-DR solution](https://docs.redhat.com/en/documentation/red_hat_openshift_data_foundation/4.19/html-single/configuring_openshift_data_foundation_disaster_recovery_for_openshift_workloads/index#components-of-regional-dr-solution_rdr)
+For more details refer to [Components of Region-DR solution](https://docs.redhat.com/en/documentation/red_hat_openshift_data_foundation/4.19/html-single/configuring_openshift_data_foundation_disaster_recovery_for_openshift_workloads/index#components-of-regional-dr-solution_rdr).

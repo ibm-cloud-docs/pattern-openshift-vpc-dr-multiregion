@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2025
-lastupdated: "2025-12-04"
+lastupdated: "2025-12-05"
 
 subcollection: pattern-openshift-vpc-dr-multiregion
 
@@ -72,7 +72,7 @@ The following table outlines key baseline requirements that are essential for mo
 |            | Provide a backup solution for containers platform and application data to enable recovery if an unplanned outage occurs.                                                |
 |            | Provide highly available storage for containerized databases and stateful applications with cross-region storage replication.                                            |
 |            | Provide for an RTO/RPO = 4 hours/15 minutes; expect rollback to original environments no later than specified RTOs.                                                |
-|            | Provide public and private enterprise connectivity with failover to a secondary region for disaster recovery Provide a 99.99% SLA on the containerized platform service. |
+|            | Provide public and private enterprise connectivity with failover to a secondary region for disaster recovery. Provide a 99.99% SLA on the containerized platform service. |
 {: caption="{{site.data.keyword.openshiftlong_notm}} on VPC multiregion DR requirements." caption-side="bottom"}
 
 ## Solution components

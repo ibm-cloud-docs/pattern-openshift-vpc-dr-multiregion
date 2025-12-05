@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2025-12-04"
+lastupdated: "2025-12-05"
 
 subcollection: pattern-openshift-vpc-dr-multiregion
 
@@ -38,7 +38,7 @@ While choosing a storage system for your stateful applications, select a single 
 
 To ensure that your application perform optimally under heavy load, select a block storage tier that meets your organization application performance baseline. {{site.data.keyword.Bluemix_notm}} provides various block storage performance tiers with differing performance characteristics, select a tier that meets your applications IOPS and throughput needs. When using VPC clusters with VSIs, for performance considerations, use VPC Block storage 10 IOPS for worker nodes.
 
-For more information refer to [Block Storage profile families](https://cloud.ibm.com/docs/vpc?topic=vpc-block-storage-profiles&interface=ui#block-storage-profile-overview)
+For more information refer to [Block Storage profile families](https://cloud.ibm.com/docs/vpc?topic=vpc-block-storage-profiles&interface=ui#block-storage-profile-overview).
 
 
 
@@ -46,4 +46,4 @@ For more information refer to [Block Storage profile families](https://cloud.ibm
 ## Resources
 {: #storage-design-resources}
 
-For more information on storage design considerations, see [{{site.data.keyword.redhat_openshift_notm}} on VPC resiliency](/docs/pattern-openshift-vpc-mz-resiliency?topic=pattern-openshift-vpc-mz-resiliency-overview) and [Understanding OpenShift Data Foundation](/docs/openshift?topic=openshift-ocs-storage-prep)
+For more information on storage design considerations, see [{{site.data.keyword.redhat_openshift_notm}} on VPC resiliency](/docs/pattern-openshift-vpc-mz-resiliency?topic=pattern-openshift-vpc-mz-resiliency-overview) and [Understanding OpenShift Data Foundation](/docs/openshift?topic=openshift-ocs-storage-prep).

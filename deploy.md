@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2025-12-04"
+lastupdated: "2025-12-05"
 
 keywords:
 
@@ -53,8 +53,8 @@ To know how subscriptions for OpenShift Data Foundation work, see knowledgebase 
 ### Minimum required permissions
 {: #min-permissions}
 
-a.	Administrator platform access role
-b.	Manager service access role for the cluster in IBM Cloud Kubernetes Service.
+1.	Administrator platform access role.
+2.	Manager service access role for the cluster in IBM Cloud Kubernetes Service.
 
 In addition, refer to [Deploying OpenShift Data Foundation on VPC clusters](/docs/openshift?topic=openshift-deploy-odf-vpc&interface=ui#ocs-storage-vpc) for complete list of prerequisites.
 
@@ -82,6 +82,6 @@ The following steps will help you deploy Red Hat OpenShift Cluster and OpenShift
 ## Verifying the architecture
 {: #verify-deployment}
 
-1.	Deploy a [sample application](https://docs.redhat.com/documentation/red_hat_openshift_data_foundation/4.16/html-single/configuring_openshift_data_foundation_disaster_recovery_for_openshift_workloads/index#create-sample-application-for-testing-mdrsolution_manage-rdr) to test your cluster and underlying ODF storage system using persistent volume claims
+1.	Deploy a [sample application](https://docs.redhat.com/documentation/red_hat_openshift_data_foundation/4.16/html-single/configuring_openshift_data_foundation_disaster_recovery_for_openshift_workloads/index#create-sample-application-for-testing-mdrsolution_manage-rdr) to test your cluster and underlying ODF storage system using persistent volume claims.
 
 2.	Test the sample [application failover](/docs/openshift?topic=openshift-openshift_odf_rdr_roks&interface=ui#odf-rdr-test) from primary to secondary regions and relocate back to primary region.
