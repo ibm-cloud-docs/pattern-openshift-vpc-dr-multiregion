@@ -64,7 +64,8 @@ To know how subscriptions for OpenShift Data Foundation work, see knowledgebase 
 
 
 
-
+### Provisioning the architecture
+{: #deployment-steps}
 
 The following steps will help you deploy Red Hat OpenShift Cluster and OpenShift Data Foundation clusters across multiple regions and enable asynchronous replication between primary and secondary ODF volumes. 
 
