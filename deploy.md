@@ -79,26 +79,26 @@ The following steps will help you deploy Red Hat OpenShift Cluster and OpenShift
 
 7.	Setup and configure [Red Hat Advanced Cluster Management](/docs/openshift?topic=openshift-openshift_odf_rdr_roks&interface=ui#odf-rdr-install-acm) on the ACM cluster. 
 
-With this set up, the ACM cluster manages the ODF clusters. So that if one ODF cluster goes down, then the ACM cluster rolls over the apps and data from that cluster to the other cluster.
+   With this set up, the ACM cluster manages the ODF clusters. So that if one ODF cluster goes down, then the ACM cluster rolls over the apps and data from that cluster to the other cluster.
 
    **Note**: Some configuration links referring to Red Hat documentation might lead you to older versions of OpenShift, please ensure to change the version number from the drop-down on the left side of the document.
 
 8.	Install [OpenShift Data Foundation](/docs/openshift?topic=openshift-deploy-odf-vpc&interface=ui#install-odf-console-vpc) on the two managed clusters and ensure the two important options, Enable DR and NooBaa, are selected.
 
-**Use these parameter values**
+   **Use these parameter values**
 
-- OSD Storage Class Name: Provide a name of your choice and select a storage class with the VolumeBindingMode of WaitForFirstConsumer.
-- Pod Size: Enter 512Gi
-- Worker Nodes: Leave it blank to install ODF on all nodes in the cluster
-- Number of OSD Disks Required: Start with just 1 on each node for this test
-- Enable Cluster Encrytpion and Enable Volume Encryption are option, so leave the disabled.
+   - OSD Storage Class Name: Provide a name of your choice and select a storage class with the VolumeBindingMode of WaitForFirstConsumer.
+   - Pod Size: Enter 512Gi
+   - Worker Nodes: Leave it blank to install ODF on all nodes in the cluster
+   - Number of OSD Disks Required: Start with just 1 on each node for this test
+   - Enable Cluster Encrytpion and Enable Volume Encryption are option, so leave the disabled.
 
-Complete the above steps on both primary and secondary managed OpenShift clusters.
-Installation will complete in few minutes, after that use the below OC command to validate the installation is successful on both managed clusters.
+   Complete the above steps on both primary and secondary managed OpenShift clusters.
+   Installation will complete in few minutes, after that use the below OC command to validate the installation is successful on both managed clusters.
 
-``oc get storagecluster -n openshift-storage ocs-storagecluster -o jsonpath='{.status.phase}{"\n"}'``
+   ``oc get storagecluster -n openshift-storage ocs-storagecluster -o jsonpath='{.status.phase}{"\n"}'``
 
-If the output of the above command is **Ready**, then move to next step
+   If the output of the above command is **Ready**, then move to next step
 
 9. As ``GlobalNet`` was enabled during the Submariner add-on installation, update the **ACM Managed Cluster Name** in the storageclusterresource’s multiClusterService section for ODF to use GlobalNet.
 
@@ -114,28 +114,28 @@ If the output of the above command is **Ready**, then move to next step
 
 - Ensure the output looks like this.
 
-      NAME              AGE
-      rook-ceph-mon-d   14d
-      rook-ceph-mon-e   14d
-      rook-ceph-mon-f   14d
-      rook-ceph-osd-0   14d
-      rook-ceph-osd-1   14d
-      rook-ceph-osd-2   14d
+   NAME              AGE
+   rook-ceph-mon-d   14d
+   rook-ceph-mon-e   14d
+   rook-ceph-mon-f   14d
+   rook-ceph-osd-0   14d
+   rook-ceph-osd-1   14d
+   rook-ceph-osd-2   14d
    
 
 10. Install ODF Multicluster Orchestrator to the ACM hub cluster. For more information, see section 4.5 at Installing ODF Multicluster Orchestrator on Hub cluster.
 
-   **Note:** Section 4.6 is optional and does not have an impact on this guide. For security reasons you must enable and configure SSL across clusters.
+**Note:** Section 4.6 is optional and does not have an impact on this guide. For security reasons you must enable and configure SSL across clusters.
 
 11. Create a DR Policy from the Hub cluster  with a sync interval of 5 minutes. For more information, see section 4.7 at Creating Disaster Recovery Policy on Hub cluster.
 
-   **Note:** The synch interval defines the RPO of your application. Choose a sync interval that meets your organization or application acceptable data loss requirement.
+**Note:** The synch interval defines the RPO of your application. Choose a sync interval that meets your organization or application acceptable data loss requirement.
 
 
 ### Verifying the architecture
 {: #verify-deployment}
 
-12.	Deploy a subscription based [sample application](https://docs.redhat.com/en/documentation/red_hat_openshift_data_foundation/4.19/html-single/configuring_openshift_data_foundation_disaster_recovery_for_openshift_workloads/index#create-sample-application-for-testing-mdrsolution_manage-rdr) to test your cluster and underlying ODF storage system using persistent volume claims.
+12. Deploy a subscription based [sample application](https://docs.redhat.com/en/documentation/red_hat_openshift_data_foundation/4.19/html-single/configuring_openshift_data_foundation_disaster_recovery_for_openshift_workloads/index#create-sample-application-for-testing-mdrsolution_manage-rdr) to test your cluster and underlying ODF storage system using persistent volume claims.
 
 - While deplpying the application you will need to select the deployment path, choose either RBD or CepfFS.
 
@@ -145,7 +145,7 @@ If the output of the above command is **Ready**, then move to next step
 
 13. Create a Disaster Recovery Policy and enroll the sample application in the policy. For more information and detailed steps refer to [Apply Data policy to sample application](https://docs.redhat.com/en/documentation/red_hat_openshift_data_foundation/4.19/html-single/configuring_openshift_data_foundation_disaster_recovery_for_openshift_workloads/index#apply-drpolicy-to-sample-application_manage-rdr)
 
-After you assign a DR policy and enroll your application, **DR Status** shows either **healthy** or **critical** when failover or relocate is not taking place. So, wait for few minutes for the appropriate status to show.
+   After you assign a DR policy and enroll your application, **DR Status** shows either **healthy** or **critical** when failover or relocate is not taking place. So, wait for few minutes for the appropriate status to show.
 
 14. Test the sample can [application failover](/docs/openshift?topic=openshift-openshift_odf_rdr_roks&interface=ui#odf-rdr-test) from primary to secondary region and then relocate back to primary region.
 
