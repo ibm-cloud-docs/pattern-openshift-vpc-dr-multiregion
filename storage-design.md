@@ -18,6 +18,43 @@ keywords:
 
 When designing storage for disaster recovery in Red Hat OpenShift environments, it is critical to evaluate the architectural principles and requirements before selecting a specific solution. This section outlines the key considerations for building a resilient, scalable, and performant storage architecture for containerized workloads.
 
+## Storage types
+
+### IBM Cloud Block Storage
+{: #block-storage}
+
+IBM Cloud Block Storage on Kubernetes offers persistent storage for containerized applications, ensuring data durability and scalability. It seamlessly integrates with Kubernetes clusters, providing dynamic provisioning, snapshots, and encryption. This enables efficient management and utilization of storage resources within the Kubernetes environment, enhancing application performance and reliability. For more information, see [Block Storage for VPC documentation](/docs/openshift?topic=openshift-vpc-block).
+
+Review the following use cases for IBM Cloud Block Storage:
+
+-	Stateful Applications: The IBM Cloud Block Storage is ideal for deploying stateful applications like databases (for example, MySQL, PostgreSQL) in Kubernetes clusters.
+
+-	Data Analytics Workloads: When running data analytics workloads, you often need to process and store large volumes of data.
+
+### IBM Cloud Object Storage
+{: #cos}
+
+IBM Cloud's Object Storage plug-in optimizes Kubernetes for seamless data management with IBM Cloud Object Storage. Using IBM's robust storage service, it simplifies integration with cloud-native apps, offering distributed, geo-redundant storage. This pattern caters efficiently to diverse Kubernetes storage needs, enabling effortless provisioning, management, and dynamic resource allocation, streamlining administration. This type of storage volume is not suitable for write-intensive workloads, random write operations, incremental data updates, or transaction databases. For more information surrounding IBM Cloud Object Storage, see the following Setting up [IBM Cloud Object Storage](/docs/openshift?topic=openshift-storage-cos-understand).
+
+Review the following use cases for IBM Cloud Object Storage:
+
+-	Data Backup and Archival: IBM Cloud Object Storage facilitates data backup and archival, crucial for scenarios like Kubernetes-based e-commerce apps. Automated backups ensure data durability and quick recovery.
+
+-	Media Storage for Content Delivery: Content delivery applications, such as video streaming platforms, require efficient and scalable media storage. With the IBM Cloud Object Storage pattern, you can store media assets like videos, images, and audio files. When a user requests media content, Kubernetes can retrieve it from IBM Cloud Object Storage and deliver it seamlessly to the user, ensuring a smooth streaming experience.
+
+-	Cross-Region Data Replication: IBM Cloud Object Storage supports cross-region data replication, essential for global businesses ensuring data redundancy and disaster recovery. Data synchronization between Kubernetes clusters minimizes downtime if there are regional failures.
+
+### IBM Cloud Databases
+{: #cloud-dbs}
+
+IBM Cloud Databases simplify storage deployment on IBM Cloud Red Hat OpenShift environment, that uses its services for seamless experiences in provisioning, scaling, and maintenance. Supporting PostgreSQL, MySQL, Redis, and MongoDB, it offers automated backups, high availability, and security, enabling focus on applications rather than infrastructure. For more information, see [IBM Cloud Database Services](https://www.ibm.com/products/cloud-databases).
+
+Review the following use cases for IBM Cloud Databases:
+
+-	Microservices Applications: IBM Cloud Databases suits microservice apps, providing isolated databases for each microservice. For instance, in e-commerce, deploy separate PostgreSQL databases for user accounts, products, and orders, ensuring data isolation, scalability, and fault tolerance.
+
+-	Scalable Web Applications: IBM Cloud Databases automatically scale for variable web app traffic. For example, during flash sales, Kubernetes scales the database to handle increased traffic.
+
 ## Software Defined Storage (SDS)
 {: #sds}
 
