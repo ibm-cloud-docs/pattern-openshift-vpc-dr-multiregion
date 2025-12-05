@@ -46,6 +46,7 @@ This pattern ensures 99.99% infrastructure availability and provides a recovery 
 
 Disaster recovery with storage replication requires at least two {{site.data.keyword.redhat_openshift_notm}} clusters where storage system and app pods are installed and configured for disaster recovery. One of the two clusters is considered the active cluster where your data is primarily stored. All data is then replicated to the standby cluster. If your active cluster becomes unavailable, the data and application fails over to the standby cluster. The standby cluster is the new active cluster so that you can continue to access data.
 
+These are differen types of disaster recovery deployments depending on your recovery time and data loss requirements.
 
 ### Metro-DR
 {: #metro-dr}
