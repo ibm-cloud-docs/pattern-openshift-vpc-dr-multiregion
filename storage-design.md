@@ -60,6 +60,57 @@ Review the following use cases for IBM Cloud Databases:
 
 SDS is a system that abstracts storage resources from the underlying hardware, allowing OpenShift to manage and provision storage as a programmable, scalable pool through a software layer. It decouples storage management from specific hardware, enabling the creation of flexible, automated storage devices for applications, often using a Container Storage Interface (CSI) driver. This approach allows for the use of commodity hardware and or cloud drives that provides features like dynamic provisioning, snapshots, and data replication, all managed via OpenShift APIs. Using an SDS solution that is built on an open-source software-defined storage platform such as Ceph provides a unified system for object, file, and block storage.
 
+One of the prime examples of Software Defined Storage Solution is Red Hat OpenShift Data Foundation (ODF), which is designed to provide persistent, scalable, and highly available storage for containerized applications running on Red Hat OpenShift
+
+### Key Features
+
+- Unified Storage Platform: Supports block, file, and object storage for diverse application needs.
+
+- Scalability & High Availability: Built on Ceph technology to deliver elastic scaling and fault tolerance.
+
+- Integrated with OpenShift: Provides native integration for Kubernetes-based deployments.
+
+- Data Services: Includes features like encryption, compression, and replication for enterprise-grade reliability.
+
+- Hybrid Cloud Ready: Enables data mobility across on-premises and cloud environments.
+
+
+## Components of a OpenShift Data Foundation Regional DR
+{: #Components-openshift-odf-dr}
+
+
+## Component diagram
+{: #component-diagram}
+
+![Diagram explaining various components of OFD in a VPC multiregion disaster recovery solution architecture](images/ODF_components_2_Dec_2025.svg){: caption="{{site.data.keyword.openshiftlong_notm}} on VPC multiregion disaster recovery solution architecture with OFD Storage System" caption-side="bottom"}
+
+This solution contains the following components of Red Hat OpenShift Data Foundation.
+1. Red Hat Advanced Cluster Management (RHACM):
+    RHACM consists of two major parts, Hub Cluster and Managed Clusters
+
+    1. Hub cluster where Red Hat Advanced Cluster Management (RHACM) for Kubernetes operator are installed.
+    2. Primary managed cluster where OpenShift Data Foundation is running and this will be considered active site for application.
+    3. Secondary managed cluster where OpenShift Data Foundation is running and this will be considered passive site for application.
+
+2. OpenShift Data Foundation:
+      OpenShift Data Foundation provides the ability to provision and manage storage for stateful applications in an OpenShift Container Platform cluster.
+
+      OpenShift Data Foundation is backed by Ceph as the storage provider, whose lifecycle is managed by Rook in the OpenShift Data Foundation component stack. Ceph-CSI provides the provisioning and management of Persistent Volumes for stateful applications.
+
+3. OpenShift DR:
+      OpenShift DR is a set of orchestrators to configure and manage stateful applications across a set of peer OpenShift clusters which are managed using RHACM and provides cloud-native interfaces to orchestrate the life-cycle of an application’s state on Persistent Volumes.
+      OpenShift DR is split into three components
+
+      1. ODF Multicluster Orchestrator: Installed on the multi-cluster control plane (Hub cluster), it orchestrates configuration and peering of OpenShift Data Foundation clusters for Metro and Regional DR relationships.
+
+      2. OpenShift DR Hub Operator: Automatically installed as part of ODF Multicluster Orchestrator installation on the hub cluster to orchestrate failover or relocation of DR enabled applications.
+
+      3. OpenShift DR Cluster Operator: Automatically installed on each managed cluster that is part of a Metro and Regional DR relationship to manage the lifecycle of all PVCs of an application.
+      
+
+For more details refer to [Components of Region-DR solution](https://docs.redhat.com/en/documentation/red_hat_openshift_data_foundation/4.19/html-single/configuring_openshift_data_foundation_disaster_recovery_for_openshift_workloads/index#components-of-regional-dr-solution_rdr).
+
+
 ## OpenShift Native Integration
 {: #openshift-native-integration}
 
