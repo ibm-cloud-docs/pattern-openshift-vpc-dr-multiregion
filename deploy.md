@@ -119,8 +119,16 @@ The commands in the referrenced link will guide you to create an OpenShift clust
 
 9.	Setup and configure [Red Hat Advanced Cluster Management](/docs/openshift?topic=openshift-openshift_odf_rdr_roks&interface=ui#odf-rdr-install-acm) on the ACM cluster.  
 
+    Prerequisites for configuring ACM on Hub Clusters.
 
-    With this set up, the ACM cluster manages the ODF clusters. So that if one ODF cluster goes down, then the ACM cluster rolls over the apps and data from that cluster to the other cluster.  
+    You must have three OpenShift clusters that have network reachability between them:
+
+    - Hub cluster where Red Hat Advanced Cluster Management (ACM) for Kubernetes operator is installed.
+    - Primary managed cluster where OpenShift Data Foundation is running.
+    - Secondary managed cluster where OpenShift Data Foundation is running.
+
+
+    With this set up, the ACM cluster imports and manages the manages the ODF clusters. So that if one ODF cluster goes down, then the ACM cluster rolls over the apps and data from that cluster to the other cluster. This is also the step where you enable submariner, so be sure to enable ``GlobalNet`` during that process.
 
     **Note**: Some configuration links referring to Red Hat documentation might lead you to older versions of OpenShift, please ensure to change the version number from the drop-down on the left side of the document.  
 
