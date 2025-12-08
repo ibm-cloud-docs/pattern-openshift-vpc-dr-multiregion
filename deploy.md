@@ -62,8 +62,6 @@ To know how subscriptions for OpenShift Data Foundation work, see knowledgebase 
 3. In addition, refer to [Deploying OpenShift Data Foundation on VPC clusters](/docs/openshift?topic=openshift-deploy-odf-vpc&interface=ui#ocs-storage-vpc) for complete list of prerequisites.  
 
 
-
-
     ### Provisioning the architecture
     {: #deployment-steps}
 
@@ -74,13 +72,14 @@ To know how subscriptions for OpenShift Data Foundation work, see knowledgebase 
 4. Identify regions where you want to deploy your OpenShift Clusters. This architecture will require creating three different Red Hat OpenShift Clusters in three different regions. So, you need to first identify which regions you want your clusters to be deployed in.  
 
 
-
 5.	Create or Select an existing VPC in each region that you want to use as primary, secondary and RHAMC regions. Ensure each subnet where cluster nodes will be deployed, have a public gateway attached to them. For more information about creating VPC, refer to [VPC multi-zone region](/docs/vpc?topic=vpc-creating-a-vpc-in-a-different-region&interface=cli).  
 
 
 
 6.	Create the three VPC OpenShift clusters (each in different regions and VPCs) and set the **--disable-outbound-traffic-protection** parameter for each. Refer to [Creating Clusters](/docs/openshift?topic=openshift-openshift_odf_rdr_roks&interface=ui#odf-rdr-clusters) for more information.  
-The commands in the referrenced link will guide you to create an OpenShift cluster in a single zone which will provide 99.9% availability, if you need 99.99% availability in each region then add worker nodes to the worker pool in additonl zones in each region. For more information refer to [Adding worker nodes to VPC clusters](https://cloud.ibm.com/docs/openshift?topic=openshift-add-workers-vpc) on how to resize workerpool in an existing OpenShift cluster.
+
+
+    The commands in the referrenced link will guide you to create an OpenShift cluster in a single zone which will provide 99.9% availability, if you need 99.99% availability in each region then add worker nodes to the worker pool in additonl zones in each region. For more information refer to [Adding worker nodes to VPC clusters](https://cloud.ibm.com/docs/openshift?topic=openshift-add-workers-vpc) on how to resize workerpool in an existing OpenShift cluster.
 
 
     **Note:** The ***ibmcloud ks cluster*** command in the reference link points to OpenShift version 4.17.10, please change this to your preferred version of OpenShift, it is recommended to always use the latest version of OpenShift.
@@ -95,7 +94,6 @@ The commands in the referrenced link will guide you to create an OpenShift clust
 
 
 8.	Install [OpenShift Data Foundation](/docs/openshift?topic=openshift-deploy-odf-vpc&interface=ui#install-odf-console-vpc) on the two managed clusters and ensure the two important options, Enable DR and NooBaa, are selected.  
-
 
 
     **Use these parameter values**.  
@@ -128,7 +126,7 @@ The commands in the referrenced link will guide you to create an OpenShift clust
     - Secondary managed cluster where OpenShift Data Foundation is running.
 
 
-    With this set up, the ACM cluster imports and manages the manages the ODF clusters. So that if one ODF cluster goes down, then the ACM cluster rolls over the apps and data from that cluster to the other cluster. This is also the step where you enable submariner, so be sure to enable ``GlobalNet`` during that process.
+    With this set up, the ACM cluster imports and manages the manages the ODF clusters. So that if one ODF cluster goes down, then the ACM cluster rolls over the apps and data from that cluster to the other cluster. This is also the step where you enable submariner, so be sure to enable **GlobalNet** during that process.
 
     **Note**: Some configuration links referring to Red Hat documentation might lead you to older versions of OpenShift, please ensure to change the version number from the drop-down on the left side of the document.  
 
