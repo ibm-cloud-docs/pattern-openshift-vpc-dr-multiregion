@@ -64,10 +64,10 @@ To know how subscriptions for OpenShift Data Foundation work, see knowledgebase 
 
 
 
-### Provisioning the architecture
-{: #deployment-steps}
+    ### Provisioning the architecture
+    {: #deployment-steps}
 
-The following steps will help you deploy Red Hat OpenShift Cluster and OpenShift Data Foundation clusters across multiple regions and enable asynchronous replication between primary and secondary ODF volumes. 
+    The following steps will help you deploy Red Hat OpenShift Cluster and OpenShift Data Foundation clusters across multiple regions and enable asynchronous replication between primary and secondary ODF volumes. 
 
 
 
@@ -83,24 +83,23 @@ The following steps will help you deploy Red Hat OpenShift Cluster and OpenShift
 The commands in the referrenced link will guide you to create an OpenShift cluster in a single zone which will provide 99.9% availability, if you need 99.99% availability in each region then add worker nodes to the worker pool in additonl zones in each region. For more information refer to [Adding worker nodes to VPC clusters](https://cloud.ibm.com/docs/openshift?topic=openshift-add-workers-vpc) on how to resize workerpool in an existing OpenShift cluster.
 
 
-   **Note:** The ***ibmcloud ks cluster*** command in the reference link points to OpenShift version 4.17.10, please change this to your preferred version of OpenShift, it is recommended to always use the latest version of OpenShift.
+    **Note:** The ***ibmcloud ks cluster*** command in the reference link points to OpenShift version 4.17.10, please change this to your preferred version of OpenShift, it is recommended to always use the latest version of OpenShift.
 
 
 
 4.	Enable [Red Hat OpenShift Data Foundation](/docs/openshift?topic=openshift-openshift_odf_rdr_roks&interface=ui#odf-rdr-enable-redhat) on the primary and secondary clusters.  
 
 
-   **Note:** The Operation Hub might be enabled by default on some latest versions of the Red Hat OpenShift, so this step is optional depending on your cluster version.  
+    **Note:** The Operation Hub might be enabled by default on some latest versions of the Red Hat OpenShift, so this step is optional depending on your cluster version.  
 
 
 
 5.	Setup and configure [Red Hat Advanced Cluster Management](/docs/openshift?topic=openshift-openshift_odf_rdr_roks&interface=ui#odf-rdr-install-acm) on the ACM cluster.  
 
 
+    With this set up, the ACM cluster manages the ODF clusters. So that if one ODF cluster goes down, then the ACM cluster rolls over the apps and data from that cluster to the other cluster.  
 
-With this set up, the ACM cluster manages the ODF clusters. So that if one ODF cluster goes down, then the ACM cluster rolls over the apps and data from that cluster to the other cluster.  
-
-   **Note**: Some configuration links referring to Red Hat documentation might lead you to older versions of OpenShift, please ensure to change the version number from the drop-down on the left side of the document.  
+    **Note**: Some configuration links referring to Red Hat documentation might lead you to older versions of OpenShift, please ensure to change the version number from the drop-down on the left side of the document.  
 
 
 
@@ -108,20 +107,20 @@ With this set up, the ACM cluster manages the ODF clusters. So that if one ODF c
 
 
 
-**Use these parameter values**.  
+    **Use these parameter values**.  
 
-- OSD Storage Class Name: Provide a name of your choice and select a storage class with the VolumeBindingMode of WaitForFirstConsumer.  
-- Pod Size: Enter 512Gi.  
-- Worker Nodes: Leave it blank to install ODF on all nodes in the cluster.  
-- Number of OSD Disks Required: Start with just 1 on each node for this test.  
-- Enable Cluster Encrytpion and Enable Volume Encryption are option, so leave the disabled.  
+    - OSD Storage Class Name: Provide a name of your choice and select a storage class with the VolumeBindingMode of WaitForFirstConsumer.  
+    - Pod Size: Enter 512Gi.  
+    - Worker Nodes: Leave it blank to install ODF on all nodes in the cluster.  
+    - Number of OSD Disks Required: Start with just 1 on each node for this test.  
+    - Enable Cluster Encrytpion and Enable Volume Encryption are option, so leave the disabled.  
 
-Complete the above steps on both primary and secondary managed OpenShift clusters.
-Installation will complete in few minutes, after that use the below OC command to validate the installation is successful on both managed clusters.  
+    Complete the above steps on both primary and secondary managed OpenShift clusters.
+    Installation will complete in few minutes, after that use the below OC command to validate the installation is successful on both managed clusters.  
 
       oc get storagecluster -n openshift-storage ocs-storagecluster -o jsonpath='{.status.phase}{"\n"}
 
-If the output of the above command is **Ready**, then move to next step.  
+    If the output of the above command is **Ready**, then move to next step.  
 
 
 
