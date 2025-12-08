@@ -121,9 +121,10 @@ To know how subscriptions for OpenShift Data Foundation work, see knowledgebase 
 
     You must have three OpenShift clusters that have network reachability between them:
 
-    - Hub cluster where Red Hat Advanced Cluster Management (ACM) for Kubernetes operator is installed.
     - Primary managed cluster where OpenShift Data Foundation is running.
+    
     - Secondary managed cluster where OpenShift Data Foundation is running.
+
 
 
     With this set up, the ACM cluster imports and manages the manages the ODF clusters. So that if one ODF cluster goes down, then the ACM cluster rolls over the apps and data from that cluster to the other cluster. This is also the step where you enable submariner, so be sure to enable **GlobalNet** during that process.
