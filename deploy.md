@@ -129,7 +129,7 @@ If the output of the above command is **Ready**, then move to next step.
 
 Run the below command to update the managed cluster names in the storage cluster.  
 
-      kubectl patch storagecluster -n openshift-storage ocs-storagecluster --type merge -p'{"spec":{"network":{"multiClusterService":{"clusterID":"managed-cluster-1-dr-odf","enabled":true}}}}’. 
+      kubectl patch storagecluster -n openshift-storage ocs-storagecluster --type merge -p'{"spec":{"network":{"multiClusterService":{"clusterID":"managed-cluster-1-dr-odf","enabled":true}}}}’  
 
    **Note**: Ensure to run this command on both managed clusters and add the respective cluster names in storage cluster.  
 
@@ -148,7 +148,7 @@ Ensure the output looks like this.
       rook-ceph-osd-2   14d
 
 
-8. Install ODF Multicluster Orchestrator to the ACM hub cluster. For more information, see section 4.5 at Installing ODF Multicluster Orchestrator on Hub cluster.  
+8. Install ODF Multicluster Orchestrator to the ACM hub cluster. For more information, see section 4.5 at [Installing OpenShift Data Foundation Multicluster Orchestrator operator](https://docs.redhat.com/en/documentation/red_hat_openshift_data_foundation/4.19/html-single/configuring_openshift_data_foundation_disaster_recovery_for_openshift_workloads/index#installing-odf-multicluster-orchestrator_rdr)
 
 
    **Note:** Section 4.6 is optional and does not have an impact on this guide. For security reasons you must enable and configure SSL across clusters.     
