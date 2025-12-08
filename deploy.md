@@ -118,7 +118,7 @@ The commands in the referrenced link will guide you to create an OpenShift clust
     Complete the above steps on both primary and secondary managed OpenShift clusters.
     Installation will complete in few minutes, after that use the below OC command to validate the installation is successful on both managed clusters.  
 
-      oc get storagecluster -n openshift-storage ocs-storagecluster -o jsonpath='{.status.phase}{"\n"}
+       oc get storagecluster -n openshift-storage ocs-storagecluster -o jsonpath='{.status.phase}{"\n"}
 
     If the output of the above command is **Ready**, then move to next step.  
 
@@ -128,23 +128,23 @@ The commands in the referrenced link will guide you to create an OpenShift clust
 
     Run the below command to update the managed cluster names in the storage cluster.  
 
-      kubectl patch storagecluster -n openshift-storage ocs-storagecluster --type merge -p'{"spec":{"network":{"multiClusterService":{"clusterID":"managed-cluster-1-dr-odf","enabled":true}}}}’  
+       kubectl patch storagecluster -n openshift-storage ocs-storagecluster --type merge -p'{"spec":{"network":{"multiClusterService":{"clusterID":"managed-cluster-1-dr-odf","enabled":true}}}}’  
 
     **Note**: Ensure to run this command on both managed clusters and add the respective cluster names in storage cluster.  
 
     After the changes, run the following command to validate the pods have restarted.  
 
-      oc get serviceexport -n openshift-storage
+       oc get serviceexport -n openshift-storage
 
     Ensure the output looks like this.  
 
-      NAME              AGE
-      rook-ceph-mon-d   14d
-      rook-ceph-mon-e   14d
-      rook-ceph-mon-f   14d
-      rook-ceph-osd-0   14d
-      rook-ceph-osd-1   14d
-      rook-ceph-osd-2   14d
+       NAME              AGE
+       rook-ceph-mon-d   14d
+       rook-ceph-mon-e   14d
+       rook-ceph-mon-f   14d
+       rook-ceph-osd-0   14d
+       rook-ceph-osd-1   14d
+       rook-ceph-osd-2   14d
 
 
 8. Install ODF Multicluster Orchestrator to the ACM hub cluster. For more information, see section 4.5 at [Installing OpenShift Data Foundation Multicluster Orchestrator operator](https://docs.redhat.com/en/documentation/red_hat_openshift_data_foundation/4.19/html-single/configuring_openshift_data_foundation_disaster_recovery_for_openshift_workloads/index#installing-odf-multicluster-orchestrator_rdr)
@@ -171,7 +171,7 @@ The commands in the referrenced link will guide you to create an OpenShift clust
 
     - After the application deploys successfully, run the following command to validate.  
 
-      oc get pods,pvc -n busybox-sample.  
+         oc get pods,pvc -n busybox-sample.  
 
 
 11. Create a Disaster Recovery Policy and enroll the sample application in the policy. For more information and detailed steps refer to [Apply Data policy to sample application](https://docs.redhat.com/en/documentation/red_hat_openshift_data_foundation/4.19/html-single/configuring_openshift_data_foundation_disaster_recovery_for_openshift_workloads/index#apply-drpolicy-to-sample-application_manage-rdr).  
@@ -189,12 +189,12 @@ The commands in the referrenced link will guide you to create an OpenShift clust
 
     The output should look similar to the one below.  
 
-      NAME                      READY   STATUS    RESTARTS   AGE
-      busybox-6bb69c6ff-79bkr   1/1     Running   0          14d
+        NAME                      READY   STATUS    RESTARTS   AGE
+        busybox-6bb69c6ff-79bkr   1/1     Running   0          14d
 
     Run the ``oc get pods -n busybox-sample`` on the secondary cluster and the output should look similar to the one below.  
 
-      No resources found in busybox-sample namespace.  
+        No resources found in busybox-sample namespace.  
 
     - Initiate application failover from primary to secondary, For more information refer to [Subscription-based application failover between managed clusters](https://docs.redhat.com/en/documentation/red_hat_openshift_data_foundation/4.19/html-single/configuring_openshift_data_foundation_disaster_recovery_for_openshift_workloads/index#application-failover-between-managed-clusters_manage-rdr).  
 
