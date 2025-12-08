@@ -126,17 +126,17 @@ The commands in the referrenced link will guide you to create an OpenShift clust
 
 7. As ``GlobalNet`` was enabled during the Submariner add-on installation, update the **ACM Managed Cluster Name** in the storageclusterresource’s multiClusterService section for ODF to use GlobalNet.  
 
-Run the below command to update the managed cluster names in the storage cluster.  
+    Run the below command to update the managed cluster names in the storage cluster.  
 
       kubectl patch storagecluster -n openshift-storage ocs-storagecluster --type merge -p'{"spec":{"network":{"multiClusterService":{"clusterID":"managed-cluster-1-dr-odf","enabled":true}}}}’  
 
-   **Note**: Ensure to run this command on both managed clusters and add the respective cluster names in storage cluster.  
+    **Note**: Ensure to run this command on both managed clusters and add the respective cluster names in storage cluster.  
 
-After the changes, run the following command to validate the pods have restarted.  
+    After the changes, run the following command to validate the pods have restarted.  
 
       oc get serviceexport -n openshift-storage
 
-Ensure the output looks like this.  
+    Ensure the output looks like this.  
 
       NAME              AGE
       rook-ceph-mon-d   14d
@@ -150,56 +150,56 @@ Ensure the output looks like this.
 8. Install ODF Multicluster Orchestrator to the ACM hub cluster. For more information, see section 4.5 at [Installing OpenShift Data Foundation Multicluster Orchestrator operator](https://docs.redhat.com/en/documentation/red_hat_openshift_data_foundation/4.19/html-single/configuring_openshift_data_foundation_disaster_recovery_for_openshift_workloads/index#installing-odf-multicluster-orchestrator_rdr)
 
 
-   **Note:** Section 4.6 is optional and does not have an impact on this guide. For security reasons you must enable and configure SSL across clusters.     
+    **Note:** Section 4.6 is optional and does not have an impact on this guide. For security reasons you must enable and configure SSL across clusters.     
 
 
-11. Create a DR Policy from the Hub cluster  with a sync interval of 5 minutes. For more information, see section 4.7 at Creating Disaster Recovery Policy on Hub cluster.  
+9. Create a DR Policy from the Hub cluster  with a sync interval of 5 minutes. For more information, see section 4.7 at Creating Disaster Recovery Policy on Hub cluster.  
 
 
-   **Note:** The synch interval defines the RPO of your application. Choose a sync interval that meets your organization or application acceptable data loss requirement.  
+    **Note:** The synch interval defines the RPO of your application. Choose a sync interval that meets your organization or application acceptable data loss requirement.  
 
 
-### Verifying the architecture. 
-{: #verify-deployment}
+    ### Verifying the architecture. 
+    {: #verify-deployment}
 
 
-1. Deploy a subscription based [sample application](https://docs.redhat.com/en/documentation/red_hat_openshift_data_foundation/4.19/html-single/configuring_openshift_data_foundation_disaster_recovery_for_openshift_workloads/index#create-sample-application-for-testing-mdrsolution_manage-rdr) to test your cluster and underlying ODF storage system using persistent volume claims.  
+10. Deploy a subscription based [sample application](https://docs.redhat.com/en/documentation/red_hat_openshift_data_foundation/4.19/html-single/configuring_openshift_data_foundation_disaster_recovery_for_openshift_workloads/index#create-sample-application-for-testing-mdrsolution_manage-rdr) to test your cluster and underlying ODF storage system using persistent volume claims.  
 
 
 
-- While deplpying the application you will need to select the deployment path, choose either RBD or CepfFS.  
+    - While deplpying the application you will need to select the deployment path, choose either RBD or CepfFS.  
 
-- After the application deploys successfully, run the following command to validate.  
+    - After the application deploys successfully, run the following command to validate.  
 
       oc get pods,pvc -n busybox-sample.  
 
 
-2. Create a Disaster Recovery Policy and enroll the sample application in the policy. For more information and detailed steps refer to [Apply Data policy to sample application](https://docs.redhat.com/en/documentation/red_hat_openshift_data_foundation/4.19/html-single/configuring_openshift_data_foundation_disaster_recovery_for_openshift_workloads/index#apply-drpolicy-to-sample-application_manage-rdr).  
+11. Create a Disaster Recovery Policy and enroll the sample application in the policy. For more information and detailed steps refer to [Apply Data policy to sample application](https://docs.redhat.com/en/documentation/red_hat_openshift_data_foundation/4.19/html-single/configuring_openshift_data_foundation_disaster_recovery_for_openshift_workloads/index#apply-drpolicy-to-sample-application_manage-rdr).  
 
 
 
-After you assign a DR policy and enroll your application, **DR Status** shows either **healthy** or **critical** when failover or relocate is not taking place. So, wait for few minutes for the appropriate status to show.  
+    After you assign a DR policy and enroll your application, **DR Status** shows either **healthy** or **critical** when failover or relocate is not taking place. So, wait for few minutes for the appropriate status to show.  
 
 
 
-3. Test the sample can [application failover](/docs/openshift?topic=openshift-openshift_odf_rdr_roks&interface=ui#odf-rdr-test) from primary to secondary region and then relocate back to primary region.  
+12. Test the sample can [application failover](/docs/openshift?topic=openshift-openshift_odf_rdr_roks&interface=ui#odf-rdr-test) from primary to secondary region and then relocate back to primary region.  
 
-- Verify that the application pods are running on the primary cluster.
-Run the oc get pods -n busybox-sample command on primary cluster to ensure the busy-box application pods are running.  
+    - Verify that the application pods are running on the primary cluster.
+    Run the oc get pods -n busybox-sample command on primary cluster to ensure the busy-box application pods are running.  
 
-The output should look similar to the one below.  
+    The output should look similar to the one below.  
 
       NAME                      READY   STATUS    RESTARTS   AGE
       busybox-6bb69c6ff-79bkr   1/1     Running   0          14d
 
-Run the ``oc get pods -n busybox-sample`` on the secondary cluster and the output should look similar to the one below.  
+    Run the ``oc get pods -n busybox-sample`` on the secondary cluster and the output should look similar to the one below.  
 
-   No resources found in busybox-sample namespace.  
+      No resources found in busybox-sample namespace.  
 
-- Initiate application failover from primary to secondary, For more information refer to [Subscription-based application failover between managed clusters](https://docs.redhat.com/en/documentation/red_hat_openshift_data_foundation/4.19/html-single/configuring_openshift_data_foundation_disaster_recovery_for_openshift_workloads/index#application-failover-between-managed-clusters_manage-rdr).  
+    - Initiate application failover from primary to secondary, For more information refer to [Subscription-based application failover between managed clusters](https://docs.redhat.com/en/documentation/red_hat_openshift_data_foundation/4.19/html-single/configuring_openshift_data_foundation_disaster_recovery_for_openshift_workloads/index#application-failover-between-managed-clusters_manage-rdr).  
 
-**Note:** ``LastGroupSyncTime`` is a critical metric that reflects the time since the last successful replication occurred for all PVCs associated with an application. In essence, it measures the synchronization health between the primary and secondary clusters. So, prior to initiating a failover from one cluster to another, check for this metric and only initiate the failover if the ``LastGroupSyncTime`` is within a reasonable time in the past.  
+    **Note:** ``LastGroupSyncTime`` is a critical metric that reflects the time since the last successful replication occurred for all PVCs associated with an application. In essence, it measures the synchronization health between the primary and secondary clusters. So, prior to initiating a failover from one cluster to another, check for this metric and only initiate the failover if the ``LastGroupSyncTime`` is within a reasonable time in the past.  
 
 
 
-4. Once you have validated that your application has been failed over to the secondary region, let us now try to relocate it back to the primary region. For more information, refer to [Relocating Subscription-based application between managed clusters](https://docs.redhat.com/en/documentation/red_hat_openshift_data_foundation/4.19/html-single/configuring_openshift_data_foundation_disaster_recovery_for_openshift_workloads/index#relocating-application-between-managed-clusters_manage-rdr).  
+13. Once you have validated that your application has been failed over to the secondary region, let us now try to relocate it back to the primary region. For more information, refer to [Relocating Subscription-based application between managed clusters](https://docs.redhat.com/en/documentation/red_hat_openshift_data_foundation/4.19/html-single/configuring_openshift_data_foundation_disaster_recovery_for_openshift_workloads/index#relocating-application-between-managed-clusters_manage-rdr).  
