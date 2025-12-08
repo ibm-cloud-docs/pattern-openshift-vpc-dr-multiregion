@@ -79,8 +79,8 @@ The following steps will help you deploy Red Hat OpenShift Cluster and OpenShift
 
 
 
-3.	Create the three VPC OpenShift clusters (each in different regions and VPCs) and set the ``--disable-outbound-traffic-protection`` parameter for each. Refer to [Creating Clusters](/docs/openshift?topic=openshift-openshift_odf_rdr_roks&interface=ui#odf-rdr-clusters) for more information.  
-The commands in the referrenced link will guide you to create an OpenShift cluster in a single zone which will provide 99.9% availability, if you need 99.99% availability in each region then add worker nodes to the worker pool in additonl zones in each region. FOr more information refer to [Adding worker nodes to VPC clusters](https://cloud.ibm.com/docs/openshift?topic=openshift-add-workers-vpc)
+3.	Create the three VPC OpenShift clusters (each in different regions and VPCs) and set the **--disable-outbound-traffic-protection** parameter for each. Refer to [Creating Clusters](/docs/openshift?topic=openshift-openshift_odf_rdr_roks&interface=ui#odf-rdr-clusters) for more information.  
+The commands in the referrenced link will guide you to create an OpenShift cluster in a single zone which will provide 99.9% availability, if you need 99.99% availability in each region then add worker nodes to the worker pool in additonl zones in each region. For more information refer to [Adding worker nodes to VPC clusters](https://cloud.ibm.com/docs/openshift?topic=openshift-add-workers-vpc) on how to resize workerpool in an existing OpenShift cluster.
 
 
    **Note:** The ***ibmcloud ks cluster*** command in the reference link points to OpenShift version 4.17.10, please change this to your preferred version of OpenShift, it is recommended to always use the latest version of OpenShift.
