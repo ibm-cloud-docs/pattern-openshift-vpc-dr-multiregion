@@ -116,9 +116,11 @@ The commands in the referrenced link will guide you to create an OpenShift clust
     - Enable Cluster Encrytpion and Enable Volume Encryption are option, so leave the disabled.  
 
     Complete the above steps on both primary and secondary managed OpenShift clusters.
-    Installation will complete in few minutes, after that use the below OC command to validate the installation is successful on both managed clusters.  
+    Installation will complete in few minutes, after that run the OC command below to validate the installation is successful on both managed clusters.  
 
-       oc get storagecluster -n openshift-storage ocs-storagecluster -o jsonpath='{.status.phase}{"\n"}
+
+         oc get storagecluster -n openshift-storage ocs-storagecluster -o jsonpath='{.status.phase}{"\n"}
+
 
     If the output of the above command is **Ready**, then move to next step.  
 
@@ -128,7 +130,9 @@ The commands in the referrenced link will guide you to create an OpenShift clust
 
     Run the below command to update the managed cluster names in the storage cluster.  
 
+
        kubectl patch storagecluster -n openshift-storage ocs-storagecluster --type merge -p'{"spec":{"network":{"multiClusterService":{"clusterID":"managed-cluster-1-dr-odf","enabled":true}}}}’  
+
 
     **Note**: Ensure to run this command on both managed clusters and add the respective cluster names in storage cluster.  
 
