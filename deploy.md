@@ -62,8 +62,8 @@ To know how subscriptions for OpenShift Data Foundation work, see knowledgebase 
 3. In addition, refer to [Deploying OpenShift Data Foundation on VPC clusters](/docs/openshift?topic=openshift-deploy-odf-vpc&interface=ui#ocs-storage-vpc) for complete list of prerequisites.
 
 
-### Provisioning the architecture
-{: #deployment-steps}
+    ### Provisioning the architecture
+    {: #deployment-steps}
 
     The following steps will help you deploy Red Hat OpenShift Cluster and OpenShift Data Foundation clusters across multiple regions and enable asynchronous replication between primary and secondary ODF volumes.
 
@@ -195,8 +195,8 @@ To know how subscriptions for OpenShift Data Foundation work, see knowledgebase 
     **Note:** The synch interval defines the RPO of your application. Choose a sync interval that meets your organization or application acceptable data loss requirement.
 
 
-### Verifying the architecture.
-{: #verify-deployment}
+    ### Verifying the architecture.
+    {: #verify-deployment}
 
 12. Create a Disaster Recovery Policy. For more information and detailed steps refer to [Apply Data policy to sample application](https://docs.redhat.com/en/documentation/red_hat_openshift_data_foundation/4.19/html-single/configuring_openshift_data_foundation_disaster_recovery_for_openshift_workloads/index#apply-drpolicy-to-sample-application_manage-rdr).  
 
@@ -221,7 +221,10 @@ To know how subscriptions for OpenShift Data Foundation work, see knowledgebase 
 
          NAME                                STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS                AGE
          persistentvolumeclaim/busybox-pvc   Bound    pvc-c732e5fe-daaf-4c4d-99dd-462e04c18412   5Gi        RWO            ocs-storagecluster-ceph-rbd   77s
+    
+    If you run the same command on the secondar cluster, the output should indicate that the Pods and PVCs are not deployed.
 
+         No resources found in busybox-sample namespace.
 
     **Note**: While creating the application, there is an field where you need provide values for **PVC label selector**, ensure that you select lables that will deploy the application only on the primary cluster.
 
