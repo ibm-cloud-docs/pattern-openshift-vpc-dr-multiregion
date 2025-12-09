@@ -201,9 +201,11 @@ To know how subscriptions for OpenShift Data Foundation work, see knowledgebase 
 
 
 
+    - This steps deploys the application in ***active-active*** mode by deploying and running BusyBox pods on both primary and secondary managed clusters.
+
     - While deplpying the application you will need to select the deployment path, choose either RBD or CepfFS.  
 
-    - After the application deploys successfully, run the following command to validate.  
+    - After the application deploys successfully, run the following command to validate the application deployment on both primary and secondary managed clusters.  
 
         oc get pods,pvc -n busybox-sample.  
 
@@ -212,13 +214,12 @@ To know how subscriptions for OpenShift Data Foundation work, see knowledgebase 
 
 
 
-    After you assign a DR policy and enroll your application, **DR Status** shows either **healthy** or **critical** when failover or relocate is not taking place. So, wait for few minutes for the appropriate status to show.  
+    After you assign a DR policy and enroll your application, **DR Status** column will show the status as **healthy** or **critical**. So, wait for few minutes for the appropriate status to show.  
 
 
+15. Test the sample application can failover from primary to secondary cluster and then relocate back to primary region. For more information refer to [Application](/docs/openshift?topic=openshift-openshift_odf_rdr_roks&interface=ui#odf-rdr-test).
 
-15. Test the sample can [application failover](/docs/openshift?topic=openshift-openshift_odf_rdr_roks&interface=ui#odf-rdr-test) from primary to secondary region and then relocate back to primary region.  
-
-    - Verify that the application pods are running on the primary cluster.
+    - First, verify that the application pods are running on the primary and secondary clusters.
 
     Run the ``oc get pods -n busybox-sample`` command on primary cluster to ensure the busy-box application pods are running.  
 
@@ -227,13 +228,21 @@ To know how subscriptions for OpenShift Data Foundation work, see knowledgebase 
         NAME                      READY   STATUS    RESTARTS   AGE
         busybox-6bb69c6ff-79bkr   1/1     Running   0          14d
 
-    Run the ``oc get pods -n busybox-sample`` on the secondary cluster and the output should look similar to the one below.  
+    Repeat the command on secondary cluster and you should see similar output.
 
-        No resources found in busybox-sample namespace.  
+    Before you initiate a failover from primary to secondary cluster, run the following command
+
+          oc get drpc -o yaml -A | grep lastGroupSyncTime
+
+    The output should look similar to the one below.
+
+          lastGroupSyncTime: "2023-07-10T12:40:10Z"
+
+    **Note:** ``LastGroupSyncTime`` is a critical metric that reflects the time since the last successful replication occurred for all PVCs associated with an application. In essence, it measures the synchronization health between the primary and secondary clusters. So, prior to initiating a failover from one cluster to another, check for this metric and only initiate the failover if the ``LastGroupSyncTime`` is within a reasonable time in the past. 
 
     - Initiate application failover from primary to secondary, For more information refer to [Subscription-based application failover between managed clusters](https://docs.redhat.com/en/documentation/red_hat_openshift_data_foundation/4.19/html-single/configuring_openshift_data_foundation_disaster_recovery_for_openshift_workloads/index#application-failover-between-managed-clusters_manage-rdr).  
 
-    **Note:** ``LastGroupSyncTime`` is a critical metric that reflects the time since the last successful replication occurred for all PVCs associated with an application. In essence, it measures the synchronization health between the primary and secondary clusters. So, prior to initiating a failover from one cluster to another, check for this metric and only initiate the failover if the ``LastGroupSyncTime`` is within a reasonable time in the past.  
+ 
 
 
 
