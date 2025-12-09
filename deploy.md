@@ -2,7 +2,7 @@
 
 copyright:
 years: 2025
-lastupdated: "2025-12-08"
+lastupdated: "2025-12-09"
 
 keywords:
 
@@ -108,7 +108,8 @@ To know how subscriptions for OpenShift Data Foundation work, see knowledgebase 
     Installation will complete in few minutes, after that run the OC command below to validate the installation is successful on both managed clusters.  
 
 
-         oc get storagecluster -n openshift-storage ocs-storagecluster -o jsonpath='{.status.phase}{"\n"}
+         oc get storagecluster -n openshift-storage ocs-storagecluster -o jsonpath='{.status.phase}{"\n"}'
+
 
 
     If the output of the above command is **Ready**, then move to next step.  
