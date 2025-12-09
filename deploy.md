@@ -126,6 +126,7 @@ To know how subscriptions for OpenShift Data Foundation work, see knowledgebase 
     
     - Secondary managed cluster where OpenShift Data Foundation is running.
 
+    This process might take several minutes to complete, so wait till the operator status changes to **Running**.
 
 
     With this set up, the ACM cluster imports and manages the manages the ODF clusters. So that if one ODF cluster goes down, then the ACM cluster rolls over the apps and data from that cluster to the other cluster. This is also the step where you enable submariner, so be sure to enable **GlobalNet** during that process.
@@ -138,7 +139,16 @@ To know how subscriptions for OpenShift Data Foundation work, see knowledgebase 
     Run the below command to update the managed cluster names in the storage cluster.  
 
 
-        kubectl patch storagecluster -n openshift-storage ocs-storagecluster --type merge -p'{"spec":{"network":{"multiClusterService":{"clusterID":"managed-cluster-1-dr-odf","enabled":true}}}}’  
+        oc edit storagecluster -o yaml -n openshift-storag 
+
+    Update the clusterID field with the actual managed cluster name. Complete this step on both managed clusters and use the respective cluster names for clusterID field.
+
+
+            spec:
+              network:
+                multiClusterService:
+                   clusterID: <clustername>
+                   enabled: true
 
 
     **Note**: Ensure to run this command on both managed clusters and add the respective cluster names in storage cluster.  
@@ -159,12 +169,25 @@ To know how subscriptions for OpenShift Data Foundation work, see knowledgebase 
 
 
 11. Install ODF Multicluster Orchestrator to the ACM hub cluster. For more information, see section 4.5 at [Installing OpenShift Data Foundation Multicluster Orchestrator operator](https://docs.redhat.com/en/documentation/red_hat_openshift_data_foundation/4.19/html-single/configuring_openshift_data_foundation_disaster_recovery_for_openshift_workloads/index#installing-odf-multicluster-orchestrator_rdr)
+    
+    The ODF Multicluster Orchestrator also installs the OpenShift DR Hub Operatior on the Hub or ACM Cluster as a dependency.
+
+    Verify that the operator Pods are in a Running state by running the below command on the Hub or ACM cluster. The OpenShift DR Hub operator is also installed at the same time in openshift-operators namespace.
+
+        oc get pods -n openshift-operators
+
+    Here is the example output of the above command.
+
+        NAME                                        READY   STATUS       RESTARTS    AGE
+        odf-multicluster-console-6845b795b9-blxrn   1/1     Running      0           4d20h
+        odfmo-controller-manager-f9d9dfb59-jbrsd    1/1     Running      0           4d20h
+        ramen-hub-operator-6fb887f885-fss4w         2/2     Running      0           4d20h
 
 
     **Note:** Section 4.6 is optional and does not have an impact on this guide. For security reasons you must enable and configure SSL across clusters.     
 
 
-12. Create a DR Policy from the Hub cluster  with a sync interval of 5 minutes. For more information, see section 4.7 at Creating Disaster Recovery Policy on Hub cluster.  
+12. Create a DR Policy from the Hub cluster  with a sync interval of 5 minutes. For more information, see section 4.7 at [Creating Disaster Recovery Policy on Hub cluster](https://docs.redhat.com/en/documentation/red_hat_openshift_data_foundation/4.16/html-single/configuring_openshift_data_foundation_disaster_recovery_for_openshift_workloads/index?extIdCarryOver=true&sc_cid=701f2000001OH7EAAW#creating-disaster-recovery-policy-on-hub-cluster_rdr).  
 
 
     **Note:** The synch interval defines the RPO of your application. Choose a sync interval that meets your organization or application acceptable data loss requirement.  
@@ -174,7 +197,7 @@ To know how subscriptions for OpenShift Data Foundation work, see knowledgebase 
     {: #verify-deployment}
 
 
-13. Deploy a subscription based [sample application](https://docs.redhat.com/en/documentation/red_hat_openshift_data_foundation/4.19/html-single/configuring_openshift_data_foundation_disaster_recovery_for_openshift_workloads/index#create-sample-application-for-testing-mdrsolution_manage-rdr) to test your cluster and underlying ODF storage system using persistent volume claims.  
+13. Deploy a subscription based [sample application](https://docs.redhat.com/en/documentation/red_hat_openshift_data_foundation/4.16/html-single/configuring_openshift_data_foundation_disaster_recovery_for_openshift_workloads/index#creating-sample-subscription-based-application_manage-rdr) to test your cluster and underlying ODF storage system using persistent volume claims.  
 
 
 
@@ -182,7 +205,7 @@ To know how subscriptions for OpenShift Data Foundation work, see knowledgebase 
 
     - After the application deploys successfully, run the following command to validate.  
 
-         oc get pods,pvc -n busybox-sample.  
+        oc get pods,pvc -n busybox-sample.  
 
 
 14. Create a Disaster Recovery Policy and enroll the sample application in the policy. For more information and detailed steps refer to [Apply Data policy to sample application](https://docs.redhat.com/en/documentation/red_hat_openshift_data_foundation/4.19/html-single/configuring_openshift_data_foundation_disaster_recovery_for_openshift_workloads/index#apply-drpolicy-to-sample-application_manage-rdr).  
@@ -196,7 +219,8 @@ To know how subscriptions for OpenShift Data Foundation work, see knowledgebase 
 15. Test the sample can [application failover](/docs/openshift?topic=openshift-openshift_odf_rdr_roks&interface=ui#odf-rdr-test) from primary to secondary region and then relocate back to primary region.  
 
     - Verify that the application pods are running on the primary cluster.
-    Run the oc get pods -n busybox-sample command on primary cluster to ensure the busy-box application pods are running.  
+
+    Run the ``oc get pods -n busybox-sample`` command on primary cluster to ensure the busy-box application pods are running.  
 
     The output should look similar to the one below.  
 
