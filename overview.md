@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2025-10-28"
+lastupdated: "2025-12-05"
 
 
 subcollection: pattern-openshift-vpc-dr-multiregion
@@ -40,34 +40,40 @@ This document is an extension of the [{{site.data.keyword.redhat_openshift_notm}
 ## Pattern details
 {: #Pattern-Details}
 
-This disaster recovery pattern for {{site.data.keyword.redhat_openshift_notm}} deploys containerized enterprise workloads that require persistent storage within a VPC. This pattern uses {{site.data.keyword.redhat_openshift_notm}} clusters, Portworx Enterprise DR, which is a software-defined storage (SDS) solution, and cloud resources across three availability zones in the primary region. It includes an extra cluster in a secondary region for disaster recovery.
+This disaster recovery pattern for {{site.data.keyword.redhat_openshift_notm}} deploys containerized enterprise workloads that require persistent storage within a VPC. This pattern uses {{site.data.keyword.redhat_openshift_notm}} clusters, underlying storage system and cloud resources across three availability zones in the primary region. It includes an additional cluster in a secondary region for disaster recovery.
 
 This pattern ensures 99.99% infrastructure availability and provides a recovery point objective (RPO) of 15 minutes or less. Disaster recovery helps ensure that you can restore applications, platforms, services, or APIs after an unexpected component failure or regional outage.
 
-Disaster recovery with Portworx requires at least two {{site.data.keyword.redhat_openshift_notm}} clusters where Portworx Enterprise with Disaster Recovery (PX-DR) is installed and configured for disaster recovery. One of the two clusters is considered the active cluster where your data is primarily stored. All data is then replicated to the standby cluster. If your active cluster becomes unavailable, Portworx Enterprise with DR automatically fails over to the standby cluster. The standby cluster is the new active cluster so that you can continue to access data.
+Disaster recovery with storage replication requires at least two {{site.data.keyword.redhat_openshift_notm}} clusters where storage system and app pods are installed and configured for disaster recovery. One of the two clusters is considered the active cluster where your data is primarily stored. All data is then replicated to the standby cluster. If your active cluster becomes unavailable, the data and application fails over to the standby cluster. The standby cluster is the new active cluster so that you can continue to access data.
 
-If you install Portworx in a cluster without the [Portworx disaster recovery pricing plan](https://cloud.ibm.com/catalog/services/portworx-enterprise), reinstall Portworx with the DR plan so that you can include this cluster in your disaster recovery configuration.
-{: note}
+There are different types of disaster recovery deployments depending on your recovery time and data loss requirements.
 
-Portworx disaster recovery supports high availability across availability zones, RPO-zero failover across data centers in a metropolitan area, and continuous incremental backups across global data centers.
+### Metro-DR
+{: #metro-dr}
 
-Depending on your cluster requirements, Portworx offers the following two disaster recovery configurations:
+Metro-DR ensures business continuity during the unavailability of a data centre with no data loss. In the public cloud these would be similar to protecting from an Availability Zone failure.
 
-[Metro DR](https://docs.portworx.com/portworx-enterprise/operations/disaster-recovery/px-metro){: external}
-:   Your {{site.data.keyword.redhat_openshift_notm}} clusters are in the same region, such as both clusters are deployed in one or multiple zones of the `us-south` region. All clusters are configured to use the same Portworx Enterprise cluster and share a Portworx key-value store. Data is automatically replicated between the clusters because the Portworx storage layer is shared. RPO (Recovery Point Objective) and RTO (Recovery Time Objective) for this configuration is less than 60 seconds.
+### Regional-DR
+{: #regional-dr}
 
-[Asynchronous DR](https://docs.portworx.com/portworx-enterprise/operations/disaster-recovery/async-dr){: external}
-:   Your {{site.data.keyword.redhat_openshift_notm}} clusters are deployed in different regions, such as `us-south` and `us-east`. Each cluster has its own Portworx Enterprise installation and uses a separate Portworx key-value store that is not shared. To replicate data between clusters, you must set up scheduled replication between these clusters. Because of the higher latency and scheduled replication times, the RPO for this scenario might be up to 15 minutes.
+Regional-DR ensures business continuity during the unavailability of a geographical region, accepting some loss of data in a predictable amount. In the public cloud this would be similar to protecting from a region failure.
 
-This pattern uses Portworx asynchronous disaster recovery (DR) with a multi-zone workload cluster in the primary region. It replicates storage asynchronously to a secondary region, ensuring a 15-minute recovery point objective (RPO). For DR to the secondary location, you need at least two {{site.data.keyword.redhat_openshift_notm}} clusters across three availability zones, with Portworx SDS installed and configured.
+### Disaster Recovery with stretch cluster
+{: #dr-stretch-cluster}
 
-One cluster acts as the active cluster where data is primarily stored. The standby cluster in the secondary disaster recovery region receives replicated data. If an active cluster failure occurs, Portworx automatically fails over to the standby cluster, which becomes the new active cluster to help ensure continued data access.
+Stretch cluster solution ensures business continuity with no-data loss disaster recovery protection with storage based synchronous replication in a single OpenShift cluster, stretched across two data centres with low latency and one arbiter node.
 
-To establish high availability within a region, see the pattern [{{site.data.keyword.redhat_openshift_notm}} on VPC resiliency](/docs/pattern-openshift-vpc-mz-resiliency?topic=pattern-openshift-vpc-mz-resiliency-overview).
+Zone failure in Metro-DR and region failure in Regional-DR is usually expressed using the terms, **Recovery Point Objective (RPO)** and **Recovery Time Objective (RTO)**.
 
-## Pattern requirements
-{: #Patten-Requirements}
+**RPO** is a measure of how frequently you take backups or snapshots of persistent data. In practice, the RPO indicates the amount of data that will be lost or need to be re-entered after an outage.
 
-Install Portworx Enterprise Disaster Recovery on each {{site.data.keyword.redhat_openshift_notm}} cluster that requires DR within the primary and disaster recovery regions. Portworx asynchronous replication performs volume replications. The admin creates a schedule to migrate applications and volumes between the Portworx primary and disaster recovery clusters that are paired.
+**RTO** is the amount of downtime a business can tolerate. The RTO answers the question, “How long can it take for our system to recover after we are notified of a business disruption?”
 
-With this setup, the RPO is 15 minutes and the RTO is less than 60 seconds. For more information, see [Portworx documentation](https://docs.portworx.com/portworx-enterprise/operations/disaster-recovery){: external}.
+
+This pattern uses asynchronous disaster recovery (DR) with a multi-zone workload cluster in the primary region. It replicates storage asynchronously to a secondary region, ensuring at least 5-minute recovery point objective (RPO). For DR to the secondary location, you need at least two {{site.data.keyword.redhat_openshift_notm}} clusters across three availability zones.
+
+One cluster acts as the active cluster where data is primarily stored. The standby cluster in the secondary disaster recovery region receives replicated data. If an active cluster failure occurs, **Red Hat Advanced Cluster Management** provides controls to fail over the application to the secondary cluster, which becomes the new active cluster to help ensure continued data access.
+
+The intent of this guide is to detail the disaster recovery steps and commands necessary to be able to failover an application from one OpenShift Container Platform cluster to another and then relocate the same application to the original primary cluster.
+
+This guide will focus on providing step by step instructions to deploy a Regional-DR enabled OpenShift Cluster using a storage solution that supports asynchronous data replication between two regions.

@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2023
-lastupdated: "2023-12-26"
+  years: 2025
+lastupdated: "2025-12-03"
 
 subcollection: pattern-openshift-vpc-dr-multiregion
 
@@ -19,7 +19,7 @@ keywords:
 
 -   [Deploying web application on OpenShift in a MZR on {{site.data.keyword.Bluemix_notm}}](/docs/pattern-webapp-openshift-vpc?topic=pattern-webapp-openshift-vpc-overview)
 
-    -   [Deploying web application on OpenShift in a MZR on {{site.data.keyword.Bluemix_notm}} - Deployment Guide](/docs/pattern-webapp-openshift-vpc?topic=pattern-webapp-openshift-vpc-roks-vpc-mz-da)
+-   [Deploying web application on OpenShift in a MZR on {{site.data.keyword.Bluemix_notm}} - Deployment Guide](/docs/pattern-webapp-openshift-vpc?topic=pattern-webapp-openshift-vpc-roks-vpc-mz-da)
 
 -   [Web app cross-region resiliency](/docs/pattern-vpc-vsi-cross-region-resiliency?topic=pattern-vpc-vsi-cross-region-resiliency-overview)
 
@@ -31,8 +31,8 @@ keywords:
 
 -   [Service Level Agreements for {{site.data.keyword.Bluemix_notm}}](https://www.ibm.com/support/customer/csol/terms/?id=i126-9268&lc=en#detail-document){: external}
 
--   [{{site.data.keyword.openshiftlong_notm}} - Planning your Portworx setup](/docs/openshift?topic=openshift-storage_portworx_plan)
+-   [{{site.data.keyword.openshiftlong_notm}} - Planning your OFD setup](https://docs.redhat.com/en/documentation/red_hat_openshift_data_foundation/4.19/html-single/configuring_openshift_data_foundation_disaster_recovery_for_openshift_workloads/index)
 
 -   [{{site.data.keyword.openshiftlong_notm}} - Backing up and restoring storage data](/docs/openshift?topic=openshift-storage_br)
 
--   [{{site.data.keyword.openshiftlong_notm}} - Setting up disaster recovery with Portworx](/docs/openshift?topic=openshift-storage_portworx_recovery)
+-   [{{site.data.keyword.openshiftlong_notm}} - Setting up disaster recovery with ODF](/docs/openshift?topic=openshift-openshift_odf_rdr_roks)

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2025-10-28"
+lastupdated: "2025-12-09"
 
 keywords:
 
@@ -13,13 +13,249 @@ subcollection: pattern-openshift-vpc-dr-multiregion
 {{site.data.keyword.attribute-definition-list}}
 
 
-# Deploying xxx
-{: #multizone-openshift-deploying}
+# Deploying a {{site.data.keyword.openshiftlong_notm}} multiregion architecture
+{: #Deployment-Guide}
 
-This guide outlines deploying 
+This deployment guide outlines steps required to deploy a Red Hat OpenShift Container architecture in a multiregion resilient configuration, specifically in three availability zones across two different regions. The deployment is based on an existing deployable architecture template, as well as a series of customizations to tailor the setup to the specific requirements for your environment.
+
+This is designed for customers who need a scalable, multizone and multiregion Kubernetes infrastructure with the flexibility of customizations after the initial deployment of the base deployable architecture. It allows for adapting various components, such as networking and security, to better suit individual business needs after the foundational architecture has been established.
 
 
 ## Before you begin
 {: #openshift-prereqs}
 
 Before you get started, be sure that you have the following prerequistes:
+
+### Prerequisites
+{: #openshift-prereqs}
+
+You need the following items to deploy and configure this reference architecture:
+
+-	An [{{site.data.keyword.Bluemix_notm}} account](https://cloud.ibm.com/registration).
+
+-	[Required IAM access policies](https://github.com/terraform-ibm-modules/terraform-ibm-web-app-mzr-da/tree/main/solutions/e2e#required-iam-access-policies).
+
+-	An understanding of the [Planning for the landing zone deployable architectures](/docs/secure-infrastructure-vpc?topic=secure-infrastructure-vpc-plan).
+
+
+### Red Hat OpenShift Subscriptions
+{: #roks-subscription}
+
+Disaster Recovery features supported by Red Hat OpenShift Data Foundation require all of the following prerequisites to successfully implement a disaster recovery solution:
+
+- A valid Red Hat OpenShift Data Foundation Advanced entitlement
+
+- A valid Red Hat Advanced Cluster Management for Kubernetes subscription
+
+Any Red Hat OpenShift Data Foundation Cluster containing PVs participating in active replication either as a source or destination requires OpenShift Data Foundation Advanced entitlement. This subscription should be active on both source and destination clusters.
+
+To know how subscriptions for OpenShift Data Foundation work, see knowledgebase article on [OpenShift Data Foundation subscriptions](https://access.redhat.com/articles/6932811).
+
+
+### Minimum required permissions
+{: #min-permissions}
+
+1. Administrator platform access role.
+
+2.	Manager service access role for the cluster in IBM Cloud Kubernetes Service.
+
+3. In addition, refer to [Deploying OpenShift Data Foundation on VPC clusters](/docs/openshift?topic=openshift-deploy-odf-vpc&interface=ui#ocs-storage-vpc) for complete list of prerequisites.
+
+
+    ### Provisioning the architecture
+    {: #deployment-steps}
+
+    The following steps will help you deploy Red Hat OpenShift Cluster and OpenShift Data Foundation clusters across multiple regions and enable asynchronous replication between primary and secondary ODF volumes.
+
+
+
+4. Identify regions where you want to deploy your OpenShift Clusters. This architecture will require creating three different Red Hat OpenShift Clusters in three different regions. So, you need to first identify which regions you want your clusters to be deployed in.
+
+
+5.	Create or Select an existing VPC in each region that you want to use as primary, secondary and RHAMC regions. Ensure each subnet where cluster nodes will be deployed, have a public gateway attached to them. For more information about creating VPC, refer to [VPC multi-zone region](/docs/vpc?topic=vpc-creating-a-vpc-in-a-different-region&interface=cli).
+
+
+
+6.	Create the three VPC OpenShift clusters (each in different regions and VPCs) and set the **--disable-outbound-traffic-protection** parameter for each. Refer to [Creating Clusters](/docs/openshift?topic=openshift-openshift_odf_rdr_roks&interface=ui#odf-rdr-clusters) for more information.
+
+
+    The commands in the referrenced link will guide you to create an OpenShift cluster in a single zone which will provide 99.9% availability, if you need 99.99% availability in each region then add worker nodes to the worker pool in additonl zones in each region. For more information refer to [Adding worker nodes to VPC clusters](https://cloud.ibm.com/docs/openshift?topic=openshift-add-workers-vpc) on how to resize workerpool in an existing OpenShift cluster.
+
+
+    **Note:** The ***ibmcloud ks cluster*** command in the reference link points to OpenShift version 4.17.10, please change this to your preferred version of OpenShift, it is recommended to always use the latest version of OpenShift.
+
+
+
+7.	Enable [Red Hat OperatorHub catalog](/docs/openshift?topic=openshift-openshift_odf_rdr_roks&interface=ui#odf-rdr-enable-redhat) on the ACM, primary and secondary clusters.
+
+
+    **Note:** The Operation Hub might be enabled by default on some latest versions of the Red Hat OpenShift, so this step is optional depending on your cluster version.
+
+
+8. Setup and configure [Red Hat Advanced Cluster Management](/docs/openshift?topic=openshift-openshift_odf_rdr_roks&interface=ui#odf-rdr-install-acm) on the ACM cluster.
+
+    Prerequisites for configuring ACM on Hub Clusters.
+
+    You must have three OpenShift clusters that have network reachability between them:
+
+    - Primary managed cluster where OpenShift Data Foundation is running.
+
+    - Secondary managed cluster where OpenShift Data Foundation is running.
+
+    This process might take several minutes to complete, so wait till the operator status changes to **Running**.
+
+
+    With this set up, the ACM cluster imports and manages the manages the ODF clusters. So that if one ODF cluster goes down, then the ACM cluster rolls over the apps and data from that cluster to the other cluster. This is also the step where you enable submariner, so be sure to enable **GlobalNet** during that process.
+
+    **Note**: Some configuration links referring to Red Hat documentation might lead you to older versions of OpenShift, please ensure to change the version number from the drop-down on the left side of the document.
+
+
+    As ``GlobalNet`` was enabled during the Submariner add-on installation, update the **ACM Managed Cluster Name** in the storageclusterresource’s multiClusterService section for ODF to use GlobalNet.
+
+    Run the below command to update the managed cluster names in the storage cluster.
+
+
+        oc edit storagecluster -o yaml -n openshift-storag
+
+    Update the clusterID field with the actual managed cluster name. Complete this step on both managed clusters and use the respective cluster names for clusterID field.
+
+
+            spec:
+              network:
+                multiClusterService:
+                   clusterID: <clustername>
+                   enabled: true
+
+
+    **Note**: Ensure to run this command on both managed clusters and add the respective cluster names in storage cluster.
+
+    After the changes, run the following command to validate the pods have restarted. 
+
+        oc get serviceexport -n openshift-storage
+
+    Ensure the output looks like this.
+
+        NAME              AGE
+        rook-ceph-mon-d   14d
+        rook-ceph-mon-e   14d
+        rook-ceph-mon-f   14d
+        rook-ceph-osd-0   14d
+        rook-ceph-osd-1   14d
+        rook-ceph-osd-2   14d
+
+        It might take 15 minutes or longer for the serviceexport output to look like the one above.  
+
+
+9.	Install [OpenShift Data Foundation](/docs/openshift?topic=openshift-deploy-odf-vpc&interface=ui#install-odf-console-vpc) on the two managed clusters and ensure the two important options, Enable DR and NooBaa, are selected.
+
+
+    **Use these parameter values**.
+
+    - OSD Storage Class Name: Provide a name of your choice and select a storage class with the VolumeBindingMode of WaitForFirstConsumer.
+    - Pod Size: Enter 512Gi.
+    - Worker Nodes: Leave it blank to install ODF on all nodes in the cluster.
+    - Number of OSD Disks Required: Start with just 1 on each node for this test.
+    - Enable Cluster Encrytpion and Enable Volume Encryption are **optional**, so leave them disabled.
+
+    Complete the above steps on both primary and secondary managed OpenShift clusters.
+    Installation will complete in few minutes, after that run the OC command below to validate the installation is successful on both managed clusters.
+
+
+         oc get storagecluster -n openshift-storage ocs-storagecluster -o jsonpath='{.status.phase}{"\n"}'
+
+
+    If the output of the above command is **Ready**, then move to next step.
+
+
+
+10. Install ODF Multicluster Orchestrator to the ACM hub cluster. For more information, see section 4.5 at [Installing OpenShift Data Foundation Multicluster Orchestrator operator](https://docs.redhat.com/en/documentation/red_hat_openshift_data_foundation/4.19/html-single/configuring_openshift_data_foundation_disaster_recovery_for_openshift_workloads/index#installing-odf-multicluster-orchestrator_rdr)
+
+    The ODF Multicluster Orchestrator also installs the OpenShift DR Hub Operatior on the Hub or ACM Cluster as a dependency.
+
+    Verify that the operator Pods are in a Running state by running the below command on the Hub or ACM cluster.  
+
+
+        oc get pods -n openshift-operators
+
+
+    Here is the example output of the above command.
+
+        NAME                                        READY   STATUS       RESTARTS    AGE
+        odf-multicluster-console-6845b795b9-blxrn   1/1     Running      0           4d20h
+        odfmo-controller-manager-f9d9dfb59-jbrsd    1/1     Running      0           4d20h
+        ramen-hub-operator-6fb887f885-fss4w         2/2     Running      0           4d20h
+
+
+    **Note:** Section 4.6 in the Red Hat documentation is optional for this demo and does not have an impact on this deployment. For security reasons you must enable and configure SSL across clusters.
+
+
+11. Create a DR Policy from the Hub cluster  with a sync interval of 5 minutes. For more information, see section 4.7 at [Creating Disaster Recovery Policy on Hub cluster](https://docs.redhat.com/en/documentation/red_hat_openshift_data_foundation/4.16/html-single/configuring_openshift_data_foundation_disaster_recovery_for_openshift_workloads/index?extIdCarryOver=true&sc_cid=701f2000001OH7EAAW#creating-disaster-recovery-policy-on-hub-cluster_rdr).
+
+
+    **Note:** The synch interval defines the RPO of your application. Choose a sync interval that meets your organization or application acceptable data loss requirement.
+
+
+    ### Verifying the architecture.
+    {: #verify-deployment}
+
+12. Create a Disaster Recovery Policy. For more information and detailed steps refer to [Apply Data policy to sample application](https://docs.redhat.com/en/documentation/red_hat_openshift_data_foundation/4.19/html-single/configuring_openshift_data_foundation_disaster_recovery_for_openshift_workloads/index#apply-drpolicy-to-sample-application_manage-rdr).  
+
+
+
+13. Deploy a subscription based and enroll the sample application in the DR policy[sample application](https://docs.redhat.com/en/documentation/red_hat_openshift_data_foundation/4.16/html-single/configuring_openshift_data_foundation_disaster_recovery_for_openshift_workloads/index#creating-sample-subscription-based-application_manage-rdr) to test your cluster and underlying ODF storage system using persistent volume claims.
+
+
+    - These steps deploy the application in ***active-passive*** mode by deploying and running BusyBox pods on both primary managed cluster.
+
+    - While deplpying the application you will need to select the deployment path, choose either RBD or CepfFS.
+
+    - After the application deploys successfully, run the following command to validate the application deployment on both primary and secondary managed clusters.
+
+        oc get pods,pvc -n busybox-sample.
+
+    The output should look similar to the one below.
+
+         NAME                          READY   STATUS    RESTARTS   AGE
+         pod/busybox-67bf494b9-zl5tr   1/1     Running   0          77s
+
+
+         NAME                                STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS                AGE
+         persistentvolumeclaim/busybox-pvc   Bound    pvc-c732e5fe-daaf-4c4d-99dd-462e04c18412   5Gi        RWO            ocs-storagecluster-ceph-rbd   77s
+    
+    If you run the same command on the secondar cluster, the output should indicate that the Pods and PVCs are not deployed.
+
+         No resources found in busybox-sample namespace.
+
+    **Note**: While creating the application, there is an field where you need provide values for **PVC label selector**, ensure that you select lables that will deploy the application only on the primary cluster.
+
+
+    After you assign a DR policy and enroll your application, **DR Status** column will show the status as **healthy** or **critical**. So, wait for few minutes for the appropriate status to show.
+
+
+14. Test the sample application can failover from primary to secondary cluster and then relocate back to primary region. For more information refer to [Application](/docs/openshift?topic=openshift-openshift_odf_rdr_roks&interface=ui#odf-rdr-test).
+
+    - First, verify that the application pods are running on the primary and secondary clusters.
+
+    Run the ``oc get pods -n busybox-sample`` command on primary cluster to ensure the busy-box application pods are running.
+
+    The output should look similar to the one below.
+
+        NAME                      READY   STATUS    RESTARTS   AGE
+        busybox-6bb69c6ff-79bkr   1/1     Running   0          14d
+
+    Repeat the command on secondary cluster and you should see similar output.
+
+    Before you initiate a failover from primary to secondary cluster, run the following command
+
+          oc get drpc -o yaml -A | grep lastGroupSyncTime
+
+    The output should look similar to the one below.
+
+          lastGroupSyncTime: "2023-07-10T12:40:10Z"
+
+    **Note:** ``LastGroupSyncTime`` is a critical metric that reflects the time since the last successful replication occurred for all PVCs associated with an application. In essence, it measures the synchronization health between the primary and secondary clusters. So, prior to initiating a failover from one cluster to another, check for this metric and only initiate the failover if the ``LastGroupSyncTime`` is within a reasonable time in the past.
+
+    - Initiate application failover from primary to secondary, For more information refer to [Subscription-based application failover between managed clusters](https://docs.redhat.com/en/documentation/red_hat_openshift_data_foundation/4.19/html-single/configuring_openshift_data_foundation_disaster_recovery_for_openshift_workloads/index#application-failover-between-managed-clusters_manage-rdr).
+
+
+15. Once you have validated that your application has been failed over to the secondary region, let us now try to relocate it back to the primary region. For more information, refer to [Relocating Subscription-based application between managed clusters](https://docs.redhat.com/en/documentation/red_hat_openshift_data_foundation/4.19/html-single/configuring_openshift_data_foundation_disaster_recovery_for_openshift_workloads/index#relocating-application-between-managed-clusters_manage-rdr).
