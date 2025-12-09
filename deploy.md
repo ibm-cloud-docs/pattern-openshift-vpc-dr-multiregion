@@ -245,5 +245,4 @@ To know how subscriptions for OpenShift Data Foundation work, see knowledgebase 
  
 
 
-
 16. Once you have validated that your application has been failed over to the secondary region, let us now try to relocate it back to the primary region. For more information, refer to [Relocating Subscription-based application between managed clusters](https://docs.redhat.com/en/documentation/red_hat_openshift_data_foundation/4.19/html-single/configuring_openshift_data_foundation_disaster_recovery_for_openshift_workloads/index#relocating-application-between-managed-clusters_manage-rdr).  
