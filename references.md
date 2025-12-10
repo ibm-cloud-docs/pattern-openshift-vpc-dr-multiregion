@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2025-12-03"
+lastupdated: "2025-12-10"
 
 subcollection: pattern-openshift-vpc-dr-multiregion
 
@@ -29,7 +29,7 @@ keywords:
 
 -   [Preparing classic and VPC clusters for autoscaling](/docs/openshift?topic=openshift-cluster-scaling-classic-vpc)
 
--   [Service Level Agreements for {{site.data.keyword.Bluemix_notm}}](https://www.ibm.com/support/customer/csol/terms/?id=i126-9268&lc=en#detail-document){: external}
+-   [Service Level Agreements for {{site.data.keyword.Bluemix_notm}}](https://www.ibm.com/support/customer/csol/terms/?id=i126-9268&lc=en#detail-document)
 
 -   [{{site.data.keyword.openshiftlong_notm}} - Planning your OFD setup](https://docs.redhat.com/en/documentation/red_hat_openshift_data_foundation/4.19/html-single/configuring_openshift_data_foundation_disaster_recovery_for_openshift_workloads/index)
 

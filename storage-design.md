@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2025-12-05"
+lastupdated: "2025-12-10"
 
 subcollection: pattern-openshift-vpc-dr-multiregion
 
@@ -21,29 +21,29 @@ When designing storage for disaster recovery in Red Hat OpenShift environments, 
 ## Storage types
 {: #storage-types}
 
-### IBM Cloud Block Storage
+### {{site.data.keyword.block_storage_is_full}}
 {: #block-storage}
 
 IBM Cloud Block Storage on Kubernetes offers persistent storage for containerized applications, ensuring data durability and scalability. It seamlessly integrates with Kubernetes clusters, providing dynamic provisioning, snapshots, and encryption. This enables efficient management and utilization of storage resources within the Kubernetes environment, enhancing application performance and reliability. For more information, see [Block Storage for VPC documentation](/docs/openshift?topic=openshift-vpc-block).
 
-Review the following use cases for IBM Cloud Block Storage:
+Review the following use cases for {{site.data.keyword.block_storage_is_full}}:
 
--	Stateful Applications: The IBM Cloud Block Storage is ideal for deploying stateful applications like databases (for example, MySQL, PostgreSQL) in Kubernetes clusters.
+-	Stateful Applications: The {{site.data.keyword.block_storage_is_full}} is ideal for deploying stateful applications like databases (for example, MySQL, PostgreSQL) in Kubernetes clusters.
 
 -	Data Analytics Workloads: When running data analytics workloads, you often need to process and store large volumes of data.
 
-### IBM Cloud Object Storage
+### {{site.data.keyword.cos_full_notm}}
 {: #cos}
 
-IBM Cloud's Object Storage plug-in optimizes Kubernetes for seamless data management with IBM Cloud Object Storage. Using IBM's robust storage service, it simplifies integration with cloud-native apps, offering distributed, geo-redundant storage. This pattern caters efficiently to diverse Kubernetes storage needs, enabling effortless provisioning, management, and dynamic resource allocation, streamlining administration. This type of storage volume is not suitable for write-intensive workloads, random write operations, incremental data updates, or transaction databases. For more information surrounding IBM Cloud Object Storage, see the following Setting up [IBM Cloud Object Storage](/docs/openshift?topic=openshift-storage-cos-understand).
+{{site.data.keyword.cos_full_notm}} plug-in optimizes Kubernetes for seamless data management with {{site.data.keyword.cos_full_notm}}. Using IBM's robust storage service, it simplifies integration with cloud-native apps, offering distributed, geo-redundant storage. This pattern caters efficiently to diverse Kubernetes storage needs, enabling effortless provisioning, management, and dynamic resource allocation, streamlining administration. This type of storage volume is not suitable for write-intensive workloads, random write operations, incremental data updates, or transaction databases. For more information surrounding {{site.data.keyword.cos_full_notm}}, see the following Setting up [{{site.data.keyword.cos_full_notm}}](/docs/openshift?topic=openshift-storage-cos-understand).
 
-Review the following use cases for IBM Cloud Object Storage:
+Review the following use cases for {{site.data.keyword.cos_full_notm}}:
 
--	Data Backup and Archival: IBM Cloud Object Storage facilitates data backup and archival, crucial for scenarios like Kubernetes-based e-commerce apps. Automated backups ensure data durability and quick recovery.
+-	Data Backup and Archival: {{site.data.keyword.cos_full_notm}} facilitates data backup and archival, crucial for scenarios like Kubernetes-based e-commerce apps. Automated backups ensure data durability and quick recovery.
 
--	Media Storage for Content Delivery: Content delivery applications, such as video streaming platforms, require efficient and scalable media storage. With the IBM Cloud Object Storage pattern, you can store media assets like videos, images, and audio files. When a user requests media content, Kubernetes can retrieve it from IBM Cloud Object Storage and deliver it seamlessly to the user, ensuring a smooth streaming experience.
+-	Media Storage for Content Delivery: Content delivery applications, such as video streaming platforms, require efficient and scalable media storage. With the {{site.data.keyword.cos_full_notm}} pattern, you can store media assets like videos, images, and audio files. When a user requests media content, Kubernetes can retrieve it from {{site.data.keyword.cos_full_notm}} and deliver it seamlessly to the user, ensuring a smooth streaming experience.
 
--	Cross-Region Data Replication: IBM Cloud Object Storage supports cross-region data replication, essential for global businesses ensuring data redundancy and disaster recovery. Data synchronization between Kubernetes clusters minimizes downtime if there are regional failures.
+-	Cross-Region Data Replication: {{site.data.keyword.cos_full_notm}} supports cross-region data replication, essential for global businesses ensuring data redundancy and disaster recovery. Data synchronization between Kubernetes clusters minimizes downtime if there are regional failures.
 
 ### IBM Cloud Databases
 {: #cloud-dbs}
@@ -129,8 +129,6 @@ While choosing a storage system for your stateful applications, select a single 
 To ensure that your application perform optimally under heavy load, select a block storage tier that meets your organization application performance baseline. {{site.data.keyword.Bluemix_notm}} provides various block storage performance tiers with differing performance characteristics, select a tier that meets your applications IOPS and throughput needs. When using VPC clusters with VSIs, for performance considerations, use VPC Block storage 10 IOPS for worker nodes.
 
 For more information refer to [Block Storage profile families](https://cloud.ibm.com/docs/vpc?topic=vpc-block-storage-profiles&interface=ui#block-storage-profile-overview).
-
-
 
 
 ## Resources

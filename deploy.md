@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2025-12-09"
+lastupdated: "2025-12-10"
 
 keywords:
 
@@ -62,8 +62,8 @@ To know how subscriptions for OpenShift Data Foundation work, see knowledgebase 
 3. In addition, refer to [Deploying OpenShift Data Foundation on VPC clusters](/docs/openshift?topic=openshift-deploy-odf-vpc&interface=ui#ocs-storage-vpc) for complete list of prerequisites.
 
 
-    ### Provisioning the architecture
-    {: #deployment-steps}
+### Provisioning the architecture
+{: #deployment-steps}
 
     The following steps will help you deploy Red Hat OpenShift Cluster and OpenShift Data Foundation clusters across multiple regions and enable asynchronous replication between primary and secondary ODF volumes.
 
@@ -129,7 +129,7 @@ To know how subscriptions for OpenShift Data Foundation work, see knowledgebase 
 
     **Note**: Ensure to run this command on both managed clusters and add the respective cluster names in storage cluster.
 
-    After the changes, run the following command to validate the pods have restarted. 
+    After the changes, run the following command to validate the pods have restarted.
 
         oc get serviceexport -n openshift-storage
 
@@ -143,7 +143,7 @@ To know how subscriptions for OpenShift Data Foundation work, see knowledgebase 
         rook-ceph-osd-1   14d
         rook-ceph-osd-2   14d
 
-        It might take 15 minutes or longer for the serviceexport output to look like the one above.  
+        It might take 15 minutes or longer for the serviceexport output to look like the one above.
 
 
 9.	Install [OpenShift Data Foundation](/docs/openshift?topic=openshift-deploy-odf-vpc&interface=ui#install-odf-console-vpc) on the two managed clusters and ensure the two important options, Enable DR and NooBaa, are selected.
@@ -172,7 +172,7 @@ To know how subscriptions for OpenShift Data Foundation work, see knowledgebase 
 
     The ODF Multicluster Orchestrator also installs the OpenShift DR Hub Operatior on the Hub or ACM Cluster as a dependency.
 
-    Verify that the operator Pods are in a Running state by running the below command on the Hub or ACM cluster.  
+    Verify that the operator Pods are in a Running state by running the below command on the Hub or ACM cluster.
 
 
         oc get pods -n openshift-operators
@@ -189,20 +189,18 @@ To know how subscriptions for OpenShift Data Foundation work, see knowledgebase 
     **Note:** Section 4.6 in the Red Hat documentation is optional for this demo and does not have an impact on this deployment. For security reasons you must enable and configure SSL across clusters.
 
 
+
+### Verifying the architecture.
+{: #verify-deployment}
+
+
 11. Create a DR Policy from the Hub cluster  with a sync interval of 5 minutes. For more information, see section 4.7 at [Creating Disaster Recovery Policy on Hub cluster](https://docs.redhat.com/en/documentation/red_hat_openshift_data_foundation/4.16/html-single/configuring_openshift_data_foundation_disaster_recovery_for_openshift_workloads/index?extIdCarryOver=true&sc_cid=701f2000001OH7EAAW#creating-disaster-recovery-policy-on-hub-cluster_rdr).
 
 
     **Note:** The synch interval defines the RPO of your application. Choose a sync interval that meets your organization or application acceptable data loss requirement.
 
 
-    ### Verifying the architecture.
-    {: #verify-deployment}
-
-12. Create a Disaster Recovery Policy. For more information and detailed steps refer to [Apply Data policy to sample application](https://docs.redhat.com/en/documentation/red_hat_openshift_data_foundation/4.19/html-single/configuring_openshift_data_foundation_disaster_recovery_for_openshift_workloads/index#apply-drpolicy-to-sample-application_manage-rdr).  
-
-
-
-13. Deploy a subscription based and enroll the sample application in the DR policy[sample application](https://docs.redhat.com/en/documentation/red_hat_openshift_data_foundation/4.16/html-single/configuring_openshift_data_foundation_disaster_recovery_for_openshift_workloads/index#creating-sample-subscription-based-application_manage-rdr) to test your cluster and underlying ODF storage system using persistent volume claims.
+12. Deploy a subscription based and enroll the sample application in the DR policy [sample application](https://docs.redhat.com/en/documentation/red_hat_openshift_data_foundation/4.16/html-single/configuring_openshift_data_foundation_disaster_recovery_for_openshift_workloads/index#creating-sample-subscription-based-application_manage-rdr) to test your cluster and underlying ODF storage system using persistent volume claims.
 
 
     - These steps deploy the application in ***active-passive*** mode by deploying and running BusyBox pods on both primary managed cluster.
@@ -221,7 +219,7 @@ To know how subscriptions for OpenShift Data Foundation work, see knowledgebase 
 
          NAME                                STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS                AGE
          persistentvolumeclaim/busybox-pvc   Bound    pvc-c732e5fe-daaf-4c4d-99dd-462e04c18412   5Gi        RWO            ocs-storagecluster-ceph-rbd   77s
-    
+
     If you run the same command on the secondar cluster, the output should indicate that the Pods and PVCs are not deployed.
 
          No resources found in busybox-sample namespace.
@@ -232,7 +230,7 @@ To know how subscriptions for OpenShift Data Foundation work, see knowledgebase 
     After you assign a DR policy and enroll your application, **DR Status** column will show the status as **healthy** or **critical**. So, wait for few minutes for the appropriate status to show.
 
 
-14. Test the sample application can failover from primary to secondary cluster and then relocate back to primary region. For more information refer to [Application](/docs/openshift?topic=openshift-openshift_odf_rdr_roks&interface=ui#odf-rdr-test).
+13. Test the sample application can failover from primary to secondary cluster and then relocate back to primary region. For more information refer to [Application](/docs/openshift?topic=openshift-openshift_odf_rdr_roks&interface=ui#odf-rdr-test).
 
     - First, verify that the application pods are running on the primary and secondary clusters.
 
@@ -245,7 +243,7 @@ To know how subscriptions for OpenShift Data Foundation work, see knowledgebase 
 
     Repeat the command on secondary cluster and you should see similar output.
 
-    Before you initiate a failover from primary to secondary cluster, run the following command
+    Before you initiate a failover from primary to secondary cluster, run the following command on the primary cluster.
 
           oc get drpc -o yaml -A | grep lastGroupSyncTime
 
@@ -255,7 +253,7 @@ To know how subscriptions for OpenShift Data Foundation work, see knowledgebase 
 
     **Note:** ``LastGroupSyncTime`` is a critical metric that reflects the time since the last successful replication occurred for all PVCs associated with an application. In essence, it measures the synchronization health between the primary and secondary clusters. So, prior to initiating a failover from one cluster to another, check for this metric and only initiate the failover if the ``LastGroupSyncTime`` is within a reasonable time in the past.
 
-    - Initiate application failover from primary to secondary, For more information refer to [Subscription-based application failover between managed clusters](https://docs.redhat.com/en/documentation/red_hat_openshift_data_foundation/4.19/html-single/configuring_openshift_data_foundation_disaster_recovery_for_openshift_workloads/index#application-failover-between-managed-clusters_manage-rdr).
+    - Initiate application failover from primary to secondary. For more information refer to [Subscription-based application failover between managed clusters](https://docs.redhat.com/en/documentation/red_hat_openshift_data_foundation/4.19/html-single/configuring_openshift_data_foundation_disaster_recovery_for_openshift_workloads/index#application-failover-between-managed-clusters_manage-rdr).
 
 
-15. Once you have validated that your application has been failed over to the secondary region, let us now try to relocate it back to the primary region. For more information, refer to [Relocating Subscription-based application between managed clusters](https://docs.redhat.com/en/documentation/red_hat_openshift_data_foundation/4.19/html-single/configuring_openshift_data_foundation_disaster_recovery_for_openshift_workloads/index#relocating-application-between-managed-clusters_manage-rdr).
+14. Once you have validated that your application has been failed over to the secondary region, let us now try to relocate it back to the primary region. For more information, refer to [Relocating Subscription-based application between managed clusters](https://docs.redhat.com/en/documentation/red_hat_openshift_data_foundation/4.19/html-single/configuring_openshift_data_foundation_disaster_recovery_for_openshift_workloads/index#relocating-application-between-managed-clusters_manage-rdr).
